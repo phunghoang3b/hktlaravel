@@ -23,9 +23,9 @@
                                     <input data-validation="length" data-validation-length="min1" data-validation-error-msg="*Vui lòng không để trống mục này" type="text" name="soluong_giamgia" class="form-control" id="exampleInputEmail1">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Tính năng</label>
-                                    <select name="tinhnang_giamgia" class="form-control input-sm m-bot15">
-                                        <option value="0">------Chọn------</option>
+                                    <label for="exampleInputPassword1">Hình thức giảm giá</label>
+                                    <select name="tinhnang_giamgia" class="form-control input-sm m-bot15" style="text-align: center;width: 50%;">
+                                        <option value="0">----------------Chọn----------------</option>
                                         <option value="1">Giảm theo phần trăm</option>
                                         <option value="2">Giảm theo tiền</option>
                                     </select>
@@ -34,11 +34,11 @@
                                     <label for="exampleInputPassword1">Nhập % hoặc số tiền giảm</label>
                                     <input data-validation="length" data-validation-length="min1" data-validation-error-msg="*Vui lòng không để trống mục này" type="text" name="so_giamgia" class="form-control" id="exampleInputEmail1">
                                 </div>                               
-                                <button type="submit" name="them_giamgia" class="btn btn-info">Thêm giảm giá</button>
+                                <button type="submit" name="them_giamgia" class="btn btn-info" style="position: relative;left: 44%;">Thêm giảm giá</button>
                                 <?php
                                 $message = Session::get('message');
                                 if($message){
-                                    echo '<span class="text-alert">',$message,'</span>';
+                                    echo '<span class="text-alert" style="position:relative;left:5%">',$message,'</span>';
                                     Session::put('message',null);
                                 }
                                 ?>

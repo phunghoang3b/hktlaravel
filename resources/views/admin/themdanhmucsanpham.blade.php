@@ -30,11 +30,11 @@
                                     </select>
                                 </div>
                                 
-                                <button type="submit" name="them_sanpham" class="btn btn-info">Thêm danh mục</button>
+                                <button type="submit" name="them_sanpham" class="btn btn-info" style="position: relative;left: 44%;">Thêm danh mục</button>
                                 <?php
                                 $message = Session::get('message');
                                 if($message){
-                                    echo '<span class="text-alert">',$message,'</span>';
+                                    echo '<span class="text-alert" style="position:relative;left:5%">',$message,'</span>';
                                     Session::put('message',null);
                                 }
                                 ?>

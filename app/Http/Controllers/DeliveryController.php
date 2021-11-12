@@ -52,13 +52,16 @@ class DeliveryController extends Controller
         $feeship = Feeship::orderby('fee_id','DESC')->get();
         $output = '';
         $output .= '<div class="table-responsive">
+            <header class="panel-heading">
+                Danh Sách Phí Vận Chuyển
+            </header>
             <table class="table table-bordered">
                 <thread>
                     <tr>
-                        <th>Tên thành phố</th>
-                        <th>Tên quận huyện</th>
-                        <th>Tên xã phường</th>
-                        <th>Phí ship</th>
+                        <th style="text-align: center;">Tên thành phố</th>
+                        <th style="text-align: center;">Tên quận huyện</th>
+                        <th style="text-align: center;">Tên xã phường</th>
+                        <th style="text-align: center;">Phí ship</th>
                     </tr>
                 </thread>  
                 <tbody>

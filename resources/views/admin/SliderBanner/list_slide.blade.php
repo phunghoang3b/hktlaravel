@@ -3,24 +3,19 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh Sách Slider Banner
+      Danh Sách Slide Banner
     </div>
     <div class="table-responsive">
       <?php
         $message = Session::get('message');
         if($message){
-          echo '<span class="text-alert">',$message,'</span>';
+          echo '<span class="text-alert" style="position:relative;left:40%">',$message,'</span>';
           Session::put('message',null);
         }
       ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th style="border: 1px solid;text-align: center;width: 20%;">Tên slide</th>
             <th style="border: 1px solid;text-align: center;width: 30%;">Hình ảnh</th>
             <th style="border: 1px solid;text-align: center;width: 30%;">Mô tả</th>
@@ -31,7 +26,6 @@
         <tbody>
           @foreach($danhsach_slide as $key => $slide)
           <tr>
-            <td style="border: 1px solid;"><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td style="border: 1px solid;">{{ $slide->slider_name }}</td>
             <td style="border: 1px solid; text-align: center;"><img src="public/uploads/slider/{{ $slide->slider_image }}" height="70%" width="70%"></td>
             <td style="border: 1px solid;">{{ $slide->slider_desc }}</td>
@@ -40,11 +34,11 @@
               <?php
                 if($slide->slider_status == 1){
               ?>
-                <a href="{{URL::to('/unactive-slide/'.$slide->slider_id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                <a href="{{URL::to('/unactive-slide/'.$slide->slider_id)}}"><span class="fa-toggle-styling fa fa-toggle-on"></span></a>
               <?php
                 }else{
               ?>
-                <a href="{{URL::to('/active-slide/'.$slide->slider_id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                <a href="{{URL::to('/active-slide/'.$slide->slider_id)}}"><span class="fa-power-styling fa fa-power-off"></span></a>
               <?php
                 }
               ?>

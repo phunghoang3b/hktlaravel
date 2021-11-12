@@ -160,7 +160,7 @@
                   @endphp
                 @else
                   @php
-                    echo 'Tổng giảm: '.number_format($coupon_number,0,',','.').'k'.'</br>';
+                    echo 'Tổng giảm: '.number_format($coupon_number,0,',','.').' K'.'</br>';
                     $tongtien_giamgia = $tongtien - $coupon_number - $chitiet->product_feeship;
                   @endphp
                 @endif
@@ -169,12 +169,12 @@
               </td>
           </tr>
           <tr>
-            <td colspan="6">
+            <td colspan="3" style="position: relative;left: 31%;">
               @foreach($order as $key => $dh)
                 @if($dh->order_status == 1)
                   <form>
                     @csrf
-                    <select class="form-control order_detail">
+                    <select class="form-control order_detail" style="text-align: center;">
                       <option value="">------Chọn hình thức đơn hàng------</option>
                       <option id="{{$dh->order_id}}" selected value="1">Chưa xử lý</option>
                       <option id="{{$dh->order_id}}" value="2">Đã xử lý đơn hàng</option>
@@ -184,7 +184,7 @@
                 @elseif($dh->order_status == 2)
                   <form>
                     @csrf
-                    <select class="form-control order_detail">
+                    <select class="form-control order_detail" style="text-align: center;">
                       <option value="">------Chọn hình thức đơn hàng------</option>
                       <option id="{{$dh->order_id}}" value="1">Chưa xử lý</option>
                       <option id="{{$dh->order_id}}" selected value="2">Đã xử lý đơn hàng</option>
@@ -194,7 +194,7 @@
                 @else
                   <form>
                     @csrf
-                    <select class="form-control order_detail">
+                    <select class="form-control order_detail" style="text-align: center;">
                       <option value="">------Chọn hình thức đơn hàng------</option>
                       <option id="{{$dh->order_id}}" value="1">Chưa xử lý</option>
                       <option id="{{$dh->order_id}}" value="2">Đã xử lý đơn hàng</option>
@@ -206,9 +206,9 @@
             </td>
           </tr>
         </tbody>
-      </table>
+      </table><br>
       <div style="text-align: center;">
-        <a href="{{url('/in-donhang/'.$chitiet->order_code)}}">In đơn hàng</a>
+        <a href="{{url('/in-donhang/'.$chitiet->order_code)}}"><img src="{{asset('public/backend/images/bill.png')}}" style="position: relative;right: 10px;"></a>
       </div>     
     </div>
   </div>

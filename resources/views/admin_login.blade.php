@@ -47,17 +47,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <input type="submit" value="Đăng Nhập" name="login">
 
             {{-- thực hiện captcha google --}}
-            <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
+            <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}" style="margin-left: 20%;"></div>
             <br/>
             @if($errors->has('g-recaptcha-response'))
-            <span class="invalid-feedback" style="display:block">
+            <span class="invalid-feedback" style="position: relative;margin-left: 32%;width: 35%;margin-top: -2%;text-align: center;">
                 <strong>{{$errors->first('g-recaptcha-response')}}</strong>
             </span>
             @endif
         </form>
-        <h4 style="color: white; text-align: center;margin-top: -28px;">Đăng nhập bằng</h4>
+        {{-- <h4 style="color: white; text-align: center;margin-top: -5px;">Đăng nhập bằng</h4> --}}
         <br>
-        <a href="{{URL::to('/login-google')}}"><img src="{{('public/backend/images/google.png')}}" style="width: 40px;position: absolute;margin-left: 12%;"></a>
+        <a href="{{URL::to('/login-google')}}"><img src="{{('public/backend/images/google.png')}}" style="width: 40px;position: relative;margin-left: 77%;margin-top: -75%;"></a>
 </div>
 </div>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>

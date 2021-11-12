@@ -9,18 +9,13 @@
       <?php
         $message = Session::get('message');
         if($message){
-          echo '<span class="text-alert">',$message,'</span>';
+          echo '<span class="text-alert" style="position:relative;left:40%">',$message,'</span>';
           Session::put('message',null);
         }
       ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th style="border: 1px solid;text-align: center;">Tên sản phẩm</th>
             <th style="border: 1px solid;text-align: center;">Số lượng</th>
             <th style="border: 1px solid;text-align: center;">Giá</th>
@@ -34,11 +29,10 @@
         <tbody>
           @foreach($danhsachsanpham as $key => $sanpham)
           <tr>
-            <td style="border: 1px solid;"><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td style="border: 1px solid;">{{ $sanpham->product_name }}</td>
             <td style="border: 1px solid;text-align: center;">{{ $sanpham->product_quantity }}</td>
             <td style="border: 1px solid;text-align: center;">{{number_format($sanpham->product_price,0,',','.').' đ' }}</td>
-            <td style="border: 1px solid; text-align: center;"><img src="public/uploads/product/{{ $sanpham->product_image }}" height="100" width="100"></td>
+            <td style="border: 1px solid; text-align: center;"><img src="public/uploads/product/{{ $sanpham->product_image }}" height="100" width="100" style="width: 55%;"></td>
             <td style="border: 1px solid;">{{ $sanpham->category_name }}</td>
             <td style="border: 1px solid;">{{ $sanpham->brand_name }}</td>
             <td style="border: 1px solid;text-align: center;"><span class="text-ellipsis">
@@ -46,11 +40,11 @@
               <?php
                 if($sanpham->product_status == 0){
               ?>
-                <a href="{{URL::to('/unactive-sanpham/'.$sanpham->product_id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                <a href="{{URL::to('/unactive-sanpham/'.$sanpham->product_id)}}"><span class="fa-toggle-styling fa fa-toggle-on"></span></a>
               <?php
                 }else{
               ?>
-                <a href="{{URL::to('/active-sanpham/'.$sanpham->product_id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                <a href="{{URL::to('/active-sanpham/'.$sanpham->product_id)}}"><span class="fa-power-styling fa fa-power-off"></span></a>
               <?php
                 }
               ?>
@@ -65,18 +59,19 @@
           @endforeach 
         </tbody>
       </table>
-
+      <br>
+      <h4 style="text-align: center;">Chọn tệp cần import File Excel:</h4><br>
       {{-- import file excel --}}
       <form action="{{url('/import-file-product')}}" method="POST" enctype="multipart/form-data">
           @csrf
-        <input type="file" name="file" accept=".xlsx"><br>
-        <input type="submit" value="Import File Excel" name="import_csv" class="btn btn-warning">
-      </form>
+        <input type="file" name="file" accept=".xlsx" style="position: relative;left: 40%;"><br>
+        <input type="submit" value="Import File Excel" name="import_csv" class="btn btn-warning" style="position: relative;left: 45.4%;">
+      </form><br>
 
       {{-- export file excel --}}
       <form action="{{url('/export-file-product')}}" method="POST">
           @csrf
-        <input type="submit" value="Export File Excel" name="export_csv" class="btn btn-success">
+        <input type="submit" value="Export File Excel" name="export_csv" class="btn btn-success" style="position: relative;left: 45.4%;">
       </form>
 
     </div>

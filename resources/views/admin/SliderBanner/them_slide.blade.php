@@ -30,11 +30,11 @@
                                     </select>
                                 </div>
                                 
-                                <button type="submit" name="them_slide" class="btn btn-info">Thêm slider</button>
+                                <button type="submit" name="them_slide" class="btn btn-info" style="margin-left: 46%;">Thêm slider</button>
                                 <?php
                                 $message = Session::get('message');
                                 if($message){
-                                    echo '<span class="text-alert">',$message,'</span>';
+                                    echo '<span class="text-alert" style="position:relative;left:5%">',$message,'</span>';
                                     Session::put('message',null);
                                 }
                                 ?>

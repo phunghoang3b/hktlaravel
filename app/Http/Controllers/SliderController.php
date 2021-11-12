@@ -47,7 +47,7 @@ class SliderController extends Controller
             Session::put('message','Thêm slider thành công');
             return Redirect::to('thembanner');
         }else{
-            Session::put('message','Hãy thêm hình ảnh');
+            Session::put('message','Thêm slider không thành công');
             return Redirect::to('thembanner');
         }
     }
