@@ -397,6 +397,11 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="8Nbv5FZH"></script>
 
+    {{-- zalo --}}
+    <div class="zalo-chat-widget" data-oaid="4395814966648974259" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
+
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $('.add-to-cart').click(function(){
