@@ -21,7 +21,7 @@ class OrderController extends Controller
 
     // xem chi tiết đơn hàng
     public function xem_donhang($order_code){
-        $order_details = OrderDetails::where('order_code',$order_code)->get();
+        $order_details = OrderDetails::with('product')->where('order_code',$order_code)->get();
         $order = Order::where('order_code',$order_code)->get();
         foreach($order as $key => $ord){
             $customer_id = $ord->customer_id;
@@ -54,7 +54,7 @@ class OrderController extends Controller
     }
 
     public function in_donhang_chuyen($checkout_code){
-        $order_details = OrderDetails::with('product')->where('order_code',$checkout_code)->get();
+        $order_details = OrderDetails::where('order_code',$checkout_code)->get();
         $order = Order::where('order_code',$checkout_code)->get();
         foreach($order as $key => $ord){
             $customer_id = $ord->customer_id;

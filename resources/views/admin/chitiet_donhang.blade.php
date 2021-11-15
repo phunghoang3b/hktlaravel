@@ -156,12 +156,12 @@
                   @php
                     $tongtiensau_giamgia = ($tongtien*$coupon_number)/100;
                     echo 'Tổng giảm: '.number_format($tongtiensau_giamgia,0,',','.').'</br>';
-                    $tongtien_giamgia = $tongtien - $tongtiensau_giamgia - $chitiet->product_feeship;
+                    $tongtien_giamgia = $tongtien - $tongtiensau_giamgia + $chitiet->product_feeship;
                   @endphp
                 @else
                   @php
                     echo 'Tổng giảm: '.number_format($coupon_number,0,',','.').' K'.'</br>';
-                    $tongtien_giamgia = $tongtien - $coupon_number - $chitiet->product_feeship;
+                    $tongtien_giamgia = $tongtien - $coupon_number + $chitiet->product_feeship;
                   @endphp
                 @endif
                 Phí ship: {{number_format($chitiet->product_feeship,0,',','.')}} đ</br>
