@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Trang quản lý</title>
+<title>Đăng Ký</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -23,7 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-    <h2>Đăng Nhập</h2>
+    <h2>Đăng Ký</h2>
     {{-- hiện thông báo --}}
     <?php
     $message = Session::get('message');
@@ -32,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         Session::put('message',null);
     }
     ?>
-        <form action="{{URL::to('admin-trangchu')}}" method="post">
+        <form action="{{URL::to('/dangky')}}" method="post">
             {{ csrf_field() }}
             {{-- ->all() là bắt tất cả lỗi --}}
             @foreach($errors->all() as $giatri)
@@ -41,19 +41,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
             @endforeach
 
-            <input type="text" class="ggg" name="admin_email" placeholder="Nhập Email">
+            <input type="text" class="ggg" name="admin_name" value="{{old('admin_name')}}" placeholder="Nhập Tên">
+            <input type="email" class="ggg" name="admin_email" placeholder="Nhập Email">
+            <input type="tel" class="ggg" name="admin_phone" value="{{old('admin_name')}}" placeholder="Nhập Số Điện Thoại">
             <input type="password" class="ggg" name="admin_password" placeholder="Nhập Password">
                 <div class="clearfix"></div>
-                <input type="submit" value="Đăng Nhập" name="login">
-
-            {{-- thực hiện captcha google --}}
-            <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}" style="margin-left: 20%;"></div>
-            <br/>
-            @if($errors->has('g-recaptcha-response'))
-            <span class="invalid-feedback" style="position: relative;margin-left: 32%;width: 35%;margin-top: -2%;text-align: center;">
-                <strong>{{$errors->first('g-recaptcha-response')}}</strong>
-            </span>
-            @endif
+                <input type="submit" value="Đăng Ký" name="login">
         </form>
         {{-- <h4 style="color: white; text-align: center;margin-top: -5px;">Đăng nhập bằng</h4> --}}
         <br>

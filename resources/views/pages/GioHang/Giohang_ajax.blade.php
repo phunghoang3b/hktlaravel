@@ -150,11 +150,11 @@
 			<div class="table-responsive cart_info">
 			@if(session()->has('message'))
                 <div class="alert alert-success">
-                    {{ session()->get('message') }}
+                    {!! session()->get('message') !!}
                 </div>
             @elseif(session()->has('error'))
                  <div class="alert alert-danger">
-                    {{ session()->get('error') }}
+                    {!! session()->get('error') !!}
                 </div>
             @endif
 			<form action="{{url('/capnhat-giohang-ajax')}}" method="POST">

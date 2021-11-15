@@ -77,6 +77,7 @@ class CartController extends Controller
                 'product_name' => $data['cart_product_name'],
                 'product_id' => $data['cart_product_id'],
                 'product_image' => $data['cart_product_image'],
+                'product_quantity' => $data['cart_product_quantity'],
                 'product_sales_quantity' => $data['cart_product_qty'],
                 'product_price' => $data['cart_product_price'],
                 );
@@ -88,6 +89,7 @@ class CartController extends Controller
                 'product_name' => $data['cart_product_name'],
                 'product_id' => $data['cart_product_id'],
                 'product_image' => $data['cart_product_image'],
+                'product_quantity' => $data['cart_product_quantity'],
                 'product_sales_quantity' => $data['cart_product_qty'],
                 'product_price' => $data['cart_product_price'],
             );
@@ -131,15 +133,21 @@ class CartController extends Controller
         $data = $request->all();
         $giohang = Session::get('giohang');
         if($giohang == true){
+            $message = '';
             foreach($data['cart_qty'] as $key => $sluong){
+                $i = 0;
                 foreach($giohang as $session => $giatri){
-                    if($giatri['session_id'] == $key){
+                    $i++;
+                    if($giatri['session_id'] == $key && $sluong < $giohang[$session]['product_quantity']){
                         $giohang[$session]['product_sales_quantity'] = $sluong;
+                        $message.='<p style="color:#111">'.$i.') Cập nhật số lượng :'.$giohang[$session]['product_name'].' thành công</p>';
+                    }elseif($giatri['session_id'] == $key && $sluong > $giohang[$session]['product_quantity']){
+                        $message.='<p style="color:red">'.$i.') Cập nhật số lượng :'.$giohang[$session]['product_name'].' thất bại</p>';
                     }
                 }
             }
             Session::put('giohang',$giohang);
-            return redirect()->back()->with('message','Cập nhật số lượng thành công');
+            return redirect()->back()->with('message',$message);
         }else{
             return redirect()->back()->with('message','Cập nhật số lượng thất bại');
         }

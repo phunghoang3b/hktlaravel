@@ -65,10 +65,10 @@ Route::post('/import-file-product','ProductController@import_file_product');
 Route::post('/export-file-product','ProductController@export_file_product');
 
 //Giỏ hàng
-Route::post('/luu-giohang', 'CartController@luu_giohang');
-Route::post('/capnhat-sl-giohang', 'CartController@capnhat_sl_giohang');
-Route::get('/hienthi-giohang', 'CartController@hienthi_giohang');
-Route::get('/xoa-giohang/{rowId}', 'CartController@xoa_giohang');
+// Route::post('/luu-giohang', 'CartController@luu_giohang');
+// Route::post('/capnhat-sl-giohang', 'CartController@capnhat_sl_giohang');
+// Route::get('/hienthi-giohang', 'CartController@hienthi_giohang');
+// Route::get('/xoa-giohang/{rowId}', 'CartController@xoa_giohang');
 
 //Giỏ hàng Ajax
 Route::post('/themgiohang-ajax', 'CartController@themgiohang_ajax');
@@ -127,3 +127,7 @@ Route::get('/thembanner','SliderController@them_banner');
 Route::post('/luu-slider','SliderController@luu_slider');
 Route::get('/unactive-slide/{slide_id}', 'SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}', 'SliderController@active_slide');
+
+// Phân quyền admin
+Route::get('/Dangky-admin','AuthController@Dangky_admin');
+Route::post('/dangky','AuthController@dangky');

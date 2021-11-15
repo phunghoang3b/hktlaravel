@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -199,12 +199,12 @@
 				  <!-- Wrapper for slides -->
 				    <div class="carousel-inner" style="height: 8%;"></div>
 						 <!-- Controls -->
-						 <a class="left item-control" href="#similar-product" data-slide="prev">
+						 {{-- <a class="left item-control" href="#similar-product" data-slide="prev">
 							<i class="fa fa-angle-left"></i>
 						 </a>
 						 <a class="right item-control" href="#similar-product" data-slide="next">
 							<i class="fa fa-angle-right"></i>
-						 </a>
+						 </a> --}}
 					</div>
 
 				</div>
@@ -214,17 +214,24 @@
 						<h2>{{$chitiet->product_name}}</h2>
 						<p>Mã ID sản phẩm: {{$chitiet->product_id}}</p>
 						
-						<form action="{{URL::to('/luu-giohang')}}" method="POST">
-							{{ csrf_field() }}
+						<form action="{{URL::to('/themgiohang-ajax')}}" method="POST">
+							@csrf
+                            <input type="hidden" value="{{$chitiet->product_id}}" class="cart_product_id_{{$chitiet->product_id}}">
+                            <input type="hidden" value="{{$chitiet->product_name}}" class="cart_product_name_{{$chitiet->product_id}}">
+                            <input type="hidden" value="{{$chitiet->product_image}}" class="cart_product_image_{{$chitiet->product_id}}">
+                            <input type="hidden" value="{{$chitiet->product_quantity}}" class="cart_product_quantity_{{$chitiet->product_id}}">
+                            <input type="hidden" value="{{$chitiet->product_price}}" class="cart_product_price_{{$chitiet->product_id}}">
 							<span>
-								<span>{{number_format($chitiet->product_price).' đ'}}</span>
+								<span>{{number_format($chitiet->product_price,0,',','.').' đ'}}</span>
 								<label>Số lượng:</label>
-								<input name="so_luong" type="number" min="1" value="1" />
+								<input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_{{$chitiet->product_id}}" />
 								<input name="sanphamid_hidden" type="hidden" value="{{$chitiet->product_id}}" />
-								<button type="submit" class="btn btn-fefault cart" style="border-radius: 5px;position: absolute;margin-top: 34%;right: 63%;">
-									<i class="fa fa-shopping-cart"></i>
-									Thêm Giỏ Hàng
-								</button>
+								{{-- <input type="button" class="btn btn-primary btn-sm add-to-cart" style="border-radius: 5px;position: absolute;margin-top: 34%;right: 63%;" value="Thêm giỏ hàng" name="add-to-cart">
+									{{-- <i class="fa fa-shopping-cart"></i> --}}
+                                <button type="submit" class="btn btn-fefault cart" style="border-radius: 5px;position: absolute;margin-top: 32%;right: 63%;">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Thêm Giỏ Hàng
+                                </button>
 							</span>
 						</form>
 						<p><b>Tình trạng:</b> Còn hàng</p>

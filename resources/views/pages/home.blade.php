@@ -11,6 +11,7 @@
                             @csrf
                             <input type="hidden" value="{{$sanpham->product_id}}" class="cart_product_id_{{$sanpham->product_id}}">
                             <input type="hidden" value="{{$sanpham->product_name}}" class="cart_product_name_{{$sanpham->product_id}}">
+                            <input type="hidden" value="{{$sanpham->product_quantity}}" class="cart_product_quantity_{{$sanpham->product_id}}">
                             <input type="hidden" value="{{$sanpham->product_image}}" class="cart_product_image_{{$sanpham->product_id}}">
                             <input type="hidden" value="{{$sanpham->product_price}}" class="cart_product_price_{{$sanpham->product_id}}">
                             <input type="hidden" value="1" class="cart_product_qty_{{$sanpham->product_id}}">
