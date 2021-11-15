@@ -48,7 +48,15 @@ class AuthController extends Controller
         ]);
         $data = $request->all();
         if(Auth::attempt(['admin_email' => $request->admin_email, 'admin_password' => $request->admin_password])){
-            
+            return redirect('/Trangadmin');
+        }else{
+            return redirect('/Dangnhap-admin')->with('message','Đăng nhập admin thất bại');
         }
+    }
+
+    //đăng xuất admin
+    public function dangxuat_admin(){
+        Auth::logout();
+        return redirect('/Dangnhap-admin')->with('message','Đăng xuất admin thành công');
     }
 }

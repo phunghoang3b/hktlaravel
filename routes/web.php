@@ -133,3 +133,4 @@ Route::get('/Dangky-admin','AuthController@Dangky_admin');
 Route::post('/dangky','AuthController@dangky');
 Route::get('/Dangnhap-admin','AuthController@Dangnhap_admin');
 Route::post('/dangnhap','AuthController@dangnhap');
+Route::get('/dangxuat-admin','AuthController@dangxuat_admin');

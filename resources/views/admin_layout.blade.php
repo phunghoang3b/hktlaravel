@@ -51,23 +51,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="{{('public/backend/images/2.png')}}">
-                {{-- <?php
-                	if(Session::get('login_normal')){                		
-                		$name =  Session::get('admin_name');
-                	}else{
-                		$name = Auth::user()->admin_name;
-                	}               	
-                	if ($name) {
-                		echo $name;
-                	}
-               	?> --}}
                	<?php
-                    if(Session::get('admin_name')){
-                    $name =  Session::get('admin_name');
-                    }else{
-                        $name = Auth::user()->admin_name;
-                    }
-                    if ($name) {
+                    $name =  Auth::user()->admin_name;
+                    if($name){
                         echo $name;
                     }
                     ?>
@@ -76,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ Sơ</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Cài Đặt</a></li>
-                <li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-key"></i> Đăng Xuất</a></li>
+                <li><a href="{{URL::to('/dangxuat-admin')}}"><i class="fa fa-key"></i> Đăng Xuất</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->

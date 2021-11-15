@@ -18,17 +18,7 @@ session_start();
 class AdminController extends Controller
 {
     public function KiemtraAdmin(){
-        // if(Session::get('login_normal')){
-        //     $admin_id = Session::get('admin_id');
-        // }else{
-        //     $admin_id = Auth::id();
-        // }
-        // if($admin_id){
-        //     return Redirect::to('trangadmin');
-        // }else{
-        //     return Redirect::to('admin')->send();
-        // }
-        $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
             if($admin_id){
                 return Redirect::to('/Trangadmin');
             }else{
