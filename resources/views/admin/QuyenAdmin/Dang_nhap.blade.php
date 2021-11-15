@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>Trang quản lý</title>
+<title>Đăng Nhập</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -32,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         Session::put('message',null);
     }
     ?>
-        <form action="{{URL::to('admin-trangchu')}}" method="post">
+        <form action="{{URL::to('/dangnhap')}}" method="post">
             {{ csrf_field() }}
             {{-- ->all() là bắt tất cả lỗi --}}
             @foreach($errors->all() as $giatri)
@@ -41,19 +41,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
             @endforeach
 
-            <input type="text" class="ggg" name="admin_email" placeholder="Nhập Email">
+            <input type="email" class="ggg" name="admin_email" placeholder="Nhập Email">
             <input type="password" class="ggg" name="admin_password" placeholder="Nhập Password">
                 <div class="clearfix"></div>
                 <input type="submit" value="Đăng Nhập" name="login">
-
-            {{-- thực hiện captcha google --}}
-            <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}" style="margin-left: 20%;"></div>
-            <br/>
-            @if($errors->has('g-recaptcha-response'))
-            <span class="invalid-feedback" style="position: relative;margin-left: 32%;width: 35%;margin-top: -2%;text-align: center;">
-                <strong>{{$errors->first('g-recaptcha-response')}}</strong>
-            </span>
-            @endif
         </form>
         {{-- <h4 style="color: white; text-align: center;margin-top: -5px;">Đăng nhập bằng</h4> --}}
         <br>

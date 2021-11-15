@@ -52,6 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <br>
         <a href="{{URL::to('/login-google')}}"><img src="{{('public/backend/images/google.png')}}" style="width: 40px;position: relative;margin-left: 77%;margin-top: -75%;"></a>
         <a href="{{URL::to('/Dangky-admin')}}">Đăng Ký</a>
+        <a href="{{URL::to('/Dangnhap-admin')}}">Đăng Nhập</a>
 </div>
 </div>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>
