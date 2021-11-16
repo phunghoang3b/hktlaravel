@@ -32,14 +32,18 @@
               @csrf
               <tr>
                 <td style="border: 1px solid;">{{ $user->admin_name }}</td>
-                <td style="border: 1px solid;">{{ $user->admin_email }} <input type="hidden" name="admin_email" value="{{ $user->admin_email }}"></td>
+                <td style="border: 1px solid;">{{ $user->admin_email }} 
+                  <input type="hidden" name="admin_email" value="{{ $user->admin_email }}">
+                  <input type="hidden" name="admin_id" value="{{ $user->admin_id }}">
+                </td>
                 <td style="border: 1px solid;text-align: center;">{{ $user->admin_phone }}</td>
                 <td style="border: 1px solid;">{{ $user->admin_password }}</td>
                 <td style="border: 1px solid;text-align: center;"><input type="checkbox" name="admin_role" {{$user->hasRole('admin') ? 'checked' : ''}}></td>
                 <td style="border: 1px solid;text-align: center;"><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
                 <td style="border: 1px solid;text-align: center;"><input type="checkbox" name="manager_role"  {{$user->hasRole('manager') ? 'checked' : ''}}></td>
               <td style="border: 1px solid; text-align: center;">                  
-                 <input type="submit" value="Cấp Quyền" class="btn btn-sm btn-default">               
+                 <p><input type="submit" value="Cấp Quyền" class="btn btn-sm btn-default"></p>
+                 <p><a style="margin: 5px 0" class="btn btn-sm btn-danger" href="{{url('/xoaquyen-user/'.$user->admin_id)}}">Xóa User</a></p> 
               </td> 
               </tr>
             </form>

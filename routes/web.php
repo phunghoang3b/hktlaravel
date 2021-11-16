@@ -140,4 +140,7 @@ Route::get('/dangxuat-admin','AuthController@dangxuat_admin');
 
 // 2) phân quyền cho admin
 Route::get('/users','UserController@index')->middleware('admin.roles');
+Route::get('/them-taikhoan','UserController@them_taikhoan')->middleware('admin.roles');
 Route::post('/phanquyen-vaitro','UserController@phanquyen_vaitro')->middleware('admin.roles');
+Route::get('/xoaquyen-user/{admin_id}','UserController@xoaquyen_user')->middleware('admin.roles');
+Route::post('/luu-taikhoan','UserController@luu_taikhoan')->middleware('admin.roles');
