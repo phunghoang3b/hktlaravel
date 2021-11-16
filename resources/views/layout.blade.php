@@ -129,7 +129,13 @@
                                 <li><a href="{{URL::to('/Trang-chu')}}" class="active">Trang chủ</a></li>
                                 <li><a href="#">Sản Phẩm</a></li>
                                 <li><a href="{{URL::to('/Gioi-thieu')}}">Giới Thiệu</a></li>
-                                <li><a href="#">Tin Tức</a></li> 
+                                <li class="dropdown"><a href="#">Tin Tức<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        @foreach($category_post as $key => $dmbv)
+                                            <li><a href="{{URL::to('/danh-muc-bai-viet/'.$dmbv->cate_post_slug)}}">{{$dmbv->cate_post_name}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li> 
                                 {{-- <li><a href="{{URL::to('/hienthi-giohang')}}">Giỏ Hàng</a></li> --}}
                                 <li><a href="{{URL::to('/Lien-he')}}">Liên Hệ</a></li>
                             </ul>

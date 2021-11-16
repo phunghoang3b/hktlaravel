@@ -7,6 +7,7 @@ use DB;//sử dụng database
 use App\Http\Requests;
 use Session;
 use Mail;
+use App\Models\CatePost;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -43,6 +44,9 @@ class HomeController extends Controller
     }
 
     public function index(Request $request){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
         //--slider
         $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
 
@@ -57,7 +61,7 @@ class HomeController extends Controller
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
         $tatca_sanpham = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','desc')->limit(4)->get();
-        return view('pages.home')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('allproduct',$tatca_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider);
+        return view('pages.home')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('allproduct',$tatca_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
     }
 
     //tìm kiếm sản phẩm

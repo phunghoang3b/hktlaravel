@@ -146,3 +146,10 @@ Route::get('/xoaquyen-user/{admin_id}','UserController@xoaquyen_user')->middlewa
 Route::post('/luu-taikhoan','UserController@luu_taikhoan')->middleware('admin.roles');
 Route::get('/chuyenquyen-user/{admin_id}','UserController@chuyenquyen_user');
 Route::get('/huy-chuyenquyen','UserController@huy_chuyenquyen');
+
+//quản lý bài viết
+// 1) quản lý danh mục bài viết
+Route::get('/them-danhmuc-baiviet','CategoryPost@them_danhmuc_baiviet');
+Route::post('/luudanhmuc-baiviet','CategoryPost@luudanhmuc_baiviet');
+Route::get('/danhsach-DM-baiviet','CategoryPost@danhsach_DM_baiviet');
+Route::get('/danh-muc-bai-viet/{cate_post_slug}','CategoryPost@danh_muc_bai_viet');

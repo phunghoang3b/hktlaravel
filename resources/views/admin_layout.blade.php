@@ -95,6 +95,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{URL::to('/danhsachbanner')}}">Danh sách slide banner</a></li>
                     </ul>
                 </li> 
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Danh Mục Bài Viết</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('/them-danhmuc-baiviet')}}">Thêm danh mục bài viết</a></li>
+                        <li><a href="{{URL::to('/danhsach-DM-baiviet')}}">Danh sách DM bài viết</a></li>
+                    </ul>
+                </li> 
                 
                 <li class="sub-menu">
                     <a href="javascript:;">
@@ -164,9 +175,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span><a href="{{URL::to('/huy-chuyenquyen')}}"></a>Dừng chuyển quyền</span>
+                        <span>Quyền</span>
                     </a>
-                </li>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('/huy-chuyenquyen')}}">Dừng chuyển quyền</a></li>
+                    </ul>
+                </li> 
                 @endchuyenquyen 
 
                 @hasrole(['admin','manager'])
