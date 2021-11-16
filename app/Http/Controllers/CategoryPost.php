@@ -47,6 +47,31 @@ class CategoryPost extends Controller
         return view('admin.DanhMuc_BaiViet.Danhsach_dmbv')->with(compact('category_post'));
     }
 
+    public function sua_DMPost($cate_post_id){
+        $this->KiemtraAdmin();
+        $category_post = CatePost::find($cate_post_id);
+        return view('admin.DanhMuc_BaiViet.Suadanhmuc_baiviet')->with(compact('category_post'));
+    }
+
+    public function capnhat_danhmuc_baiviet(Request $request, $cate_id){
+        $data = $request->all();
+        $category_post = CatePost::find($cate_id);
+        $category_post->cate_post_name = $data['ten_DMPost'];
+        $category_post->cate_post_status = $data['hienthi_DMPost'];
+        $category_post->cate_post_slug = $data['slug_DMPost'];
+        $category_post->cate_post_desc = $data['desc_DMPost'];
+        $category_post->save();
+        Session::put('message','Cập nhật danh mục bài viết thành công');
+        return redirect('/danhsach-DM-baiviet');
+    }
+
+    public function xoa_DMPost($cate_id){
+        $category_post = CatePost::find($cate_id);
+        $category_post->delete();
+        Session::put('message','Xóa danh mục bài viết thành công');
+        return redirect()->back();
+    }
+
     public function danh_muc_bai_viet($cate_post_slug){
         
     }

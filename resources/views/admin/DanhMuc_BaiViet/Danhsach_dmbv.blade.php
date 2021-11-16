@@ -16,8 +16,9 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="border: 1px solid;text-align: center;width: 26%;">Tên danh mục</th>
-            <th style="border: 1px solid;text-align: center;width: 32%;">Slug</th>
+            <th style="border: 1px solid;text-align: center;width: 23%;">Tên danh mục</th>
+            <th style="border: 1px solid;text-align: center;width: 23%;">Slug</th>
+            <th style="border: 1px solid;text-align: center;width: 30%;">Mô tả</th>
             <th style="border: 1px solid;text-align: center;">Hiển thị</th>
             <th style="border: 1px solid;text-align: center;">Chức năng</th>
             {{-- <th style="width:30px;"></th> --}}
@@ -28,6 +29,7 @@
           <tr>
             <td style="border: 1px solid;">{{ $post->cate_post_name }}</td>
             <td style="border: 1px solid;">{{ $post->cate_post_slug }}</td>
+            <td style="border: 1px solid;">{{ $post->cate_post_desc }}</td>
             <td style="text-align: center;border: 1px solid;">
                 @if($post->cate_post_status == 0)
                   Ẩn
