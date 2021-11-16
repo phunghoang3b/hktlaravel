@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;//sử dụng database
 use App\Http\Requests;
 use Session;
+use Auth;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -13,7 +14,7 @@ session_start();
 class BrandProduct extends Controller
 {
     public function KiemtraAdmin(){
-        $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id){
             return Redirect::to('/Trangadmin');
         }else{

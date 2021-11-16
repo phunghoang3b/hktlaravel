@@ -160,16 +160,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </li>   
 
+                @hasrole(['admin','manager'])
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Tài Khoản</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{URL::to('/quanly-donhang')}}">Thêm tài khoản</a></li>
+                        <li><a href="{{URL::to('/them-taikhoan')}}">Thêm tài khoản</a></li>
                         <li><a href="{{URL::to('/users')}}">Danh sách tài khoản</a></li>
                     </ul>
-                </li>            
+                </li> 
+                @endhasrole           
             </ul>            
         </div>
         <!-- sidebar menu end-->

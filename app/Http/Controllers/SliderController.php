@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use Session;
+use Auth;
 use DB;//sử dụng database
 use Illuminate\Support\Facades\Redirect;
 
 class SliderController extends Controller
 {
     public function KiemtraAdmin(){
-        $admin_id = Session::get('admin_id');
-            if($admin_id){
-                return Redirect::to('/Trangadmin');
-            }else{
-                return Redirect::to('/admin')->send();
-            }
+        $admin_id = Auth::id();
+        if($admin_id){
+            return Redirect::to('/Trangadmin');
+        }else{
+            return Redirect::to('/admin')->send();
+        }
     }
 
     public function danhsach_banner(){

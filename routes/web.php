@@ -50,8 +50,10 @@ Route::post('/luuthuonghieusanpham', 'BrandProduct@luu_thuonghieu_sanpham');
 Route::post('/suathuonghieu/{thuonghieu_id}', 'BrandProduct@capnhat_TH_sanpham');
 
 //Sản phẩm 
-Route::get('/themsanpham', 'ProductController@them_sanpham');
-Route::get('/suasanpham/{sanpham_id}', 'ProductController@sua_sanpham');
+Route::group(['middleware' => 'admin.roles'], function(){
+	Route::get('/themsanpham', 'ProductController@them_sanpham');
+	Route::get('/suasanpham/{sanpham_id}', 'ProductController@sua_sanpham');
+});
 Route::get('/xoasanpham/{sanpham_id}', 'ProductController@xoa_sanpham');
 Route::get('/danhsachsanpham', 'ProductController@danhsach_sanpham');
 
@@ -137,5 +139,5 @@ Route::post('/dangnhap','AuthController@dangnhap');
 Route::get('/dangxuat-admin','AuthController@dangxuat_admin');
 
 // 2) phân quyền cho admin
-Route::get('/users','UserController@index');
-Route::post('/phanquyen-vaitro','UserController@phanquyen_vaitro');
+Route::get('/users','UserController@index')->middleware('admin.roles');
+Route::post('/phanquyen-vaitro','UserController@phanquyen_vaitro')->middleware('admin.roles');

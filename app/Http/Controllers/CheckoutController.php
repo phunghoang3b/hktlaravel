@@ -7,6 +7,7 @@ use DB;//sử dụng database
 use App\Http\Requests;
 use Session;
 use Cart;
+use Auth;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -22,12 +23,12 @@ use App\Models\OrderDetails;
 class CheckoutController extends Controller
 {
     public function KiemtraAdmin(){
-        $admin_id = Session::get('admin_id');
-            if($admin_id){
-                return Redirect::to('/Trangadmin');
-            }else{
-                return Redirect::to('/admin')->send();
-            }
+        $admin_id = Auth::id();
+        if($admin_id){
+            return Redirect::to('/Trangadmin');
+        }else{
+            return Redirect::to('/admin')->send();
+        }
     }
 
     public function dangnhap_thanhtoan(Request $request){

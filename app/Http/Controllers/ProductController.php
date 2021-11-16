@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;//sử dụng database
 use App\Http\Requests;
 use Session;
+use Auth;
 use App\Imports\ImportProduct;
 use App\Exports\ExcelProduct;
 use Excel;
@@ -17,7 +18,7 @@ session_start();
 class ProductController extends Controller
 {
     public function KiemtraAdmin(){
-        $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id){
             return Redirect::to('/Trangadmin');
         }else{

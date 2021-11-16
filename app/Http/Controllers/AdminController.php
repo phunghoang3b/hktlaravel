@@ -19,11 +19,11 @@ class AdminController extends Controller
 {
     public function KiemtraAdmin(){
         $admin_id = Auth::id();
-            if($admin_id){
-                return Redirect::to('/Trangadmin');
-            }else{
-                return Redirect::to('/admin')->send();
-            }
+        if($admin_id){
+            return Redirect::to('/Trangadmin');
+        }else{
+            return Redirect::to('/admin')->send();
+        }
     }
     
     public function index(){
