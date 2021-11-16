@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use Session;
 
 class BladeserviceProvider extends ServiceProvider
 {
@@ -31,6 +32,12 @@ class BladeserviceProvider extends ServiceProvider
                 if(Auth::user()->hasAnyRoles($expression)){
                     return true;
                 }
+            }
+            return false;
+        });
+        Blade::if('chuyenquyen', function(){
+            if(Session()->get('chuyenquyen')){
+                return true;   
             }
             return false;
         });

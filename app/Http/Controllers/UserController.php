@@ -63,9 +63,24 @@ class UserController extends Controller
         $admin->admin_phone = $data['admin_phone'];
         $admin->admin_email = $data['admin_email'];
         $admin->admin_password = md5($data['admin_password']);
-        $admin->save();
         $admin->roles()->attach(Roles::where('name','user')->first());
+        $admin->save();
         Session::put('message','Thêm tài khoản thành công');
         return Redirect::to('/users');
+    }
+
+    //chuyển quyền mà ko cần đăng nhập lại
+    public function chuyenquyen_user($admin_id){
+        $user = Admin::where('admin_id',$admin_id)->first();
+        if($user){
+            Session()->put('chuyenquyen',$user->admin_id);
+        }
+        return redirect('/users');
+    }
+
+    //hủy chuyển quyền 
+    public function huy_chuyenquyen(){
+        Session()->forget('chuyenquyen');
+        return redirect('/users');
     }
 }

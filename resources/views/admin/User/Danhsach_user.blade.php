@@ -42,8 +42,9 @@
                 <td style="border: 1px solid;text-align: center;"><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
                 <td style="border: 1px solid;text-align: center;"><input type="checkbox" name="manager_role"  {{$user->hasRole('manager') ? 'checked' : ''}}></td>
               <td style="border: 1px solid; text-align: center;">                  
-                 <p><input type="submit" value="Cấp Quyền" class="btn btn-sm btn-default"></p>
-                 <p><a style="margin: 5px 0" class="btn btn-sm btn-danger" href="{{url('/xoaquyen-user/'.$user->admin_id)}}">Xóa User</a></p> 
+                <p><input type="submit" value="Cấp Quyền" class="btn btn-sm btn-default"></p>
+                <p><a style="margin: 5px 0" class="btn btn-sm btn-danger" href="{{url('/xoaquyen-user/'.$user->admin_id)}}">Xóa User</a></p> 
+                <p><a style="margin: 5px 0" class="btn btn-sm btn-success" href="{{url('/chuyenquyen-user/'.$user->admin_id)}}">Chuyển Quyền</a></p>
               </td> 
               </tr>
             </form>

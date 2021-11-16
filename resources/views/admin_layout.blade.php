@@ -158,7 +158,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="sub">
 						<li><a href="{{URL::to('/quanly-donhang')}}">Danh sách đơn hàng</a></li>
                     </ul>
-                </li>   
+                </li>  
+
+                @chuyenquyen
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span><a href="{{URL::to('/huy-chuyenquyen')}}"></a>Dừng chuyển quyền</span>
+                    </a>
+                </li>
+                @endchuyenquyen 
 
                 @hasrole(['admin','manager'])
                 <li class="sub-menu">

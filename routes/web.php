@@ -144,3 +144,5 @@ Route::get('/them-taikhoan','UserController@them_taikhoan')->middleware('admin.r
 Route::post('/phanquyen-vaitro','UserController@phanquyen_vaitro')->middleware('admin.roles');
 Route::get('/xoaquyen-user/{admin_id}','UserController@xoaquyen_user')->middleware('admin.roles');
 Route::post('/luu-taikhoan','UserController@luu_taikhoan')->middleware('admin.roles');
+Route::get('/chuyenquyen-user/{admin_id}','UserController@chuyenquyen_user');
+Route::get('/huy-chuyenquyen','UserController@huy_chuyenquyen');
