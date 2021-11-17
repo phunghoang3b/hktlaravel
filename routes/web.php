@@ -166,3 +166,4 @@ Route::post('/capnhat-baiviet/{post_id}','PostController@capnhat_baiviet');
 
 //quản lý bài viết - index
 Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');
+Route::get('/bai-viet/{post_slug}','PostController@bai_viet');

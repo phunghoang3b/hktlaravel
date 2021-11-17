@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="features_items"><!--features_items-->
-    <h2 class="title text-center">{{$meta_title}}</h2>                   
+    <h2 class="title text-center">Danh Mục Bài Viết</h2>                   
         <div class="product-image-wrapper">
         	@foreach($post as $key => $p)
 	            <div class="single-products" style="margin: 10px 0;">

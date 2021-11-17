@@ -144,4 +144,26 @@ class PostController extends Controller
         $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(10);
         return view('pages.BaiViet.Danhmucbaiviet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('post',$post)->with('category_post',$category_post);
     }
+
+    //xem bài viết
+    public function bai_viet(Request $request, $post_slug){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+        //--slider
+        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
+        $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+        $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+        $post = Post::with('cate_post')->where('post_status',1)->where('post_slug',$post_slug)->take(1)->get();
+        foreach($post as $key => $p){
+            //seo
+            $meta_desc = $p->post_meta_desc;
+            $meta_keywords = $p->post_meta_keywords;
+            $the_tieude = $p->post_title;
+            $cate_id = $p->cate_post_id;
+            $duongdan = $request->url();
+            //end seo
+        }
+        return view('pages.BaiViet.Baiviet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('post',$post)->with('category_post',$category_post);
+    }
 }
