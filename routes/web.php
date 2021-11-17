@@ -152,7 +152,6 @@ Route::get('/huy-chuyenquyen','UserController@huy_chuyenquyen');
 Route::get('/them-danhmuc-baiviet','CategoryPost@them_danhmuc_baiviet');
 Route::post('/luudanhmuc-baiviet','CategoryPost@luudanhmuc_baiviet');
 Route::get('/danhsach-DM-baiviet','CategoryPost@danhsach_DM_baiviet');
-Route::get('/danh-muc-bai-viet/{cate_post_slug}','CategoryPost@danh_muc_bai_viet');
 Route::get('/sua-DMPost/{cate_post_id}','CategoryPost@sua_DMPost');
 Route::post('/capnhat-danhmuc-baiviet/{cate_id}','CategoryPost@capnhat_danhmuc_baiviet');
 Route::get('/xoa-DMPost/{cate_id}','CategoryPost@xoa_DMPost');
@@ -164,3 +163,6 @@ Route::get('/danhsach-baiviet','PostController@danhsach_baiviet');
 Route::get('/xoa-baiviet/{post_id}','PostController@xoa_baiviet');
 Route::get('/sua-baiviet/{post_id}','PostController@sua_baiviet');
 Route::post('/capnhat-baiviet/{post_id}','PostController@capnhat_baiviet');
+
+//quản lý bài viết - index
+Route::get('/danh-muc-bai-viet/{post_slug}','PostController@danh_muc_bai_viet');

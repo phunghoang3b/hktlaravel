@@ -121,4 +121,27 @@ class PostController extends Controller
         Session::put('message','Xóa bài viết thành công');
         return redirect()->back();
     }
+
+    //phần quản lý bài viết - index
+    public function danh_muc_bai_viet(Request $request, $post_slug){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+        //--slider
+        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
+        $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+        $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+        $catepost = CatePost::where('cate_post_slug',$post_slug)->take(1)->get();
+        foreach($catepost as $key => $cate){
+            //seo
+            $meta_desc = $cate->cate_post_desc;
+            $meta_keywords = $cate->cate_post_slug;
+            $the_tieude = $cate->cate_post_name;
+            $cate_id = $cate->cate_post_id;
+            $duongdan = $request->url();
+            //end seo
+        }
+        $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(10);
+        return view('pages.BaiViet.Danhmucbaiviet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('post',$post)->with('category_post',$category_post);
+    }
 }
