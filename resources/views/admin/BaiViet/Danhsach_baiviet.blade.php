@@ -34,7 +34,7 @@
             <td style="border: 1px solid;text-align: center;">{!! $danhsach->post_desc !!}</td>
             <td style="border: 1px solid;">{{ $danhsach->post_meta_keywords }}</td>
             <td style="border: 1px solid; text-align: center;"><img src="{{asset('public/uploads/post/'.$danhsach->post_image)}}" height="100" width="100" style="width: 55%;"></td>
-            <td style="border: 1px solid;">{{ $danhsach->cate_post_id }}</td>
+            <td style="border: 1px solid;">{{ $danhsach->cate_post->cate_post_name }}</td>
             <td style="border: 1px solid;text-align: center;">
               @if($danhsach->post_status == 0)
                 Ẩn

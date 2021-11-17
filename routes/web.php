@@ -162,3 +162,5 @@ Route::get('/them-baiviet','PostController@them_baiviet');
 Route::post('/luu-baiviet','PostController@luu_baiviet');
 Route::get('/danhsach-baiviet','PostController@danhsach_baiviet');
 Route::get('/xoa-baiviet/{post_id}','PostController@xoa_baiviet');
+Route::get('/sua-baiviet/{post_id}','PostController@sua_baiviet');
+Route::post('/capnhat-baiviet/{post_id}','PostController@capnhat_baiviet');

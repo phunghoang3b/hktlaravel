@@ -14,4 +14,8 @@ class CatePost extends Model
     ];
     protected $primaryKey = 'cate_post_id';
     protected $table = 'tbl_category_post';
+
+    public function post(){
+        $this->hasMany('App\Models\Post');
+    }
 }
