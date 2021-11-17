@@ -34,60 +34,43 @@ class PostController extends Controller
         return view('admin.BaiViet.Them_baiviet')->with(compact('danhmuc_baiviet'));
     }
 
-    // public function danhsach_sanpham(){
-    //     $this->KiemtraAdmin();
-    //     $danhsach_sanpham = DB::table('tbl_product')
-    //     ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-    //     ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-    //     ->orderby('tbl_product.product_id','desc')->get();
-    //     $quanly_sanpham = view('admin.danhsachsanpham')->with('danhsachsanpham',$danhsach_sanpham);
-    //     return view('admin_layout')->with('admin.danhsachsanpham',$quanly_sanpham);
-    // }
+    public function danhsach_baiviet(){
+        $this->KiemtraAdmin();
+        $danhsach_baiviet = Post::orderby('post_id')->paginate(5);
+        
+        return view('admin.BaiViet.Danhsach_baiviet')->with(compact('danhsach_baiviet',$danhsach_baiviet));
+    }
 
-    // public function luu_sanpham(Request $request){
-    //     $this->KiemtraAdmin();
-    //     //khai bao bien data = mang
-    //     $data = array();
-    //     $data['product_name'] = $request->ten_sanpham;
-    //     $data['product_quantity'] = $request->soluong_sanpham;
-    //     $data['product_price'] = $request->gia_sanpham;
-    //     $data['product_desc'] = $request->mota_sanpham;
-    //     $data['product_content'] = $request->noidung_sanpham;
-    //     $data['category_id'] = $request->danhmuc;
-    //     $data['brand_id'] = $request->thuonghieu;
-    //     $data['product_status'] = $request->hienthi_sanpham;
+    public function luu_baiviet(Request $request){
+        $this->KiemtraAdmin();
+        //khai bao bien data = mang
+        $data = $request->all();
+        $post = new Post();
+        $post->post_title = $data['ten_baiviet'];
+        $post->post_slug = $data['slug_baiviet'];
+        $post->post_desc = $data['desc_baiviet'];
+        $post->post_content = $data['cotent_baiviet'];
+        $post->post_meta_desc = $data['meta_desc'];
+        $post->post_meta_keywords = $data['meta_keywords'];
+        $post->post_status = $data['hienthi_baiviet'];
+        $post->cate_post_id = $data['cate_post_id'];
 
-    //     $get_image = $request->file('hinhanh_sanpham');
-    //     if($get_image){
-    //         $get_name_image = $get_image->getClientOriginalName();
-    //         $name_image = current(explode('.',$get_name_image));
-    //         $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
-    //         $get_image->move('public/uploads/product',$new_image);
-    //         $data['product_image'] = $new_image;
-    //         DB::table('tbl_product')->insert($data);
-    //         Session::put('message','Thêm sản phẩm thành công');
-    //         return Redirect::to('danhsachsanpham');
-    //     }
-    //     $data['product_image'] = '';
-    //     DB::table('tbl_product')->insert($data);
-    //     Session::put('message','Thêm sản phẩm thành công');
-    //     return Redirect::to('danhsachsanpham');
-    // }
-    // //ẩn sản phẩm
-    // public function unactive_sanpham($sanpham_id){
-    //     $this->KiemtraAdmin();
-    //     //đi vào DB và kiểm tra 
-    //     DB::table('tbl_product')->where('product_id',$sanpham_id)->update(['product_status'=>1]);
-    //     Session::put('message','Không kích hoạt sản phẩm thành công');
-    //     return Redirect::to('danhsachsanpham'); 
-    // }
-    // //hiển thị sản phẩm
-    // public function active_sanpham($sanpham_id){
-    //     $this->KiemtraAdmin();
-    //     DB::table('tbl_product')->where('product_id',$sanpham_id)->update(['product_status'=>0]);
-    //     Session::put('message','Kích hoạt sản phẩm thành công');
-    //     return Redirect::to('danhsachsanpham'); 
-    // }
+        $get_image = $request->file('hinhanh_baiviet');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName(); //lấy tên hình ảnh đó
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension(); //lấy đuôi file mở rộng
+            $get_image->move('public/uploads/post',$new_image);
+            $post->post_image = $new_image;
+            $post->save();
+            Session::put('message','Thêm bài viết thành công');
+            return redirect()->back();
+        }else{
+            Session::put('message','Hãy chọn hình ảnh cần thêm cho bài viết');
+            return redirect()->back();
+        }
+        
+    }
     // //sửa sản phẩm
     // public function sua_sanpham($sanpham_id){
     //     $this->KiemtraAdmin();
@@ -127,11 +110,17 @@ class PostController extends Controller
     //     Session::put('message','Sửa sản phẩm thành công');
     //     return Redirect::to('danhsachsanpham');
     // }
-    // //xóa sản phẩm
-    // public function xoa_sanpham($sanpham_id){
-    //     $this->KiemtraAdmin();
-    //     DB::table('tbl_product')->where('product_id',$sanpham_id)->delete();
-    //     Session::put('message','Xóa sản phẩm thành công');
-    //     return Redirect::to('danhsachsanpham');
-    // }
+
+    public function xoa_baiviet($post_id){
+        $this->KiemtraAdmin();
+        $post = Post::find($post_id);
+        $hinhanh = $post->post_image;
+        if($hinhanh){
+            $path = 'public/uploads/post/'.$hinhanh;
+            unlink($path);
+        }
+        $post->delete();
+        Session::put('message','Xóa bài viết thành công');
+        return redirect()->back();
+    }
 }

@@ -159,3 +159,6 @@ Route::get('/xoa-DMPost/{cate_id}','CategoryPost@xoa_DMPost');
 
 // 2) quản lý bài viết
 Route::get('/them-baiviet','PostController@them_baiviet');
+Route::post('/luu-baiviet','PostController@luu_baiviet');
+Route::get('/danhsach-baiviet','PostController@danhsach_baiviet');
+Route::get('/xoa-baiviet/{post_id}','PostController@xoa_baiviet');
