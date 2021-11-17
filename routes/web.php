@@ -156,3 +156,6 @@ Route::get('/danh-muc-bai-viet/{cate_post_slug}','CategoryPost@danh_muc_bai_viet
 Route::get('/sua-DMPost/{cate_post_id}','CategoryPost@sua_DMPost');
 Route::post('/capnhat-danhmuc-baiviet/{cate_id}','CategoryPost@capnhat_danhmuc_baiviet');
 Route::get('/xoa-DMPost/{cate_id}','CategoryPost@xoa_DMPost');
+
+// 2) quản lý bài viết
+Route::get('/them-baiviet','PostController@them_baiviet');
