@@ -494,5 +494,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             document.getElementById('convert_slug').value = slug;
         }
     </script>
+
+    {{-- thư viện gallery --}}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            load_gallery();
+            function load_gallery(){
+                var pro_id = $('.pro_id').val();
+                var _token = $('input[name="_token"]').val();
+                $ajax({
+                    url:"{{url('/chon-gallery')}}",
+                    method:"POST",
+                    data:{pro_id:pro_id, _token:_token},
+                    success:function(data){
+                        $('#gallery_load').html(data);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
