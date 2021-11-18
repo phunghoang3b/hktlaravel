@@ -202,6 +202,18 @@
                       <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
                         <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
                       </li>
+                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
+                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
+                      </li>
+                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
+                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
+                      </li>
+                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
+                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
+                      </li>
+                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
+                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
+                      </li>
                     </ul>
 				</div>
 				<div class="col-sm-7" style="width: 31%;right: -19%;">
@@ -487,7 +499,7 @@
             gallery:true,
             item:1,
             loop:true,
-            thumbItem:9,
+            thumbItem:6,
             slideMargin:0,
             enableDrag: false,
             currentPagerPosition:'left',
