@@ -162,8 +162,10 @@ class PostController extends Controller
             $the_tieude = $p->post_title;
             $cate_id = $p->cate_post_id;
             $duongdan = $request->url();
+            $cate_post_id = $p->cate_post_id;
             //end seo
         }
-        return view('pages.BaiViet.Baiviet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('post',$post)->with('category_post',$category_post);
+        $lienquan = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_post_id)->whereNotIn('post_slug',[$post_slug])->take(5)->get();
+        return view('pages.BaiViet.Baiviet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('post',$post)->with('category_post',$category_post)->with('lienquan',$lienquan);
     }
 }
