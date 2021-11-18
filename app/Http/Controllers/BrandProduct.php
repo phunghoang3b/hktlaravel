@@ -24,14 +24,14 @@ class BrandProduct extends Controller
     
     public function them_thuonghieu_sanpham(){
         $this->KiemtraAdmin();
-        return view('admin.themthuonghieu');
+        return view('admin.ThuongHieu.themthuonghieu');
     }
 
     public function danhsach_thuonghieu_sanpham(){
         $this->KiemtraAdmin();
         $danhsach_TH_sanpham = DB::table('tbl_brand')->get();
-        $quanly_thuonghieu_sanpham = view('admin.danhsachthuonghieu')->with('danhsachTHsanpham',$danhsach_TH_sanpham);
-        return view('admin_layout')->with('admin.danhsachthuonghieu',$quanly_thuonghieu_sanpham);
+        $quanly_thuonghieu_sanpham = view('admin.ThuongHieu.danhsachthuonghieu')->with('danhsachTHsanpham',$danhsach_TH_sanpham);
+        return view('admin_layout')->with('admin.ThuongHieu.danhsachthuonghieu',$quanly_thuonghieu_sanpham);
     }
 
     public function luu_thuonghieu_sanpham(Request $request){
@@ -66,8 +66,8 @@ class BrandProduct extends Controller
     public function sua_thuonghieu_sanpham($thuonghieu_id){
         $this->KiemtraAdmin();
         $sua_TH_sanpham = DB::table('tbl_brand')->where('brand_id',$thuonghieu_id)->get();
-        $quanly_thuonghieu_sanpham = view('admin.suathuonghieu')->with('suaTHsanpham',$sua_TH_sanpham);
-        return view('admin_layout')->with('admin.suathuonghieu',$quanly_thuonghieu_sanpham);
+        $quanly_thuonghieu_sanpham = view('admin.ThuongHieu.suathuonghieu')->with('suaTHsanpham',$sua_TH_sanpham);
+        return view('admin_layout')->with('admin.ThuongHieu.suathuonghieu',$quanly_thuonghieu_sanpham);
     }
     //cập nhật danh mục sản phẩm
     public function capnhat_TH_sanpham(Request $request, $thuonghieu_id){

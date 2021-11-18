@@ -12,7 +12,7 @@
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                    <input type="text" data-validation="length" data-validation-length="min50" data-validation-error-msg="Hãy nhập tên sản phẩm" name="ten_sanpham" class="form-control" id="exampleInputEmail1">
+                                    <input type="text" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập tên sản phẩm" name="ten_sanpham" class="form-control" id="exampleInputEmail1">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng</label>

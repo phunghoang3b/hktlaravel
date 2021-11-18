@@ -28,14 +28,14 @@ class CategoryProduct extends Controller
     
     public function them_danhmuc_sanpham(){
         $this->KiemtraAdmin();
-        return view('admin.themdanhmucsanpham');
+        return view('admin.DanhMucSanPham.themdanhmucsanpham');
     }
 
     public function danhsach_danhmuc_sanpham(){
         $this->KiemtraAdmin();
         $danhsach_DM_sanpham = DB::table('tbl_category_product')->get();
-        $quanly_danhmuc_sanpham = view('admin.danhsachdanhmucsanpham')->with('danhsachDMsanpham',$danhsach_DM_sanpham);
-        return view('admin_layout')->with('admin.danhsachdanhmucsanpham',$quanly_danhmuc_sanpham);
+        $quanly_danhmuc_sanpham = view('admin.DanhMucSanPham.danhsachdanhmucsanpham')->with('danhsachDMsanpham',$danhsach_DM_sanpham);
+        return view('admin_layout')->with('admin.DanhMucSanPham.danhsachdanhmucsanpham',$quanly_danhmuc_sanpham);
     }
 
     public function luu_danhmuc_sanpham(Request $request){
@@ -70,8 +70,8 @@ class CategoryProduct extends Controller
     public function sua_danhmuc_sanpham($danhmuc_id){
         $this->KiemtraAdmin();
         $sua_DM_sanpham = DB::table('tbl_category_product')->where('category_id',$danhmuc_id)->get();
-        $quanly_danhmuc_sanpham = view('admin.suadanhmucsanpham')->with('suaDMsanpham',$sua_DM_sanpham);
-        return view('admin_layout')->with('admin.suadanhmucsanpham',$quanly_danhmuc_sanpham);
+        $quanly_danhmuc_sanpham = view('admin.DanhMucSanPham.suadanhmucsanpham')->with('suaDMsanpham',$sua_DM_sanpham);
+        return view('admin_layout')->with('admin.DanhMucSanPham.suadanhmucsanpham',$quanly_danhmuc_sanpham);
     }
     //cập nhật danh mục sản phẩm
     public function capnhat_DM_sanpham(Request $request, $danhmuc_id){
