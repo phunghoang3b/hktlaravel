@@ -21,6 +21,10 @@
     <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{asset('public/frontend/css/lightslider.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/prettify.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/lightgallery.min.css')}}">
+
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -191,22 +195,14 @@
 				</div><!--/breadcrums-->	
 
 				<div class="col-sm-5" style="width: 30%;left: 19.3%;">
-					<div class="view-product">
-						<img src="{{URL::to('/public/uploads/product/'.$chitiet->product_image)}}" alt="" />
-					</div>
-					<div id="similar-product" class="carousel slide" data-ride="carousel">
-						
-				  <!-- Wrapper for slides -->
-				    <div class="carousel-inner" style="height: 8%;"></div>
-						 <!-- Controls -->
-						 {{-- <a class="left item-control" href="#similar-product" data-slide="prev">
-							<i class="fa fa-angle-left"></i>
-						 </a>
-						 <a class="right item-control" href="#similar-product" data-slide="next">
-							<i class="fa fa-angle-right"></i>
-						 </a> --}}
-					</div>
-
+					<ul id="imageGallery">
+                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
+                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
+                      </li>
+                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
+                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
+                      </li>
+                    </ul>
 				</div>
 				<div class="col-sm-7" style="width: 31%;right: -19%;">
 					<div class="product-information"><!--/product-information-->
@@ -476,8 +472,32 @@
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
     <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
     <script src="{{asset('public/frontend/js/slider.js')}}"></script>
+
+    <script src="{{asset('public/frontend/js/lightslider.js')}}"></script>
+    <script src="{{asset('public/frontend/js/lightgallery-all.min.js')}}"></script>
+    <script src="{{asset('public/frontend/js/prettify.js')}}"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="8Nbv5FZH"></script>
+
+    {{-- galary image --}}
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('#imageGallery').lightSlider({
+            gallery:true,
+            item:1,
+            loop:true,
+            thumbItem:9,
+            slideMargin:0,
+            enableDrag: false,
+            currentPagerPosition:'left',
+            onSliderLoad:function(el){  
+                the.lightGallery({
+                    selector:'#imageGallery.lslide' 
+                });
+            }   
+        });  
+      });
+    </script>
 </body>
 </html>

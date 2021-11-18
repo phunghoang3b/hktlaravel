@@ -38,7 +38,7 @@
         responsive: [],
         /* jshint ignore:start */
         onBeforeStart: function ($el) {},
-        onSliderLoad: function ($ el) {},
+        onSliderLoad: function ($el) {},
         onBeforeSlide: function ($el, scene) {},
         onAfterSlide: function ($el, scene) {},
         onBeforeNextSlide: function ($el, scene) {},
@@ -66,7 +66,7 @@
         if (settings.mode === 'fade') {
             settings.vertical = false;
         }
-        var $ children = $ el.children (),
+        var $children = $el.children(),
             windowW = $(window).width(),
             breakpoint = null,
             resposiveObj = null,
@@ -172,9 +172,9 @@
                                 e.returnValue = false;
                             }
                             if (e.keyCode === 37) {
-                                $ el.goToPrevSlide ();
+                                $el.goToPrevSlide();
                             } else if (e.keyCode === 39) {
-                                $ el.goToNextSlide ();
+                                $el.goToNextSlide();
                             }
                         }
                     });
@@ -199,9 +199,9 @@
                             e.returnValue = false;
                         }
                         if ($(this).attr('class') === 'lSPrev') {
-                            $ el.goToPrevSlide ();
+                            $el.goToPrevSlide();
                         } else {
-                            $ el.goToNextSlide ();
+                            $el.goToNextSlide();
                         }
                         return false;
                     });
@@ -314,7 +314,7 @@
                     refresh.calSW();
                     refresh.sSW();
                     if (settings.loop === true) {
-                        slideValue = $ this.slideValue ();
+                        slideValue = $this.slideValue();
                         this.move($el, slideValue);
                     }
                     if (settings.vertical === false) {
@@ -323,7 +323,7 @@
 
                 } else {
                     this.setHeight($el, true);
-                    $ el.addClass ('lSFade');
+                    $el.addClass('lSFade');
                     if (!this.doCss()) {
                         $children.fadeOut(0);
                         $children.eq(scene).fadeIn(0);
@@ -339,7 +339,7 @@
                 var $this = this;
                 refresh.createPager = function () {
                     thumbWidth = (elSize - ((settings.thumbItem * (settings.thumbMargin)) - settings.thumbMargin)) / settings.thumbItem;
-                    var $ children = $ slide.find ('.lslide');
+                    var $children = $slide.find('.lslide');
                     var length = $slide.find('.lslide').length;
                     var i = 0,
                         pagers = '',
@@ -377,7 +377,7 @@
                             }
                         }
                     }
-                    var $ cSouter = $ slide.parent ();
+                    var $cSouter = $slide.parent();
                     $cSouter.find('.lSPager').html(pagers); 
                     if (settings.gallery === true) {
                         if (settings.vertical === true) {
@@ -394,7 +394,7 @@
                         }
                         $cSouter.find('.lSPager').css(property, pagerWidth + 'px');
                     }
-                    var $ pager = $ cSouter.find ('. lSPager'). find ('li');
+                    var $pager = $cSouter.find('.lSPager').find('li');
                     $pager.first().addClass('active');
                     $pager.on('click', function () {
                         if (settings.loop === true && settings.mode === 'slide') {
@@ -402,7 +402,7 @@
                         } else {
                             scene = $pager.index(this);
                         }
-                        $ el.mode (false);
+                        $el.mode(false);
                         if (settings.gallery === true) {
                             $this.slideThumb();
                         }
@@ -562,7 +562,7 @@
                 var $this = this;
                 refresh.calSlide = function () {
                     if (w > elSize) {
-                        slideValue = $ this.slideValue ();
+                        slideValue = $this.slideValue();
                         $this.active($children, false);
                         if ((slideValue) > w - elSize - settings.slideMargin) {
                             slideValue = w - elSize - settings.slideMargin;
@@ -588,9 +588,9 @@
                 setTimeout(function () {
                     scene = s;
                     $slide.css('transition-duration', '0ms');
-                    slideValue = $ this.slideValue ();
+                    slideValue = $this.slideValue();
                     $this.active($children, false);
-                    plugin.move ($ el, slideValue);
+                    plugin.move ($el, slideValue);
                     setTimeout(function () {
                         $slide.css('transition-duration', settings.speed + 'ms');
                         $slide.find('.lSAction a').removeClass('disabled');
@@ -622,7 +622,7 @@
                     position = elSize - thumbWidth;
                 }
                 var sc = scene - $el.find('.clone.left').length;
-                var $ pager = $ slide.parent (). find ('. lSPager');
+                var $pager = $slide.parent().find('.lSPager');
                 if (settings.mode === 'slide' && settings.loop === true) {
                     if (sc >= $pager.children().length) {
                         sc = 0;
@@ -643,7 +643,7 @@
                 if (settings.auto) {
                     clearInterval(interval);
                     interval = setInterval(function () {
-                        $ el.goToNextSlide ();
+                        $el.goToNextSlide();
                     }, settings.pause);
                 }
             },
@@ -652,7 +652,7 @@
                 if (settings.auto && settings.pauseOnHover) {
                     $slide.on('mouseenter', function(){
                         $(this).addClass('ls-hover');
-                        $ el.pause ();
+                        $el.pause();
                         settings.auto = true;
                     });
                     $slide.on('mouseleave',function(){
@@ -738,9 +738,9 @@
                     this.slideThumb();
                 } else {
                     if (distance >= settings.swipeThreshold) {
-                        $ el.goToPrevSlide ();
+                        $el.goToPrevSlide();
                     } else if (distance <= -settings.swipeThreshold) {
-                        $ el.goToNextSlide ();
+                        $el.goToNextSlide();
                     }
                 }
             },
@@ -906,7 +906,7 @@
             }
             refresh.calL();
             if (settings.mode === 'slide') {
-                $ el.removeClass ('lSSlide');
+                $el.removeClass('lSSlide');
             }
             if (settings.mode === 'slide') {
                 refresh.calSW();
@@ -914,7 +914,7 @@
             }
             setTimeout(function () {
                 if (settings.mode === 'slide') {
-                    $ el.addClass ('lSSlide');
+                    $el.addClass('lSSlide');
                 }
             }, 1000);
             if (settings.pager) {
@@ -954,11 +954,11 @@
                 }
             }
         };
-        $ el.goToPrevSlide = function () {
+        $el.goToPrevSlide = function() {
             if (scene > 0) {
                 settings.onBeforePrevSlide.call(this, $el, scene);
                 scene--;
-                $ el.mode (false);
+                $el.mode(false);
                 if (settings.gallery === true) {
                     plugin.slideThumb();
                 }
@@ -969,19 +969,19 @@
                         var l = (length - 1);
                         scene = parseInt(l / settings.slideMove);
                     }
-                    $ el.mode (false);
+                    $el.mode(false);
                     if (settings.gallery === true) {
                         plugin.slideThumb();
                     }
                 } else if (settings.slideEndAnimation === true) {
-                    $ el.addClass ('leftEnd');
+                    $el.addClass('leftEnd');
                     setTimeout(function () {
                         $el.removeClass('leftEnd');
                     }, 400);
                 }
             }
         };
-        $ el.goToNextSlide = function () {
+        $el.goToNextSlide = function() {
             var nextI = true;
             if (settings.mode === 'slide') {
                 var _slideValue = plugin.slideValue ();
@@ -990,7 +990,7 @@
             if (((scene * settings.slideMove) < length - settings.slideMove) && nextI) {
                 settings.onBeforeNextSlide.call(this, $el, scene);
                 scene++;
-                $ el.mode (false);
+                $el.mode(false);
                 if (settings.gallery === true) {
                     plugin.slideThumb();
                 }
@@ -998,7 +998,7 @@
                 if (settings.loop === true) {
                     settings.onBeforeNextSlide.call(this, $el, scene);
                     scene = 0;
-                    $ el.mode (false);
+                    $el.mode(false);
                     if (settings.gallery === true) {
                         plugin.slideThumb();
                     }
@@ -1017,7 +1017,7 @@
             if (on === false) {
                 if (settings.mode === 'slide') {
                     if (plugin.doCss()) {
-                        $ el.addClass ('lSSlide');
+                        $el.addClass('lSSlide');
                         if (settings.speed !== '') {
                             $slide.css('transition-duration', settings.speed + 'ms');
                         }
@@ -1055,18 +1055,18 @@
             on = true;
         };
         $el.play = function () {
-            $ el.goToNextSlide ();
+            $el.goToNextSlide();
             settings.auto = true;
             plugin.auto();
         };
-        $el.pause = function () {
+        $el.pause = function() {
             settings.auto = false;
             clearInterval(interval);
         };
-        $el.refresh = function () {
+        $el.refresh = function() {
             refresh.init();
         };
-        $el.getCurrentSlideCount = function () {
+        $el.getCurrentSlideCount = function() {
             var sc = scene;
             if (settings.loop) {
                 var ln = $slide.find('.lslide').length,
@@ -1081,7 +1081,7 @@
             }
             return sc + 1;
         }; 
-        $ el.getTotalSlideCount = function () {
+        $el.getTotalSlideCount = function() {
             return $slide.find('.lslide').length;
         };
         $el.goToSlide = function (s) {
@@ -1090,22 +1090,22 @@
             } else {
                 scene = s;
             }
-            $ el.mode (false);
+            $el.mode(false);
             if (settings.gallery === true) {
                 plugin.slideThumb();
             }
         };
-        $el.destroy = function () {
+        $el.destroy = function() {
             if ($el.lightSlider) {
-                $ el.goToPrevSlide = function () {};
-                $ el.goToNextSlide = function () {};
+                $el.goToPrevSlide = function() {};
+                $el.goToNextSlide = function() {};
                 $el.mode = function(){};
                 $el.play = function(){};
                 $el.pause = function(){};
                 $el.refresh = function(){};
                 $el.getCurrentSlideCount = function(){};
-                $ el.getTotalSlideCount = function () {};
-                $ el.goToSlide = function () {}; 
+                $el.getTotalSlideCount = function() {};
+                $el.goToSlide = function() {}; 
                 $el.lightSlider = null;
                 refresh = {
                     init : function(){}
@@ -1122,10 +1122,10 @@
             }
 
         };
-        setTimeout(function () {
-            settings.onSliderLoad.call(this, $el);
-        }, ten);
-        $(window).on('resize orientationchange', function (e) {
+        setTimeout(function() {
+            settings.onSliderLoad.call(this,$el);
+        },ten);
+        $(window).on('resize orientationchange', function(e) {
             setTimeout(function () {
                 if (e.preventDefault) {
                     e.preventDefault();

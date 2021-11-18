@@ -12,7 +12,7 @@
     border: 1px solid #E8E8E8;
     font-size: 14px;
     padding: 8px;
-	white-space:pre-wrap;
+    white-space:pre-wrap;
 }
 
 /* Specify class=linenums on a pre to get line numbering */
@@ -20,7 +20,7 @@
 ol.linenums {
     margin: 0;
     padding-left: 33px;
-	list-style-position: outside;
+    list-style-position: outside;
 }
 ol.linenums li
   padding-left: 12px;
