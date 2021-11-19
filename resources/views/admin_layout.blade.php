@@ -230,6 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 {{-- thư viện gallery --}}
 <script type="text/javascript">
+    {{-- load hình ảnh gallery --}}
     $(document).ready(function(){
         load_gallery();
         function load_gallery(){
@@ -245,6 +246,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         }
 
+        // chọn hình ảnh trong file 
         $('#file').change(function(){
             var error = '';
             var files = $('#file')[0].files;
@@ -255,13 +257,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }else if(files.size > 2000000){
                 error+='<p>File ảnh không được lớn hơn 5MB</p>';
             }
-
             if(error == ''){
 
             }else{
                 $('#file').val('');
                 $('#error_gallery').html('<span class="text-danger">'+error+'</span>');
                 return false;
+            }
+        });
+
+        // chỉnh sửa tên
+        $(document).on('blur','.edit_gal_name',function(){
+            var gal_id = $(this).data('gal_id');
+            var gal_text = $(this).text();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/capnhat-gallery-name')}}",
+                method:"POST",
+                data:{gal_id:gal_id, _token:_token, gal_text:gal_text},
+                success:function(data){
+                    load_gallery();
+                    $('#error_gallery').html('<span class="text-danger">Cập nhật tên hình ảnh thành công</span>');
+                }
+            });
+        });
+
+        // xóa hình ảnh
+        $(document).on('click','.delete-gallery',function(){
+            var gal_id = $(this).data('gal_id');
+            var _token = $('input[name="_token"]').val();
+            if(confirm('Bạn có chắc muốn xóa gallery?')){
+                $.ajax({
+                    url:"{{url('/xoa-gallery')}}",
+                    method:"POST",
+                    data:{gal_id:gal_id, _token:_token},
+                    success:function(data){
+                        load_gallery();
+                        $('#error_gallery').html('<span class="text-danger">Xóa gallery thành công</span>');
+                    }
+                });
             }
         });
     });

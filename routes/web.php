@@ -172,3 +172,5 @@ Route::get('/bai-viet/{post_slug}','PostController@bai_viet');
 Route::get('/them-gallery/{product_id}','GalleryController@them_gallery');
 Route::post('/chon-gallery','GalleryController@chon_gallery');
 Route::post('/insert-gallery/{pro_id}','GalleryController@insert_gallery');
+Route::post('/capnhat-gallery-name','GalleryController@capnhat_gallery_name');
+Route::post('/xoa-gallery','GalleryController@xoa_gallery');
