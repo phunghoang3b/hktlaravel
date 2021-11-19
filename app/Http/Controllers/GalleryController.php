@@ -34,11 +34,11 @@ class GalleryController extends Controller
         return view('admin.Gallery.Them_gallery')->with(compact('pro_id'));
     }
 
-    // chức năng 
+    // form thư viện ảnh gallery 
     public function chon_gallery(Request $request){
         $product_id = $request->pro_id;
         $gallery = Gallery::where('product_id',$product_id)->get();
-        $dem_gallery = $gallery->count();
+        $gallery_count = $gallery->count();
         $output = '<table class="table table-hover">
                             <thead>
                               <tr>
@@ -48,28 +48,28 @@ class GalleryController extends Controller
                                 <th>Chức năng</th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody>          
         ';
-        if($dem_gallery > 0){
+        if($gallery_count > 0){
             $i = 0;
-            foreach($gallery as $key => $giatri){
+            foreach($gallery as $key => $gal){
                 $i++;
-                $output .='
-                    <tr>
-                        <td>'.$i.'</td>
-                        <td>'.$giatri->gallery_name.'</td>
-                        <td>'.$giatri->gallery_image.'</td>
-                        <td>
-                            <button data-gal_id="'.$giatri->gallery_id.'" class="btn btn-xs btn-danger delete-gallery">Xóa</button>
-                        </td>
-                    </tr>
+                $output.='
+                <tr>
+                                <td>'.$i.'</td>
+                                <td>'.$gal->gallery_name.'</td>
+                                <td><img src="'.url('public/uploads/gallery/'.$gal->gallery_image).'" class="img-thumbnail" width="120" height="120"></td>
+                                <td>
+                                    <button data-gal_id="'.$gal->gallery_id.'" class="btn btn-xs btn-danger delete-gallery">Xóa</button>
+                                </td>
+                              </tr> 
                 ';
             }
         }else{
-            $output .='
-                    <tr>
-                        <td colspan="4">Sản phẩm chưa có thư viện ảnh</td>
-                    </tr>
+            $output.='
+                <tr>
+                                <td colspan="4">Sản phẩm chưa có thư viện ảnh</td>
+                              </tr> 
                 ';
         }
         echo $output;

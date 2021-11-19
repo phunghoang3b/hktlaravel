@@ -131,7 +131,7 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{URL::to('/Trang-chu')}}">Trang chủ</a></li>
                                 <li><a href="#">Sản Phẩm</a></li>
-                                <li><a href="{{URL::to('/Gioi-thieu')}}" class="active">Giới Thiệu</a></li>
+                                <li><a href="{{URL::to('/Gioi-thieu')}}">Giới Thiệu</a></li>
                                 <li><a href="#">Tin Tức</a></li> 
                                 {{-- <li><a href="{{URL::to('/hienthi-giohang')}}">Giỏ Hàng</a></li> --}}
                                 <li><a href="{{URL::to('/Lien-he')}}">Liên Hệ</a></li>
@@ -217,40 +217,39 @@
                     </ul>
 				</div>
 				<div class="col-sm-7" style="width: 31%;right: -19%;">
-					<div class="product-information"><!--/product-information-->
-						<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-						<h2>{{$chitiet->product_name}}</h2>
-						<p>Mã ID sản phẩm: {{$chitiet->product_id}}</p>
-						
-						<form action="{{URL::to('/themgiohang-ajax')}}" method="POST">
-							@csrf
+                    <div class="product-information"><!--/product-information-->
+                        <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                        <h2>{{$chitiet->product_name}}</h2>
+                        <p>Mã ID sản phẩm: {{$chitiet->product_id}}</p>
+                        
+                        <form action="{{URL::to('/themgiohang-ajax')}}" method="POST">
+                            @csrf
                             <input type="hidden" value="{{$chitiet->product_id}}" class="cart_product_id_{{$chitiet->product_id}}">
                             <input type="hidden" value="{{$chitiet->product_name}}" class="cart_product_name_{{$chitiet->product_id}}">
                             <input type="hidden" value="{{$chitiet->product_image}}" class="cart_product_image_{{$chitiet->product_id}}">
                             <input type="hidden" value="{{$chitiet->product_quantity}}" class="cart_product_quantity_{{$chitiet->product_id}}">
                             <input type="hidden" value="{{$chitiet->product_price}}" class="cart_product_price_{{$chitiet->product_id}}">
-							<span>
-								<span>{{number_format($chitiet->product_price,0,',','.').' đ'}}</span>
-								<label>Số lượng:</label>
-								<input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_{{$chitiet->product_id}}" />
-								<input name="sanphamid_hidden" type="hidden" value="{{$chitiet->product_id}}" />
-								{{-- <input type="button" class="btn btn-primary btn-sm add-to-cart" style="border-radius: 5px;position: absolute;margin-top: 34%;right: 63%;" value="Thêm giỏ hàng" name="add-to-cart">
-									{{-- <i class="fa fa-shopping-cart"></i> --}}
+                            <span>
+                                <span>{{number_format($chitiet->product_price,0,',','.').' đ'}}</span>
+                                <label>Số lượng:</label>
+                                <input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_{{$chitiet->product_id}}" />
+                                <input name="sanphamid_hidden" type="hidden" value="{{$chitiet->product_id}}" />
+                                {{-- <input type="button" class="btn btn-primary btn-sm add-to-cart" style="border-radius: 5px;position: absolute;margin-top: 34%;right: 63%;" value="Thêm giỏ hàng" name="add-to-cart">
+                                    {{-- <i class="fa fa-shopping-cart"></i> --}}
                                 <button type="submit" class="btn btn-fefault cart" style="border-radius: 5px;position: absolute;margin-top: 32%;right: 63%;">
                                     <i class="fa fa-shopping-cart"></i>
                                     Thêm Giỏ Hàng
                                 </button>
-							</span>
-						</form>
-						<p><b>Tình trạng:</b> Còn hàng</p>
-						<p><b>Chất lượng:</b> Mới</p>
-						<p><b>Thương hiệu:</b> {{$chitiet->brand_name}}</p>
-						<p><b>Danh mục:</b> {{$chitiet->category_name}}</p>
-					</div><!--/product-information-->
-				</div>
-			</div><!--/product-details-->
+                            </span>
+                        </form>
+                        <p><b>Tình trạng:</b> Còn hàng</p>
+                        <p><b>Chất lượng:</b> Mới</p>
+                        <p><b>Thương hiệu:</b> {{$chitiet->brand_name}}</p>
+                        <p><b>Danh mục:</b> {{$chitiet->category_name}}</p>
+                    </div><!--/product-information-->
+                </div>
 
-			<div class="category-tab shop-details-tab" style="width: 59.2%;margin-left: 20%;"><!--category-tab-->
+			<div class="category-tab shop-details-tab" style="width: 59.2%;margin-left: 20%;margin-top: 35%;"><!--category-tab-->
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#details" data-toggle="tab">Mô Tả</a></li>

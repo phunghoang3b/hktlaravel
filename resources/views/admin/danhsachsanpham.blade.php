@@ -31,7 +31,7 @@
           @foreach($danhsachsanpham as $key => $sanpham)
           <tr>
             <td style="border: 1px solid;">{{ $sanpham->product_name }}</td>
-            <td style="border: 1px solid;"><a href="{{url('/them-gallery/'.$sanpham->product_id)}}">Thêm ảnh</a></td>
+            <td style="border: 1px solid;text-align: center;"><a href="{{url('/them-gallery/'.$sanpham->product_id)}}">Thêm ảnh</a></td>
             <td style="border: 1px solid;text-align: center;">{{ $sanpham->product_quantity }}</td>
             <td style="border: 1px solid;text-align: center;">{{number_format($sanpham->product_price,0,',','.').' đ' }}</td>
             <td style="border: 1px solid; text-align: center;"><img src="public/uploads/product/{{ $sanpham->product_image }}" height="100" width="100" style="width: 55%;"></td>

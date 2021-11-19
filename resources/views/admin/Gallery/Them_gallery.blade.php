@@ -17,9 +17,7 @@
                 <input type="hidden" value="{{$pro_id}}" name="pro_id" class="pro_id">
                 <form>
                     @csrf
-                    <div id="gallery_load">
-                        
-                    </div>
+                    <div id="gallery_load"></div>
                 </form>
             </div>
         </section>

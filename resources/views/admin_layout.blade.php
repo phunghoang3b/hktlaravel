@@ -227,6 +227,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/jquery.nicescroll.js')}}"></script>
 <script src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
+
+{{-- thư viện gallery --}}
+<script type="text/javascript">
+    $(document).ready(function(){
+        load_gallery();
+        function load_gallery(){
+            var pro_id = $('.pro_id').val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/chon-gallery')}}",
+                method:"POST",
+                data:{pro_id:pro_id, _token:_token},
+                success:function(data){
+                    $('#gallery_load').html(data);
+                }
+            });
+        }
+    });
+</script>
+
 {{-- ajax nút cập nhật số lượng trong ctdh --}}
 <script type="text/javascript">
     $('.update_quantity_order').click(function(){
@@ -493,25 +513,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 //In slug ra textbox có id “slug”
             document.getElementById('convert_slug').value = slug;
         }
-    </script>
-
-    {{-- thư viện gallery --}}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            load_gallery();
-            function load_gallery(){
-                var pro_id = $('.pro_id').val();
-                var _token = $('input[name="_token"]').val();
-                $ajax({
-                    url:"{{url('/chon-gallery')}}",
-                    method:"POST",
-                    data:{pro_id:pro_id, _token:_token},
-                    success:function(data){
-                        $('#gallery_load').html(data);
-                    }
-                });
-            }
-        });
     </script>
 </body>
 </html>
