@@ -40,18 +40,18 @@ class GalleryController extends Controller
         $gallery = Gallery::where('product_id',$product_id)->get();
         $gallery_count = $gallery->count();
         $output = '
-                        <form>
+                <form>
                 '.csrf_field().'
-        <table class="table table-hover">
-                            <thead>
-                              <tr>
-                                <th>Thứ tự</th>
-                                <th>Tên hình ảnh</th>
-                                <th>Hình ảnh</th>
-                                <th>Chức năng</th>
-                              </tr>
-                            </thead>
-                            <tbody>          
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Thứ tự</th>
+                            <th>Tên hình ảnh</th>
+                            <th>Hình ảnh</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                <tbody>          
         ';
         if($gallery_count > 0){
             $i = 0;
@@ -59,26 +59,26 @@ class GalleryController extends Controller
                 $i++;
                 $output.='
                 <tr>
-                                <td>'.$i.'</td>
-                                <td contenteditable class="edit_gal_name" data-gal_id="'.$gal->gallery_id.'">'.$gal->gallery_name.'</td>
-                                <td><img src="'.url('public/uploads/gallery/'.$gal->gallery_image).'" class="img-thumbnail" width="120" height="120"></td>
-                                <td>
-                                    <button type="button" data-gal_id="'.$gal->gallery_id.'" class="btn btn-xs btn-danger delete-gallery">Xóa</button>
-                                </td>
-                              </tr>
+                    <td>'.$i.'</td>
+                    <td contenteditable class="edit_gal_name" data-gal_id="'.$gal->gallery_id.'">'.$gal->gallery_name.'</td>
+                    <td><img src="'.url('public/uploads/gallery/'.$gal->gallery_image).'" class="img-thumbnail" width="120" height="120"></td>
+                    <td>
+                        <button type="button" data-gal_id="'.$gal->gallery_id.'" class="btn btn-xs btn-danger delete-gallery">Xóa</button>
+                    </td>
+                </tr>
                 ';
             }
         }else{
             $output.='
                 <tr>
-                                <td colspan="4">Sản phẩm chưa có thư viện ảnh</td>
-                              </tr> 
+                    <td colspan="4">Sản phẩm chưa có thư viện ảnh</td>
+                </tr> 
                 ';
         }
         $output.='
-                    </tbody>
-                    </table>
-                    </form> 
+                </tbody>
+                </table>
+                </form> 
                 ';
         echo $output;
     }
