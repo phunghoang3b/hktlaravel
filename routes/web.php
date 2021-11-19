@@ -171,3 +171,4 @@ Route::get('/bai-viet/{post_slug}','PostController@bai_viet');
 // Quản lý thư viện ảnh Gallery
 Route::get('/them-gallery/{product_id}','GalleryController@them_gallery');
 Route::post('/chon-gallery','GalleryController@chon_gallery');
+Route::post('/insert-gallery/{pro_id}','GalleryController@insert_gallery');

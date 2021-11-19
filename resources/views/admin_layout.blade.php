@@ -244,6 +244,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
             });
         }
+
+        $('#file').change(function(){
+            var error = '';
+            var files = $('#file')[0].files;
+            if(files.length > 5){
+                error+='<p>Bạn chọn tối đa chỉ được 5 ảnh</p>';
+            }else if(files.length == ''){
+                error+='<p>Bạn không được bỏ trống trường này</p>';
+            }else if(files.size > 2000000){
+                error+='<p>File ảnh không được lớn hơn 5MB</p>';
+            }
+
+            if(error == ''){
+
+            }else{
+                $('#file').val('');
+                $('#error_gallery').html('<span class="text-danger">'+error+'</span>');
+                return false;
+            }
+        });
     });
 </script>
 

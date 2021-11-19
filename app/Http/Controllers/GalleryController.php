@@ -74,4 +74,24 @@ class GalleryController extends Controller
         }
         echo $output;
     }
+
+    //thêm thư viện gallery vào csdl
+    public function insert_gallery(Request $request, $pro_id){
+        $get_image = $request->file('file');
+        if($get_image){
+            foreach($get_image as $key => $anh){
+                $get_name_image = $anh->getClientOriginalName();
+                $name_image = current(explode('.',$get_name_image));
+                $new_image = $name_image.rand(0,99).'.'.$anh->getClientOriginalExtension();
+                $anh->move('public/uploads/gallery',$new_image);
+                $gallery = new Gallery();
+                $gallery->gallery_name = $new_image;
+                $gallery->gallery_image = $new_image;
+                $gallery->product_id = $pro_id;
+                $gallery->save();
+            }
+        }
+        Session::put('message','Thêm thư viện Gallery thành công');
+        return redirect()->back();
+    }
 }
