@@ -196,24 +196,11 @@
 
 				<div class="col-sm-5" style="width: 30%;left: 19.3%;">
 					<ul id="imageGallery">
-                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
-                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
+                    @foreach($gallery as $key => $gal)
+                      <li data-thumb="{{asset('public/uploads/gallery/'.$gal->gallery_image)}}" data-src="{{asset('public/uploads/gallery/'.$gal->gallery_image)}}">
+                        <img width="100%" alt="{{$gal->gallery_name}}" src="{{asset('public/uploads/gallery/'.$gal->gallery_image)}}" />
                       </li>
-                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
-                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
-                      </li>
-                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
-                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
-                      </li>
-                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
-                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
-                      </li>
-                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
-                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
-                      </li>
-                      <li data-thumb="{{asset('public/frontend/images/ao1.jpg')}}" data-src="{{asset('public/frontend/images/ao1.jpg')}}">
-                        <img width="100%" src="{{asset('public/frontend/images/ao1.jpg')}}" />
-                      </li>
+                    @endforeach
                     </ul>
 				</div>
 				<div class="col-sm-7" style="width: 31%;right: -19%;">

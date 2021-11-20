@@ -11,6 +11,7 @@ use App\Models\Slider;
 use App\Imports\Imports;
 use App\Exports\ExcelExports;
 use Excel;
+use App\Models\CatePost;
 use App\Models\CategoryProductModel;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -98,6 +99,9 @@ class CategoryProduct extends Controller
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
 
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
@@ -113,7 +117,7 @@ class CategoryProduct extends Controller
 
         //chọn tên danh mục, thương hiệu thì banner lọc theo tên
         $danhmuc_ten = DB::table('tbl_category_product')->where('tbl_category_product.category_id',$danhmuc_id)->limit(1)->get();
-        return view('pages.DanhMuc.Hienthi_danhmuc')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('danhmuc_theo_id',$danhmuc_theo_id)->with('danhmuc_ten',$danhmuc_ten)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider);
+        return view('pages.DanhMuc.Hienthi_danhmuc')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('danhmuc_theo_id',$danhmuc_theo_id)->with('danhmuc_ten',$danhmuc_ten)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
     }
 
     //import file

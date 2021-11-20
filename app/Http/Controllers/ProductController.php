@@ -10,8 +10,10 @@ use Auth;
 use App\Imports\ImportProduct;
 use App\Exports\ExcelProduct;
 use Excel;
+use File;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
@@ -56,19 +58,24 @@ class ProductController extends Controller
         $data['brand_id'] = $request->thuonghieu;
         $data['product_status'] = $request->hienthi_sanpham;
 
+        $path = 'public/uploads/product/';
+        $path_gallery = 'public/uploads/gallery/';
+
         $get_image = $request->file('hinhanh_sanpham');
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('public/uploads/product',$new_image);
+            $get_image->move($path,$new_image);
+            File::copy($path.$new_image,$path_gallery.$new_image);
             $data['product_image'] = $new_image;
-            DB::table('tbl_product')->insert($data);
-            Session::put('message','Thêm sản phẩm thành công');
-            return Redirect::to('danhsachsanpham');
         }
-        $data['product_image'] = '';
-        DB::table('tbl_product')->insert($data);
+        $pro_id = DB::table('tbl_product')->insertGetId($data);
+        $gallery = new Gallery();
+        $gallery->gallery_image = $new_image;
+        $gallery->gallery_name = $new_image;
+        $gallery->product_id = $pro_id;
+        $gallery->save();
         Session::put('message','Thêm sản phẩm thành công');
         return Redirect::to('danhsachsanpham');
     }
@@ -149,19 +156,24 @@ class ProductController extends Controller
 
         foreach($chitiet_sanpham as $key => $chitiet){
             $danhmuc_id = $chitiet->category_id;
+            $product_id = $chitiet->product_id;
             //seo
             $meta_desc = $chitiet->product_desc;
             $meta_keywords = $chitiet->product_content;
             $the_tieude = $chitiet->product_name;
             $duongdan = $request->url();
         }
+
+        // hình ảnh gallery
+        $gallery = Gallery::where('product_id',$product_id)->get();
+
         //lay ra danh muc thuoc id 
         $sanpham_lienquan = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_category_product.category_id',$danhmuc_id)->whereNotIn('tbl_product.product_id',[$sanpham_id])->get();
 
-        return view('pages.SanPham.Hienthi_chitiet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('chitiet_sanpham',$chitiet_sanpham)->with('lienquan',$sanpham_lienquan)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider);
+        return view('pages.SanPham.Hienthi_chitiet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('chitiet_sanpham',$chitiet_sanpham)->with('lienquan',$sanpham_lienquan)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('gallery',$gallery);
     }
 
     //import file

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Session;
 use Auth;
 use App\Models\Slider;
+use App\Models\CatePost;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
@@ -92,6 +93,9 @@ class BrandProduct extends Controller
     public function Hienthi_Thuonghieu_index(Request $request, $thuonghieu_id){
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
+
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
         
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
@@ -108,6 +112,6 @@ class BrandProduct extends Controller
 
         //chọn tên danh mục, thương hiệu thì banner lọc theo tên
         $thuonghieu_ten = DB::table('tbl_brand')->where('tbl_brand.brand_id',$thuonghieu_id)->limit(1)->get();
-        return view('pages.ThuongHieu.Hienthi_thuonghieu')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('thuonghieu_theo_id',$thuonghieu_theo_id)->with('thuonghieu_ten',$thuonghieu_ten)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider);
+        return view('pages.ThuongHieu.Hienthi_thuonghieu')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('thuonghieu_theo_id',$thuonghieu_theo_id)->with('thuonghieu_ten',$thuonghieu_ten)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
     }
 }
