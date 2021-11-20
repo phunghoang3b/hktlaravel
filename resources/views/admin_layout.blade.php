@@ -8,6 +8,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
 <link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.min.css')}}" >
+<meta name="csrf-token" content="{{csrf_token()}}">
 <!-- //bootstrap-css -->
 <!-- Custom CSS -->
 <link href="{{asset('public/backend/css/style.css')}}" rel='stylesheet' type='text/css' />
@@ -255,7 +256,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }else if(files.length == ''){
                 error+='<p>Bạn không được bỏ trống trường này</p>';
             }else if(files.size > 2000000){
-                error+='<p>File ảnh không được lớn hơn 5MB</p>';
+                error+='<p>File ảnh không được lớn hơn 2MB</p>';
             }
             if(error == ''){
 
@@ -297,6 +298,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     }
                 });
             }
+        });
+
+        // cập nhật cột hình ảnh trong gallery
+        $(document).on('change','.file_image',function(){
+            var gal_id = $(this).data('gal_id');
+            var image = document.getElementById('file-'+gal_id).files[0];
+            var form_data = new FormData();
+            form_data.append("file",document.getElementById('file-'+gal_id).files[0]);
+            form_data.append("gal_id",gal_id);
+            $.ajax({
+                url:"{{url('/capnhat-image-gallery')}}",
+                method:"POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data:form_data,
+                contentType:false,
+                cache:false,
+                processData:false,
+                success:function(data){
+                    load_gallery();
+                    $('#error_gallery').html('<span class="text-danger">Cập nhật hình ảnh thành công</span>');
+                }
+            });
         });
     });
 </script>

@@ -174,3 +174,4 @@ Route::post('/chon-gallery','GalleryController@chon_gallery');
 Route::post('/insert-gallery/{pro_id}','GalleryController@insert_gallery');
 Route::post('/capnhat-gallery-name','GalleryController@capnhat_gallery_name');
 Route::post('/xoa-gallery','GalleryController@xoa_gallery');
+Route::post('/capnhat-image-gallery','GalleryController@capnhat_image_gallery');
