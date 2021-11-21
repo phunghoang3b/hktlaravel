@@ -118,6 +118,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{URL::to('/danhsach-baiviet')}}">Danh sách bài viết</a></li>
                     </ul>
                 </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý Video</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('/them-video')}}">Thêm video</a></li>
+                    </ul>
+                </li>
                 
                 <li class="sub-menu">
                     <a href="javascript:;">
@@ -228,6 +238,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/jquery.nicescroll.js')}}"></script>
 <script src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
+
+{{-- quản lý video --}}
+<script type="text/javascript">
+    $(document).ready(function(){
+        load_video();
+        function load_video(){
+            $.ajax({
+                url:"{{url('/chon-video')}}",
+                method:"POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(data){
+                    $('#video_load').html(data);
+                }
+            });
+        }
+    });
+</script>
 
 {{-- thư viện gallery --}}
 <script type="text/javascript">
