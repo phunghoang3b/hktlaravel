@@ -41,6 +41,7 @@ class VideoController extends Controller
                         <th style="border: 1px solid;text-align: center;">Thứ tự</th>
                         <th style="border: 1px solid;text-align: center;">Tên video</th>
                         <th style="border: 1px solid;text-align: center;">Slug video</th>
+                        <th style="border: 1px solid;text-align: center;">Hình ảnh</th>
                         <th style="border: 1px solid;text-align: center;">Link</th>
                         <th style="border: 1px solid;text-align: center;">Mô tả</th>
                         <th style="border: 1px solid;text-align: center;">Demo</th>
@@ -59,6 +60,10 @@ class VideoController extends Controller
                         <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_title" class="video_edit" id="video_title_'.$vd->video_id.'">'.$vd->video_title.'</td>
 
                         <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_slug" class="video_edit" id="video_slug_'.$vd->video_id.'">'.$vd->video_slug.'</td>
+
+                        <td>
+                            <img src="'.url('public/uploads/videos/'.$vd->video_image).'" class="img-thumbnail" width="200" height="200">
+                        </td>
 
                         <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_link" class="video_edit" id="video_link_'.$vd->video_id.'">https://youtu.be/'.$vd->video_link.'</td>
 
@@ -94,6 +99,15 @@ class VideoController extends Controller
         $video->video_slug = $data['video_slug'];
         $video->video_link = $sub_link;
         $video->video_desc = $data['video_desc'];
+
+        $get_image = $request->file('file');
+        if($get_image){
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/videos',$new_image);
+            $video->video_image = $new_image;
+        }
         $video->save();
     }
 
@@ -124,5 +138,18 @@ class VideoController extends Controller
         $video_id = $data['video_id'];
         $video = Video::find($video_id);
         $video->delete();
+    }
+
+    // hiển thị video ra trang index
+    public function video_gymstore(Request $request){
+        //--seo
+        $meta_desc = "Video về tập gym cũng như những kiến thức về thực phẩm bổ sung Whey Protein";
+        $meta_keywords = "Dinh dưỡng và phụ kiện tập Gym";
+        $the_tieude = "HKT - Gym Store";
+        $duongdan = $request->url();
+        //--end seo
+
+        $danhsach_video = DB::table('tbl_videos')->paginate(10);
+        return view('pages.Video.video')->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('danhsach_video',$danhsach_video);
     }
 }

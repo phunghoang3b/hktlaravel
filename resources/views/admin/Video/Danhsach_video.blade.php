@@ -32,6 +32,10 @@
               <div class="form-group">
                   <label for="exampleInputPassword1">Mô tả video</label>
                   <textarea style="resize: none;" rows="8" class="form-control mota_video" name="mota_video" id="exampleInputPassword1"></textarea>
+              </div> 
+              <div class="form-group">
+                  <label for="exampleInputPassword1">Hình ảnh</label>
+                  <input type="file" class="form-control" id="file_img_video" name="file" accept="image/*">
               </div>          
               <button type="button" name="them_video" class="btn btn-info btn-add-video" style="position: relative;left: 44%;">Thêm video</button><br><br>
           </form>

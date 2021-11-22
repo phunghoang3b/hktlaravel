@@ -178,6 +178,7 @@ Route::post('/capnhat-image-gallery','GalleryController@capnhat_image_gallery');
 
 // Quản lý video
 Route::get('/them-video','VideoController@video');
+Route::get('/Video-gymstore','VideoController@video_gymstore');
 Route::post('/chon-video','VideoController@chon_video');
 Route::post('/insert-video','VideoController@insert_video');
 Route::post('/capnhat-video','VideoController@capnhat_video');

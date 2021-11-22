@@ -262,11 +262,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             var video_slug = $('.slug_video').val();
             var video_link = $('.link_video').val();
             var video_desc = $('.mota_video').val();
-            var _token = $('input[name="_token"]').val();
+            var form_data = new FormData();
+            form_data.append("file",document.getElementById("file_img_video").files[0]);
+            form_data.append("video_title",video_title);
+            form_data.append("video_slug",video_slug);
+            form_data.append("video_link",video_link);
+            form_data.append("video_desc",video_desc);
             $.ajax({
                 url:"{{url('/insert-video')}}",
                 method:"POST",
-                data:{video_title:video_title, video_slug:video_slug, video_link:video_link, video_desc:video_desc, _token:_token},
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data:form_data,
+                contentType:false,
+                cache:false,
+                processData:false,
                 success:function(data){
                     load_video();
                     $('#notify').html('<span class="text text-success">Thêm video thành công</span>');
