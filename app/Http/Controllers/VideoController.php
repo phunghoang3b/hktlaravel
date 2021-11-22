@@ -66,7 +66,7 @@ class VideoController extends Controller
 
                         <td><iframe width="400" height="250" src="https://www.youtube.com/embed/'.$vd->video_link.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 
-                        <td><button class="btn btn-xs btn-danger">Xóa video</button></td>
+                        <td><button type="button" data-video_id="'.$vd->video_id.'" class="btn btn-xs btn-danger btn-delete-video">Xóa video</button></td>
                     </tr>
                 ';
             }
@@ -116,5 +116,13 @@ class VideoController extends Controller
             $video->video_slug = $video_edit;
         }
         $video->save();
+    }
+
+    // xóa video
+    public function xoa_video(Request $request){
+        $data = $request->all();
+        $video_id = $data['video_id'];
+        $video = Video::find($video_id);
+        $video->delete();
     }
 }

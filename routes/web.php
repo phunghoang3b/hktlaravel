@@ -181,3 +181,4 @@ Route::get('/them-video','VideoController@video');
 Route::post('/chon-video','VideoController@chon_video');
 Route::post('/insert-video','VideoController@insert_video');
 Route::post('/capnhat-video','VideoController@capnhat_video');
+Route::post('/xoa-video','VideoController@xoa_video');

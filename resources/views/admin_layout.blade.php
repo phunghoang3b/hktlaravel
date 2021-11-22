@@ -304,6 +304,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
             });
         });
+
+        // xóa video
+        $(document).on('click','.btn-delete-video', function(){
+            var video_id = $(this).data('video_id');
+            if(confirm('Bạn có chắc muốn xóa video?')){
+                $.ajax({
+                    url:"{{url('/xoa-video')}}",
+                    method:"POST",
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data:{video_id:video_id},
+                    success:function(data){
+                        load_video();
+                        $('#notify').html('<span class="text text-success">Xóa video thành công</span>');
+                    }
+                });
+            }
+        });
     });
 </script>
 
