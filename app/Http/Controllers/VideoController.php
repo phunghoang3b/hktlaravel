@@ -56,11 +56,16 @@ class VideoController extends Controller
                 $output.='
                     <tr>
                         <td>'.$i.'</td>
-                        <td>'.$vd->video_title.'</td>
-                        <td>'.$vd->video_slug.'</td>
-                        <td>'.$vd->video_link.'</td>
-                        <td>'.$vd->video_desc.'</td>
-                        <td><button type="button" data-toggle="modal" data-target="#video_model" class="btn btn-xs btn-success">Xem video</button></td>
+                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_title" class="video_edit" id="video_title_'.$vd->video_id.'">'.$vd->video_title.'</td>
+
+                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_slug" class="video_edit" id="video_slug_'.$vd->video_id.'">'.$vd->video_slug.'</td>
+
+                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_link" class="video_edit" id="video_link_'.$vd->video_id.'">https://youtu.be/'.$vd->video_link.'</td>
+
+                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_desc" class="video_edit" id="video_desc_'.$vd->video_id.'">'.$vd->video_desc.'</td>
+
+                        <td><iframe width="400" height="250" src="https://www.youtube.com/embed/'.$vd->video_link.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+
                         <td><button class="btn btn-xs btn-danger">Xóa video</button></td>
                     </tr>
                 ';
@@ -84,10 +89,32 @@ class VideoController extends Controller
     public function insert_video(Request $request){
         $data = $request->all();
         $video = new Video();
+        $sub_link = substr($data['video_link'], 17);
         $video->video_title = $data['video_title'];
         $video->video_slug = $data['video_slug'];
-        $video->video_link = $data['video_link'];
+        $video->video_link = $sub_link;
         $video->video_desc = $data['video_desc'];
+        $video->save();
+    }
+
+    // cập nhật video
+    public function capnhat_video(Request $request){
+        $data = $request->all();
+        $video_id = $data['video_id'];
+        $video_edit = $data['video_edit'];
+        $video_check = $data['video_check'];
+        $video = Video::find($video_id);
+
+        if($video_check == 'video_title'){
+            $video->video_title = $video_edit;
+        }elseif($video_check == 'video_desc'){
+            $video->video_desc = $video_edit;
+        }elseif($video_check == 'video_link'){
+            $sub_link = substr($video_edit, 17);
+            $video->video_link = $sub_link;
+        }else{
+            $video->video_slug = $video_edit;
+        }
         $video->save();
     }
 }

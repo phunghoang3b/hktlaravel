@@ -255,6 +255,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
             });
         }
+
+        // nhấn nút thêm video
         $(document).on('click','.btn-add-video', function(){
             var video_title = $('.ten_video').val();
             var video_slug = $('.slug_video').val();
@@ -268,6 +270,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 success:function(data){
                     load_video();
                     $('#notify').html('<span class="text text-success">Thêm video thành công</span>');
+                }
+            });
+        });
+
+        // cập nhật video
+        $(document).on('blur','.video_edit',function(){
+            var video_type = $(this).data('video_type');
+            var video_id = $(this).data('video_id');
+            if(video_type == 'video_title'){
+                var video_edit = $('#'+video_type+'_'+video_id).text();
+                var video_check = video_type;
+            }else if(video_type == 'video_slug'){
+                var video_edit = $('#'+video_type+'_'+video_id).text();
+                var video_check = video_type;
+            }else if(video_type == 'video_link'){
+                var video_edit = $('#'+video_type+'_'+video_id).text();
+                var video_check = video_type;
+            }else{
+                var video_edit = $('#'+video_type+'_'+video_id).text();
+                var video_check = video_type;
+            }
+            $.ajax({
+                url:"{{url('/capnhat-video')}}",
+                method:"POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data:{video_edit:video_edit, video_id:video_id, video_check:video_check},
+                success:function(data){
+                    load_video();
+                    $('#notify').html('<span class="text text-success">Cập nhật video thành công</span>');
                 }
             });
         });

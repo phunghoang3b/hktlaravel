@@ -180,3 +180,4 @@ Route::post('/capnhat-image-gallery','GalleryController@capnhat_image_gallery');
 Route::get('/them-video','VideoController@video');
 Route::post('/chon-video','VideoController@chon_video');
 Route::post('/insert-video','VideoController@insert_video');
+Route::post('/capnhat-video','VideoController@capnhat_video');
