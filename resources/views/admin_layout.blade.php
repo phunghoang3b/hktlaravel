@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="{{('public/backend/images/2.png')}}">
+                <img alt="" src="{{('public/backend/images/background1.jpg')}}">
                	<?php
                     $name =  Auth::user()->admin_name;
                     if($name){
@@ -255,6 +255,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
             });
         }
+        $(document).on('click','.btn-add-video', function(){
+            var video_title = $('.ten_video').val();
+            var video_slug = $('.slug_video').val();
+            var video_link = $('.link_video').val();
+            var video_desc = $('.mota_video').val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/insert-video')}}",
+                method:"POST",
+                data:{video_title:video_title, video_slug:video_slug, video_link:video_link, video_desc:video_desc, _token:_token},
+                success:function(data){
+                    load_video();
+                    $('#notify').html('<span class="text text-success">Thêm video thành công</span>');
+                }
+            });
+        });
     });
 </script>
 

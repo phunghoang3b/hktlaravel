@@ -40,6 +40,7 @@ class VideoController extends Controller
                       <tr>
                         <th style="border: 1px solid;text-align: center;">Thứ tự</th>
                         <th style="border: 1px solid;text-align: center;">Tên video</th>
+                        <th style="border: 1px solid;text-align: center;">Slug video</th>
                         <th style="border: 1px solid;text-align: center;">Link</th>
                         <th style="border: 1px solid;text-align: center;">Mô tả</th>
                         <th style="border: 1px solid;text-align: center;">Demo</th>
@@ -56,6 +57,7 @@ class VideoController extends Controller
                     <tr>
                         <td>'.$i.'</td>
                         <td>'.$vd->video_title.'</td>
+                        <td>'.$vd->video_slug.'</td>
                         <td>'.$vd->video_link.'</td>
                         <td>'.$vd->video_desc.'</td>
                         <td><button type="button" data-toggle="modal" data-target="#video_model" class="btn btn-xs btn-success">Xem video</button></td>
@@ -76,5 +78,16 @@ class VideoController extends Controller
                 </form> 
                 ';
         echo $output;
+    }
+
+    // thêm video mới
+    public function insert_video(Request $request){
+        $data = $request->all();
+        $video = new Video();
+        $video->video_title = $data['video_title'];
+        $video->video_slug = $data['video_slug'];
+        $video->video_link = $data['video_link'];
+        $video->video_desc = $data['video_desc'];
+        $video->save();
     }
 }
