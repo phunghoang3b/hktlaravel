@@ -409,6 +409,25 @@
 
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
+    {{-- Xem video --}}
+    <script type="text/javascript">
+        $(document).on('click','.watch-video',function(){
+            var video_id = $(this).attr('id');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:'{{url('/Xem-video')}}',
+                method:"POST",
+                dataType:"JSON",
+                data:{video_id:video_id,_token:_token},
+                success:function(data){
+                    $('#video_title').html(data.video_title);
+                    $('#video_link').html(data.video_link);
+                    $('#video_desc').html(data.video_desc);
+                }
+            });
+        });
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $('.add-to-cart').click(function(){

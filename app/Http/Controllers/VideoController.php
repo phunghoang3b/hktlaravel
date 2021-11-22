@@ -7,6 +7,8 @@ use DB;//sử dụng database
 use App\Http\Requests;
 use Session;
 use Auth;
+use App\Models\CatePost;
+use App\Models\Slider;
 use App\Models\Video;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -62,7 +64,8 @@ class VideoController extends Controller
                         <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_slug" class="video_edit" id="video_slug_'.$vd->video_id.'">'.$vd->video_slug.'</td>
 
                         <td>
-                            <img src="'.url('public/uploads/videos/'.$vd->video_image).'" class="img-thumbnail" width="200" height="200">
+                            <img src="'.url('public/uploads/videos/'.$vd->video_image).'" class="img-thumbnail" width="80" height="80">
+                            <input type="file" class="file_img_video" data-video_id="'.$vd->video_id.'" id="file-video-'.$vd->video_id.'" name="file" accept="image/*" />
                         </td>
 
                         <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_link" class="video_edit" id="video_link_'.$vd->video_id.'">https://youtu.be/'.$vd->video_link.'</td>
@@ -137,6 +140,7 @@ class VideoController extends Controller
         $data = $request->all();
         $video_id = $data['video_id'];
         $video = Video::find($video_id);
+        unlink('public/uploads/videos/'.$video->video_image);
         $video->delete();
     }
 
@@ -149,7 +153,41 @@ class VideoController extends Controller
         $duongdan = $request->url();
         //--end seo
 
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
+        //--slider
+        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+
+        $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+        $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
         $danhsach_video = DB::table('tbl_videos')->paginate(10);
-        return view('pages.Video.video')->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('danhsach_video',$danhsach_video);
+        return view('pages.Video.video')->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('danhsach_video',$danhsach_video)->with('category_post',$category_post)->with('slider',$slider)->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham);
+    }
+
+    // cập nhật cột hình ảnh video
+    public function capnhat_image_video(Request $request){
+        $get_image = $request->file('file');
+        $video_id = $request->video_id;
+        if($get_image){
+            $video = Video::find($video_id);
+            unlink('public/uploads/videos/'.$video->video_image);
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.',$get_name_image));
+            $new_image = $name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/videos',$new_image);           
+            $video->video_image = $new_image;
+            $video->save();
+        }
+    }
+
+    // Xem video
+    public function Xem_video(Request $request){
+        $video_id = $request->video_id;
+        $video = Video::find($video_id);
+        $output['video_title'] = $video->video_title;
+        $output['video_desc'] = $video->video_desc;
+        $output['video_link'] = '<iframe width="100%" height="350" src="https://www.youtube.com/embed/'.$video->video_link.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        echo json_encode($output);
     }
 }

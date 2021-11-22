@@ -334,6 +334,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 });
             }
         });
+
+        // cập nhật cột hình ảnh trong video
+        $(document).on('change','.file_img_video',function(){
+            var video_id = $(this).data('video_id');
+            var image = document.getElementById('file-video-'+video_id).files[0];
+            var form_data = new FormData();
+            form_data.append("file",document.getElementById('file-video-'+video_id).files[0]);
+            form_data.append("video_id",video_id);
+            $.ajax({
+                url:"{{url('/capnhat-image-video')}}",
+                method:"POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data:form_data,
+                contentType:false,
+                cache:false,
+                processData:false,
+                success:function(data){
+                    load_video();
+                    $('#notify').html('<span class="text text-success">Cập nhật hình ảnh video thành công</span>');
+                }
+            });
+        });
     });
 </script>
 
