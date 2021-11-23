@@ -221,8 +221,6 @@
                                 <label>Số lượng:</label>
                                 <input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_{{$chitiet->product_id}}" />
                                 <input name="sanphamid_hidden" type="hidden" value="{{$chitiet->product_id}}" />
-                                {{-- <input type="button" class="btn btn-primary btn-sm add-to-cart" style="border-radius: 5px;position: absolute;margin-top: 34%;right: 63%;" value="Thêm giỏ hàng" name="add-to-cart">
-                                    {{-- <i class="fa fa-shopping-cart"></i> --}}
                                 <button type="submit" class="btn btn-fefault cart" style="border-radius: 5px;position: absolute;margin-top: 32%;right: 63%;">
                                     <i class="fa fa-shopping-cart"></i>
                                     Thêm Giỏ Hàng
