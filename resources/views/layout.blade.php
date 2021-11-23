@@ -20,6 +20,7 @@
     <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/vlite.css')}}" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -400,6 +401,7 @@
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
     <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
     <script src="{{asset('public/frontend/js/slider.js')}}"></script>
+    <script src="{{asset('public/frontend/js/vlite.js')}}"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="8Nbv5FZH"></script>
@@ -422,7 +424,7 @@
                 success:function(data){
                     $('#video_title').html(data.video_title);
                     $('#video_link').html(data.video_link);
-                    $('#video_desc').html(data.video_desc);
+                    $('#video_desc').html(data.video_desc);                  
                 }
             });
         });
