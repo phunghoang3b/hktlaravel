@@ -185,5 +185,3 @@ Route::post('/capnhat-video','VideoController@capnhat_video');
 Route::post('/xoa-video','VideoController@xoa_video');
 Route::post('/capnhat-image-video','VideoController@capnhat_image_video');
 Route::post('/Xem-video','VideoController@Xem_video');
-
-// làm về tag sản phẩm
