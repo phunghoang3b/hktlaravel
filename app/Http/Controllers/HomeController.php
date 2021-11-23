@@ -7,6 +7,7 @@ use DB;//sử dụng database
 use App\Http\Requests;
 use Session;
 use Mail;
+use App\Models\Product;
 use App\Models\CatePost;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Redirect;
@@ -66,6 +67,9 @@ class HomeController extends Controller
 
     //tìm kiếm sản phẩm
     public function tim_kiem(Request $request){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
         //--slider
         $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         //seo
@@ -80,7 +84,7 @@ class HomeController extends Controller
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
         $timkiem_sanpham = DB::table('tbl_product')->where('product_name','like','%'.$tukhoa.'%')->get();
-        return view('pages.SanPham.TimKiem')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('timkiem_sanpham',$timkiem_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider);
+        return view('pages.SanPham.TimKiem')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('timkiem_sanpham',$timkiem_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
     }
 
     //gửi mail
@@ -93,5 +97,23 @@ class HomeController extends Controller
             $message->from($den_email,$den_ten);//gửi mẫu thư này
         });
         // return Redirect('/')->with('message','');
+    }
+
+    // tìm kiếm bằng ajax
+    public function timkiem_autocomplete(Request $request){
+        $data = $request->all();
+        if($data['query']){
+            $product = Product::where('product_status',0)->where('product_name','LIKE','%'.$data['query'].'%')->get();
+            $output = '
+                <ul class="dropdown-menu" style="display:block; position:relative">
+                ';
+            foreach($product as $key => $giatri){
+                $output .='
+                    <li class="li_timkiem_ajax"><a href="#">'.$giatri->product_name.'</a></li>
+                ';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
     }
 }

@@ -10,6 +10,7 @@ Route::get('/Gioi-thieu', 'HomeController@Gioithieu');
 Route::get('/Lien-he', 'HomeController@Contact_us');
 Route::get('/Trang-chu/404', 'HomeController@trang_error');
 Route::post('/Tim-kiem', 'HomeController@tim_kiem');
+Route::post('/timkiem-autocomplete', 'HomeController@timkiem_autocomplete');
 
 //danh mục sản phẩm - index
 Route::get('/danh-muc-sp/{danhmuc_id}', 'CategoryProduct@Hienthi_Danhmuc_index');

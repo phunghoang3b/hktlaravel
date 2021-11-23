@@ -143,10 +143,11 @@
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <form action="{{URL::to('/Tim-kiem')}}" method="POST">
+                        <form action="{{URL::to('/Tim-kiem')}}" autocomplete="off" method="POST">
                             {{ csrf_field() }}
                             <div class="search_box pull-right">
-                                <input type="text" name="tukhoa_sanpham" placeholder="Tìm Kiếm"/>
+                                <input type="text" name="tukhoa_sanpham" id="keywords" placeholder="Tìm Kiếm"/>
+                                <div id="timkiem_ajax"></div>
                                 <input type="submit" style="margin-top: 0; color: #111; font-weight: bold; width: 75px;" name="timkiem_items" class="btn btn-primary btn-sm" value="Tìm Kiếm"/>
                             </div>
                         </form>
@@ -408,6 +409,31 @@
     <div class="zalo-chat-widget" data-oaid="4395814966648974259" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
 
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+
+    {{-- tìm kiếm ajax --}}
+    <script type="text/javascript">
+        $('#keywords').keyup(function(){
+            var query = $(this).val();
+            if(query != ''){
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                url:"{{url('/timkiem-autocomplete')}}",
+                method:"POST",
+                data:{query:query,_token:_token},
+                success:function(data){
+                    $('#timkiem_ajax').fadeIn();
+                    $('#timkiem_ajax').html(data);                
+                    }
+                });
+            }else{
+                $('#timkiem_ajax').fadeOut();
+            }
+        });
+        $(document).on('click', '.li_timkiem_ajax', function(){
+            $('#keywords').val($(this).text());
+            $('#timkiem_ajax').fadeOut();
+        });
+    </script>
 
     {{-- Xem video --}}
     <script type="text/javascript">
