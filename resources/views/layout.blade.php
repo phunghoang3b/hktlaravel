@@ -410,6 +410,29 @@
 
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
+    {{-- xem nhanh sản phẩm --}}
+    <script type="text/javascript">
+        $('.xemnhanh').click(function(){
+            var product_id = $(this).data('id_product');
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:"{{url('/quickview')}}",
+                method:"POST",
+                dataType:"JSON",
+                data:{product_id:product_id,_token:_token},
+                success:function(data){
+                        $('#product_quickview_title').html(data.product_name);
+                        $('#product_quickview_id').html(data.product_id);
+                        $('#product_quickview_price').html(data.product_price);
+                        $('#product_quickview_image').html(data.product_image);
+                        $('#product_quickview_gallery').html(data.product_gallery);
+                        $('#product_quickview_desc').html(data.product_desc);
+                        $('#product_quickview_content').html(data.product_content);              
+                    }
+                });
+        });
+    </script>
+
     {{-- tìm kiếm ajax --}}
     <script type="text/javascript">
         $('#keywords').keyup(function(){

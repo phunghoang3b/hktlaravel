@@ -188,4 +188,22 @@ class ProductController extends Controller
         // product.xlsx tên file muốn đặt
         return Excel::download(new ExcelProduct , 'product.xlsx');
     }
+
+    // xem nhanh sản phẩm
+    public function quickview(Request $request){
+        $product_id = $request->product_id;
+        $product = Product::find($product_id);
+        $gallery = Gallery::where('product_id',$product_id)->get();
+        $output['product_gallery'] = '';
+        foreach($gallery as $key => $gal){
+            $output['product_gallery'].= '<p><img width="100%" src="public/uploads/gallery/'.$gal->gallery_image.'"></p>';
+        }
+        $output['product_name'] = $product->product_name;
+        $output['product_id'] = $product->product_id;
+        $output['product_desc'] = $product->product_desc;
+        $output['product_content'] = $product->product_content;
+        $output['product_price'] = number_format($product->product_price,0,',','.').' VNĐ';
+        $output['product_image'] = '<p><img width="100%" src="public/uploads/product/'.$product->product_image.'"></p>';
+        echo json_encode($output);
+    }
 }

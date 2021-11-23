@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 //frontend
-// Route::get('/intro', 'HomeController@intro_shop');
 Route::get('/', 'HomeController@intro_shop');
 Route::get('/Trang-chu', 'HomeController@index');
 Route::get('/Gioi-thieu', 'HomeController@Gioithieu');
@@ -66,6 +65,8 @@ Route::post('/capnhatsanpham/{sanpham_id}', 'ProductController@capnhat_sanpham')
 
 Route::post('/import-file-product','ProductController@import_file_product');
 Route::post('/export-file-product','ProductController@export_file_product');
+
+Route::post('/quickview','ProductController@quickview');
 
 //Giỏ hàng
 // Route::post('/luu-giohang', 'CartController@luu_giohang');
