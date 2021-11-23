@@ -13,7 +13,7 @@
           Session::put('message',null);
         }
       ?>
-      <table class="table table-striped b-t b-light">
+      <table class="table table-striped b-t b-light" id="myTable">
         <thead>
           <tr>
             <th style="border: 1px solid;text-align: center;">Tên sản phẩm</th>
