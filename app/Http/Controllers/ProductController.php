@@ -204,6 +204,18 @@ class ProductController extends Controller
         $output['product_content'] = $product->product_content;
         $output['product_price'] = number_format($product->product_price,0,',','.').' VNĐ';
         $output['product_image'] = '<p><img width="100%" src="public/uploads/product/'.$product->product_image.'"></p>';
+        $output['product_quickview_value'] = '
+                        <input type="hidden" value="'.$product->product_id.'" class="cart_product_id_'.$product->product_id.'">
+
+                        <input type="hidden" value="'.$product->product_name.'" class="cart_product_name_'.$product->product_id.'">
+
+                        <input type="hidden" value="'.$product->product_quantity.'" class="cart_product_quantity_'.$product->product_id.'">
+
+                        <input type="hidden" value="'.$product->product_image.'" class="cart_product_image_'.$product->product_id.'">
+
+                        <input type="hidden" value="'.$product->product_price.'" class="cart_product_price_'.$product->product_id.'">
+
+                        <input type="hidden" value="1" class="cart_product_qty_'.$product->product_id.'">';
         echo json_encode($output);
     }
 }

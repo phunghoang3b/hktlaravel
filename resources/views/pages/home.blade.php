@@ -195,17 +195,22 @@
                 <span id="product_quickview_image"></span>
                 <span id="product_quickview_gallery"></span>
             </div>
-            <div class="col-md-7">
-                <h2><span id="product_quickview_title"></span></h2>
-                <p>Mã ID:<span id="product_quickview_id"></span></p>
-                <p style="font-size: 20px; color: brown; font-weight: bold;">Giá sản phẩm: <span id="product_quickview_price"></span></p>
-                <label>Số lượng:</label>
-                <input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_" /><hr>
-                <h4 style="font-size: 20px; color: brown; font-weight: bold;">Mô tả sản phẩm</h4>
-                <p><span id="product_quickview_desc"></span></p>
-                {{-- <p><span id="product_quickview_content"></span></p> --}}
-                <input type="button" class="btn btn-primary btn-sm add-to-cart" value="Mua Ngay" name="add-to-cart">
-            </div>
+            <form>
+                @csrf
+                <div id="product_quickview_value"></div>
+                <div class="col-md-7">
+                    <h2><span id="product_quickview_title"></span></h2>
+                    <p>Mã ID:<span id="product_quickview_id"></span></p>
+                    <p style="font-size: 20px; color: brown; font-weight: bold;">Giá sản phẩm: <span id="product_quickview_price"></span></p>
+                    <label>Số lượng:</label>
+                    <input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_" /><hr>
+                    <h4 style="font-size: 20px; color: brown; font-weight: bold;">Mô tả sản phẩm</h4>
+                    <p><span id="product_quickview_desc"></span></p>
+                    {{-- <p><span id="product_quickview_content"></span></p> --}}
+                    <input type="button" class="btn btn-primary btn-sm add-to-cart-quickview" data-id_sanpham="{{$sanpham->product_id}}" value="Mua Ngay" name="them-gio-hang">
+                    <div id="beforesend_quickview"></div>
+                </div>
+            </form>
         </div>
       </div>
       <div class="modal-footer">
