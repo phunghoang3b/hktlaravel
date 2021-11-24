@@ -68,11 +68,11 @@ Route::post('/export-file-product','ProductController@export_file_product');
 
 Route::post('/quickview','ProductController@quickview');
 
-//Giỏ hàng
-// Route::post('/luu-giohang', 'CartController@luu_giohang');
-// Route::post('/capnhat-sl-giohang', 'CartController@capnhat_sl_giohang');
-// Route::get('/hienthi-giohang', 'CartController@hienthi_giohang');
-// Route::get('/xoa-giohang/{rowId}', 'CartController@xoa_giohang');
+// Giỏ hàng
+Route::post('/luu-giohang', 'CartController@luu_giohang');
+Route::post('/capnhat-sl-giohang', 'CartController@capnhat_sl_giohang');
+Route::get('/hienthi-giohang', 'CartController@hienthi_giohang');
+Route::get('/xoa-giohang/{rowId}', 'CartController@xoa_giohang');
 
 //Giỏ hàng Ajax
 Route::post('/themgiohang-ajax', 'CartController@themgiohang_ajax');

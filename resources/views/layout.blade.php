@@ -413,13 +413,13 @@
     {{-- xem nhanh sản phẩm --}}
     <script type="text/javascript">
         $('.xemnhanh').click(function(){
-            var product_id = $(this).data('id_product');
+            var product_id = $(this).data('id_sanpham');
             var _token = $('input[name="_token"]').val();
             $.ajax({
                 url:"{{url('/quickview')}}",
                 method:"POST",
                 dataType:"JSON",
-                data:{product_id:product_id,_token:_token},
+                data:{product_id:product_id, _token:_token},
                 success:function(data){
                         $('#product_quickview_title').html(data.product_name);
                         $('#product_quickview_id').html(data.product_id);
@@ -428,7 +428,8 @@
                         $('#product_quickview_gallery').html(data.product_gallery);
                         $('#product_quickview_desc').html(data.product_desc);
                         $('#product_quickview_content').html(data.product_content);   
-                        $('#product_quickview_value').html(data.product_quickview_value);           
+                        $('#product_quickview_value').html(data.product_quickview_value);    
+                        $('#product_quickview_button').html(data.product_button); 
                     }
                 });
         });
@@ -521,30 +522,33 @@
     {{-- add-to-cart quickview sản phẩm --}}
     <script type="text/javascript">
         $(document).on('click','.add-to-cart-quickview',function(){
-            var id = $(this).data('id_sanpham');
-            var cart_product_id = $('.cart_product_id_' + id).val();
-            var cart_product_name = $('.cart_product_name_' + id).val();
-            var cart_product_image = $('.cart_product_image_' + id).val();
-            var cart_product_quantity = $('.cart_product_quantity_' + id).val();
-            var cart_product_price = $('.cart_product_price_' + id).val();
-            var cart_product_qty = $('.cart_product_qty_' + id).val();
-            var _token = $('input[name="_token"]').val();
-            if(parseInt(cart_product_qty) > parseInt(cart_product_quantity)){
-                alert('Làm ơn đặt nhỏ hơn' + cart_product_quantity);
-            }else{
-            //sử dụng ajax
-            $.ajax({
-                url: '{{url('/themgiohang-ajax')}}',
-                method: 'POST',
-                data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token, cart_product_quantity:cart_product_quantity},
-                beforeSend: function(){
-                    $("#beforesend_quickview").html("<p class='text text-primary'>Đang thêm sản phẩm vào giỏ hàng...</p>");
-                },
-                success:function(){
-                        $("#beforesend_quickview").html("<p class='text text-success'>Đã thêm sản phẩm vào giỏ hàng</p>");
+                var id = $(this).data('id_sanpham');
+                var cart_product_id = $('.cart_product_id_' + id).val();
+                var cart_product_name = $('.cart_product_name_' + id).val();
+                var cart_product_image = $('.cart_product_image_' + id).val();
+                var cart_product_quantity = $('.cart_product_quantity_' + id).val();
+                var cart_product_price = $('.cart_product_price_' + id).val();
+                var cart_product_qty = $('.cart_product_qty_' + id).val();
+                var _token = $('input[name="_token"]').val();
+                if(parseInt(cart_product_qty) > parseInt(cart_product_quantity)){
+                    alert('Làm ơn đặt nhỏ hơn' + cart_product_quantity);
+                }else{
+                //sử dụng ajax
+                $.ajax({
+                    url: '{{url('/themgiohang-ajax')}}',
+                    method: 'POST',
+                    data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token, cart_product_quantity:cart_product_quantity},
+                    beforeSend: function(){
+                        $("#beforesend_quickview").html("<p class='text text-primary'>Đang thêm sản phẩm vào giỏ hàng...</p>");
+                    },
+                    success:function(){
+                            $("#beforesend_quickview").html("<p class='text text-success'>Đã thêm sản phẩm vào giỏ hàng</p>");
                     }
                 });
             }
+        });
+        $(document).on('click','.redirect-cart',function(){
+            window.location.href = "{{url('/giohang-ajax')}}";
         });
     </script>
 
@@ -645,7 +649,7 @@
         });
     </script>
 
-    <!-- automatic show popup after 1.5s start-->
+    {{-- <!-- automatic show popup after 1.5s start-->
     <script>
         const loginPopup = document.querySelector(".login-popup");
         const close = document.querySelector(".close");
@@ -669,7 +673,7 @@
             loginPopup.classList.remove("show");
         })
     </script>
-    <!-- automatic show popup after 1.5s end-->
+    <!-- automatic show popup after 1.5s end--> --}}
 
 </body>
 </html>

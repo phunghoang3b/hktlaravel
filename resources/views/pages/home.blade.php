@@ -149,9 +149,9 @@
                                     margin-bottom: 25px;
                                 }
                             </style>
-                            <button type="button" class="btn btn-default add-to-cart" data-id_sanpham="{{$sanpham->product_id}}" name="them-gio-hang">Thêm giỏ hàng</button>
+                            <input type="button" value="Thêm giỏ hàng" class="btn btn-default add-to-cart" data-id_sanpham="{{$sanpham->product_id}}" name="them-gio-hang">
 
-                            <input type="button" data-toggle="modal" data-target="#xemnhanh" value="Xem nhanh" class="btn btn-default xemnhanh" data-id_product="{{$sanpham->product_id}}" name="them-gio-hang">
+                            <input type="button" data-toggle="modal" data-target="#xemnhanh" value="Xem nhanh" class="btn btn-default xemnhanh" data-id_sanpham="{{$sanpham->product_id}}" name="them-gio-hang">
                         </form>
                     </div>
                 </div>
@@ -206,8 +206,8 @@
                     <input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_" /><hr>
                     <h4 style="font-size: 20px; color: brown; font-weight: bold;">Mô tả sản phẩm</h4>
                     <p><span id="product_quickview_desc"></span></p>
-                    {{-- <p><span id="product_quickview_content"></span></p> --}}
-                    <input type="button" class="btn btn-primary btn-sm add-to-cart-quickview" data-id_sanpham="{{$sanpham->product_id}}" value="Mua Ngay" name="them-gio-hang">
+                    <p><span id="product_quickview_content"></span></p>
+                    <div id="product_quickview_button"></div>               
                     <div id="beforesend_quickview"></div>
                 </div>
             </form>
@@ -215,7 +215,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-default">Đi tới sản phẩm</button>
+        <button type="button" class="btn btn-default redirect-cart">Đi tới giỏ hàng</button>
       </div>
     </div>
   </div>
