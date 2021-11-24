@@ -137,7 +137,7 @@
                                     </ul>
                                 </li> 
                                 {{-- <li><a href="{{URL::to('/hienthi-giohang')}}">Giỏ Hàng</a></li> --}}
-                                <li><a href="{{URL::to('/Lien-he')}}">Liên Hệ</a></li>
+                                <li><a href="{{URL::to('/Liên-he')}}">Liên Hệ</a></li>
                                 <li><a href="{{URL::to('/Video-gymstore')}}">Video</a></li>
                             </ul>
                         </div>

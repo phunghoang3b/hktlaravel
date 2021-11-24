@@ -6,10 +6,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@intro_shop');
 Route::get('/Trang-chu', 'HomeController@index');
 Route::get('/Gioi-thieu', 'HomeController@Gioithieu');
-Route::get('/Lien-he', 'HomeController@Contact_us');
 Route::get('/Trang-chu/404', 'HomeController@trang_error');
 Route::post('/Tim-kiem', 'HomeController@tim_kiem');
 Route::post('/timkiem-autocomplete', 'HomeController@timkiem_autocomplete');
+
+// Liên hệ
+Route::get('/Liên-he', 'ContactController@Lien_he');
+Route::get('/information', 'ContactController@information');
+Route::post('/luu-lienhe', 'ContactController@luu_lienhe');
 
 //danh mục sản phẩm - index
 Route::get('/danh-muc-sp/{danhmuc_id}', 'CategoryProduct@Hienthi_Danhmuc_index');

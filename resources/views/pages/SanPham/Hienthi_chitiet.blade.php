@@ -237,13 +237,13 @@
 			<div class="category-tab shop-details-tab" style="width: 59.2%;margin-left: 20%;margin-top: 35%;"><!--category-tab-->
 				<div class="col-sm-12">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#details" data-toggle="tab">Mô Tả</a></li>
+						<li><a href="#details" data-toggle="tab">Mô Tả</a></li>
 						<li><a href="#companyprofile" data-toggle="tab">Chi Tiết Sản Phẩm</a></li>
-						<li><a href="#reviews" data-toggle="tab">Đánh Giá</a></li>
+						<li class="active"><a href="#reviews" data-toggle="tab">Đánh Giá</a></li>
 					</ul>
 				</div>
 				<div class="tab-content">
-					<div class="tab-pane fade active in" id="details" >
+					<div class="tab-pane" id="details" >
 						<p>{!!$chitiet->product_desc!!}</p>													
 					</div>
 					
@@ -251,18 +251,21 @@
 						<p>{!!$chitiet->product_content!!}</p>													
 					</div>								
 					
-					<div class="tab-pane fade" id="reviews" >
+					<div class="tab-pane fade active in" id="reviews" >
 						<div class="col-sm-12">
 							<ul>
 								<li><a href=""><i class="fa fa-user"></i>Khải Nguyễn</a></li>
 								<li><a href=""><i class="fa fa-clock-o"></i>14:41 PM</a></li>
 								<li><a href=""><i class="fa fa-calendar-o"></i>11 11 2021</a></li>
 							</ul>
-							<p>PVL WHEY GOLD nâng mức tiêu chuẩn Protein Blend lên tâng cao mới. Công thức tiên tiến của PVL sạch hơn và hấp thụ nhanh hơn các nguồn protein kém chất lượng. Rất đơn giản, để giúp bạn có thể đạt được mục tiêu của mình sớm hơn!
-							PVL WHEY GOLD sản xuất Protein với các loại whey protein đã qua xử lý lạnh, được vi lọc từ các nguồn sữa loại A được cho ăn cỏ và không chứa hormone. 
-							Đi cùng với công nghệ đặc biệt, PVL WHEY GOLD bổ sung các enzyme để cải thiện tiêu hóa cũng như hấp thụ Whey Protein tốt hơn. Đi cùng với 2 hương vị đặc trưng và ngon nhất của hãng đó chính là: Vanilla Soft Serve Supreme và Triple Chocolate Brownie Overload mang lại cho bạn một trải nghiệm hương vị đỉnh hơn bao giờ hết.</p>
-							<p><b>Viết đánh giá của bạn</b></p>
-							
+                            <style type="text/css">
+                                .style_comment{
+                                    border: 1px solid #ddd;
+                                    border-radius: 10px;
+                                    background: #F0F0E9;
+                                }
+                            </style>                     
+							<p><b>Viết đánh giá của bạn</b></p>							
 							<form action="#">
 								<span>
 									<input type="text" placeholder="Họ Tên"/>
