@@ -13,7 +13,7 @@ Route::post('/timkiem-autocomplete', 'HomeController@timkiem_autocomplete');
 // Liên hệ
 Route::get('/Liên-he', 'ContactController@Lien_he');
 Route::get('/information', 'ContactController@information');
-Route::post('/luu-lienhe', 'ContactController@luu_lienhe');
+Route::post('/capnhat-lienhe/{info_id}', 'ContactController@capnhat_lienhe');
 
 //danh mục sản phẩm - index
 Route::get('/danh-muc-sp/{danhmuc_id}', 'CategoryProduct@Hienthi_Danhmuc_index');

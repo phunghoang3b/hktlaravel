@@ -27,22 +27,25 @@ class ContactController extends Controller
 
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
-        return view('pages.LienHe.contact')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
+        $contact = Contact::where('info_id',3)->get();
+        return view('pages.LienHe.contact')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post)->with('contact',$contact);
     }
 
     public function information(Request $request){
-        return view('admin.Information.Them_contact');
+        $contact = Contact::where('info_id',3)->get();
+        return view('admin.Information.Them_contact')->with(compact('contact'));
     }
 
-    public function luu_lienhe(Request $request){
+    public function capnhat_lienhe(Request $request, $info_id){
         $data = $request->all();
-        $contact = new Contact();
+        $contact = Contact::find($info_id);
         $contact->info_contact = $data['info_contact'];
         $contact->info_map = $data['info_map'];
         $contact->info_fanpage = $data['info_fanpage'];
         $path = 'public/uploads/contact/';
         $get_image = $request->file('info_image');
         if($get_image){
+            unlink($path.$contact->info_logo);
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image));
             $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
@@ -50,6 +53,6 @@ class ContactController extends Controller
             $contact->info_logo = $new_image;
         }
         $contact->save();
-        return redirect()->back()->with('message','Thêm thông tin trang web thành công');
+        return redirect()->back()->with('message','Cập nhật thông tin trang web thành công');
     }
 }
