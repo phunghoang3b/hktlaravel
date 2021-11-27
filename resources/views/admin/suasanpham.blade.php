@@ -13,7 +13,11 @@
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                    <input type="text" name="ten_sanpham" class="form-control" id="exampleInputEmail1" value="{{$sanpham->product_name}}">
+                                    <input type="text" name="ten_sanpham" class="form-control" onkeyup="ChangeToSlug();" id="slug" value="{{$sanpham->product_name}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Slug</label>
+                                    <input type="text" name="slug_sanpham" class="form-control" id="convert_slug" placeholder="Tên danh mục" value="{{$sanpham->product_slug}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng</label>

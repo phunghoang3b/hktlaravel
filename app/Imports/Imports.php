@@ -17,8 +17,9 @@ class Imports implements ToModel
         return new CategoryProductModel([
             'meta_keywords' => $row[0],
             'category_name' => $row[1],
-            'category_desc' => $row[2],
-            'category_status' => $row[3],
+            'slug_category_product' => $row[2],
+            'category_desc' => $row[3],
+            'category_status' => $row[4],
         ]);
     }
 }

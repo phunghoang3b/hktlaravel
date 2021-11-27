@@ -12,7 +12,11 @@
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                    <input type="text" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập tên sản phẩm" name="ten_sanpham" class="form-control" id="exampleInputEmail1">
+                                    <input type="text" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập tên sản phẩm" name="ten_sanpham" class="form-control" onkeyup="ChangeToSlug();" id="slug">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Slug</label>
+                                    <input type="text" name="slug_sanpham" class="form-control" id="convert_slug" placeholder="Tên danh mục">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng</label>

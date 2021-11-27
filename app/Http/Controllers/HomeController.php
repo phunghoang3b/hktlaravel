@@ -39,7 +39,7 @@ class HomeController extends Controller
         $category_post = CatePost::orderby('cate_post_id','DESC')->get();
 
         //--slider
-        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
         //--seo
         $meta_desc = "Siêu thị thực phẩm dinh dưỡng thể hình, the thao cao cấp chính hãng. Shop thực phẩm bổ sung Gym, sữa thể hình, Whey sữa tăng cơ bắp BODY Store Việt Nam.";
@@ -61,7 +61,7 @@ class HomeController extends Controller
         $category_post = CatePost::orderby('cate_post_id','DESC')->get();
 
         //--slider
-        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(6)->get();
         //seo
         $meta_desc = "Tìm kiếm sản phẩm";
         $meta_keywords = "Tìm kiếm sản phẩm";

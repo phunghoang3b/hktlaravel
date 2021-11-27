@@ -10,6 +10,9 @@ use Auth;
 use App\Models\Slider;
 use App\Models\CatePost;
 use Illuminate\Support\Facades\Redirect;
+use App\Imports\ImportBrand;
+use App\Exports\ExcelBrand;
+use Excel;
 session_start();
 
 class BrandProduct extends Controller
@@ -43,6 +46,7 @@ class BrandProduct extends Controller
         $data['meta_keywords'] = $request->tukhoa_mota_thuonghieu;
         $data['brand_desc'] = $request->mota_thuonghieu;
         $data['brand_status'] = $request->hienthi_thuonghieu;
+        $data['brand_slug'] = $request->slug_thuonghieu;
 
         DB::table('tbl_brand')->insert($data);
         Session::put('message','Thêm thương hiệu sản phẩm thành công');
@@ -77,6 +81,7 @@ class BrandProduct extends Controller
         $data['brand_name'] = $request->ten_thuonghieu;
         $data['meta_keywords'] = $request->tukhoa_mota_thuonghieu;
         $data['brand_desc'] = $request->mota_thuonghieu;
+        $data['brand_slug'] = $request->slug_thuonghieu;
         DB::table('tbl_brand')->where('brand_id',$thuonghieu_id)->update($data);
         Session::put('message','Cập nhật thương hiệu sản phẩm thành công');
         return Redirect::to('danhsachthuonghieu');
@@ -113,5 +118,14 @@ class BrandProduct extends Controller
         //chọn tên danh mục, thương hiệu thì banner lọc theo tên
         $thuonghieu_ten = DB::table('tbl_brand')->where('tbl_brand.brand_id',$thuonghieu_id)->limit(1)->get();
         return view('pages.ThuongHieu.Hienthi_thuonghieu')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('thuonghieu_theo_id',$thuonghieu_theo_id)->with('thuonghieu_ten',$thuonghieu_ten)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
+    }
+
+    public function import_file_brand(Request $request){
+         $path = $request->file('file')->getRealPath();
+        Excel::import(new ImportBrand, $path);
+        return back();
+    }
+    public function export_file_brand(){
+        return Excel::download(new ExcelBrand , 'brand_product.xlsx');
     }
 }

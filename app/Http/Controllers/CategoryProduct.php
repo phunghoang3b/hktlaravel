@@ -47,6 +47,7 @@ class CategoryProduct extends Controller
         $data['meta_keywords'] = $request->tukhoa_mota_sanpham;
         $data['category_desc'] = $request->mota_sanpham;
         $data['category_status'] = $request->hienthi_sanpham;
+        $data['slug_category_product'] = $request->slug_sanpham;
 
         DB::table('tbl_category_product')->insert($data);
         Session::put('message','Thêm danh mục sản phẩm thành công');
@@ -81,6 +82,7 @@ class CategoryProduct extends Controller
         $data['category_name'] = $request->ten_sanpham;
         $data['meta_keywords'] = $request->tukhoa_mota_sanpham;
         $data['category_desc'] = $request->mota_sanpham;
+        $data['slug_category_product'] = $request->slug_sanpham;
         DB::table('tbl_category_product')->where('category_id',$danhmuc_id)->update($data);
         Session::put('message','Cập nhật danh mục sản phẩm thành công');
         return Redirect::to('danhsachdanhmucsanpham');
@@ -97,7 +99,7 @@ class CategoryProduct extends Controller
     //phần hiển thị danh mục trang index
     public function Hienthi_Danhmuc_index(Request $request, $danhmuc_id){
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
         //danh mục bài viết
         $category_post = CatePost::orderby('cate_post_id','DESC')->get();

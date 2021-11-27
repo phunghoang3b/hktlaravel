@@ -33,7 +33,7 @@ class CheckoutController extends Controller
 
     public function dangnhap_thanhtoan(Request $request){
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
         //seo
         $meta_desc = "Đăng nhập thanh toán";
@@ -67,7 +67,7 @@ class CheckoutController extends Controller
     //thanh toán đơn hàng
     public function thanhtoan(Request $request){
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
         //seo
         $meta_desc = "Đăng nhập thanh toán";

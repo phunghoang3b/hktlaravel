@@ -58,6 +58,7 @@ class ProductController extends Controller
         $data['category_id'] = $request->danhmuc;
         $data['brand_id'] = $request->thuonghieu;
         $data['product_status'] = $request->hienthi_sanpham;
+        $data['product_slug'] = $request->slug_sanpham;
 
         $path = 'public/uploads/product/';
         $path_gallery = 'public/uploads/gallery/';
@@ -117,6 +118,7 @@ class ProductController extends Controller
         $data['category_id'] = $request->danhmuc;
         $data['brand_id'] = $request->thuonghieu;
         $data['product_status'] = $request->hienthi_sanpham;
+        $data['product_slug'] = $request->slug_sanpham;
         //chon san pham moi dc cap nhat
         $get_image = $request->file('hinhanh_sanpham');
 
@@ -145,7 +147,7 @@ class ProductController extends Controller
     //chi tiết sản phẩm
     public function Chi_tiet_san_pham(Request $request, $sanpham_id){
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
         
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();

@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="features_items"><!--features_items-->
-    <h2 style="margin: 0;position: inherit;font-size: 18px" class="title text-center">{{$the_tieude}}</h2>                   
+    <h2 style="margin: 0;position: inherit;font-size: 18px" class="title text-center">{{$the_tieude}}</h2><br><br>                
         <div class="product-image-wrapper">
         	@foreach($post as $key => $p)
 	            <div class="single-products" style="margin: 10px 0;">

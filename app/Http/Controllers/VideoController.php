@@ -157,7 +157,7 @@ class VideoController extends Controller
         $category_post = CatePost::orderby('cate_post_id','DESC')->get();
 
         //--slider
-        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();

@@ -17,7 +17,7 @@ class ContactController extends Controller
         //danh mục bài viết
         $category_post = CatePost::orderby('cate_post_id','DESC')->get();
         //--slider
-        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+        $slider = Slider::orderby('slider_id','DESC')->where('slider_status','1')->take(6)->get();
         //--seo
         $meta_desc = "Liên Hệ";
         $meta_keywords = "Liên Hệ";

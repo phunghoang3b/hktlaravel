@@ -32,7 +32,7 @@ class CartController extends Controller
 
     public function hienthi_giohang(Request $request){
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
         
         //seo
         $meta_desc = "Giỏ hàng của bạn";
@@ -107,7 +107,7 @@ class CartController extends Controller
         //seo
 
         //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(5)->get();
+        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();

@@ -53,6 +53,9 @@ Route::get('/active-thuonghieu/{thuonghieu_id}', 'BrandProduct@active_thuonghieu
 Route::post('/luuthuonghieusanpham', 'BrandProduct@luu_thuonghieu_sanpham');
 Route::post('/suathuonghieu/{thuonghieu_id}', 'BrandProduct@capnhat_TH_sanpham');
 
+Route::post('/import-file-brand','BrandProduct@import_file_brand');
+Route::post('/export-file-brand','BrandProduct@export_file_brand');
+
 //Sản phẩm 
 Route::group(['middleware' => 'admin.roles'], function(){
 	Route::get('/themsanpham', 'ProductController@them_sanpham');
@@ -135,6 +138,7 @@ Route::get('/thembanner','SliderController@them_banner');
 Route::post('/luu-slider','SliderController@luu_slider');
 Route::get('/unactive-slide/{slide_id}', 'SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}', 'SliderController@active_slide');
+Route::get('/xoa_slide/{slide_id}', 'SliderController@xoa_slide');
 
 // Phân quyền admin
 // 1) đăng kí vs đăng nhập admin

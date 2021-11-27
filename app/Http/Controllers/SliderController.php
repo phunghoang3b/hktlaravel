@@ -68,4 +68,11 @@ class SliderController extends Controller
         Session::put('message','Kích hoạt slide banner thành công');
         return Redirect::to('danhsachbanner'); 
     }
+
+    public function xoa_slide(Request $request, $slide_id){
+        $slider = Slider::find($slide_id);
+        $slider->delete();
+        Session::put('message','Xóa slider thành công');
+        return redirect()->back();
+    }
 }
