@@ -173,9 +173,6 @@
       </div>
       <div class="modal-body">
         <style type="text/css">
-            span#product_quickview_content img{
-                width: 100%;
-            }
             @media screen and (min-width: 768px){
                 .modal-dialog{
                     width: 700px;
@@ -193,7 +190,7 @@
         <div class="row">
             <div class="col-md-5">
                 <span id="product_quickview_image"></span>
-                <span id="product_quickview_gallery"></span>
+                {{-- <span id="product_quickview_gallery"></span> --}}
             </div>
             <form>
                 @csrf
@@ -205,8 +202,8 @@
                     <label>Số lượng:</label>
                     <input name="so_luong" type="number" min="1" value="1" class="cart_product_qty_" /><hr>
                     <h4 style="font-size: 20px; color: brown; font-weight: bold;">Mô tả sản phẩm</h4>
-                    <p><span id="product_quickview_desc"></span></p>
-                    <p><span id="product_quickview_content"></span></p>
+                    <span id="product_quickview_desc"></span>
+                    {{-- <p><span id="product_quickview_content"></span></p> --}}
                     <div id="product_quickview_button"></div>               
                     <div id="beforesend_quickview"></div>
                 </div>
@@ -583,7 +580,7 @@
         <div class="banner-ads">
             <img src="{{('public/frontend/images/banner21.png')}}" />
         </div>
-        <div class="clear"></div>
+        <div class="clear" style="margin-bottom: 35.2%;"></div>
         <div class="row-image">
             <img src="{{('public/frontend/images/img1.jpg')}}" style="margin-left: 20%;border-bottom-left-radius: 10px;" />
             <img src="{{('public/frontend/images/img2.jpg')}}" />

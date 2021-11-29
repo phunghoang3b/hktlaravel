@@ -51,9 +51,9 @@
                     <div class="col-sm-6">
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100074756705868"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/ khainguyen492k"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                                 <li><a href="https://mail.google.com/mail/u/0/#inbox"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
@@ -127,7 +127,6 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{URL::to('/Trang-chu')}}" class="active">Trang chủ</a></li>
-                                <li><a href="#">Sản Phẩm</a></li>
                                 <li><a href="{{URL::to('/Gioi-thieu')}}">Giới Thiệu</a></li>
                                 <li class="dropdown"><a href="#">Tin Tức<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
@@ -136,7 +135,6 @@
                                         @endforeach
                                     </ul>
                                 </li> 
-                                {{-- <li><a href="{{URL::to('/hienthi-giohang')}}">Giỏ Hàng</a></li> --}}
                                 <li><a href="{{URL::to('/Liên-he')}}">Liên Hệ</a></li>
                                 <li><a href="{{URL::to('/Video-gymstore')}}">Video</a></li>
                             </ul>
@@ -145,10 +143,10 @@
                     <div class="col-sm-5">
                         <form action="{{URL::to('/Tim-kiem')}}" autocomplete="off" method="POST">
                             {{ csrf_field() }}
+                            <input type="submit" style="margin-top: 0; color: #111;margin-left: 28%;height: 35px;border-radius: 5px; font-weight: bold; width: 75px;" name="timkiem_items" class="btn btn-primary btn-sm" value="Tìm Kiếm"/>
                             <div class="search_box pull-right">
                                 <input type="text" name="tukhoa_sanpham" id="keywords" placeholder="Tìm Kiếm"/>
-                                <div id="timkiem_ajax"></div>
-                                <input type="submit" style="margin-top: 0; color: #111; font-weight: bold; width: 75px;" name="timkiem_items" class="btn btn-primary btn-sm" value="Tìm Kiếm"/>
+                                <div id="timkiem_ajax"></div>                             
                             </div>
                         </form>
                     </div>
