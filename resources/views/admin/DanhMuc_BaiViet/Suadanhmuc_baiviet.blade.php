@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên danh mục</label>
-                        <input type="text" name="ten_DMPost" class="form-control" value="{{$category_post->cate_post_name}}" id="slug" onkeyup="ChangeToSlug();">
+                        <input type="text" name="ten_DMPost" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập tên danh mục và phải nhiều hơn 5 ký tự" class="form-control" value="{{$category_post->cate_post_name}}" id="slug" onkeyup="ChangeToSlug();">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Slug</label>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả danh mục</label>
-                        <textarea style="resize: none;" rows="8" class="form-control" name="desc_DMPost" id="exampleInputPassword1">{{$category_post->cate_post_desc}}</textarea>
+                        <textarea style="resize: none;" rows="8" class="form-control" data-validation="length" data-validation-length="min5" data-validation-error-msg="Mô tả danh mục không được bỏ trống và mô tả phải nhiều hơn 5 ký tự" name="desc_DMPost" id="exampleInputPassword1">{{$category_post->cate_post_desc}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Hiển thị</label>
@@ -39,7 +39,7 @@
                     <?php
                     $message = Session::get('message');
                     if($message){
-                        echo '<span class="text-alert" style="position:relative;left:46%">',$message,'</span>';
+                        echo '<span class="text-alert" style="position:relative;left:40%;top:10px">',$message,'</span>';
                         Session::put('message',null);
                     }
                     ?>

@@ -46,11 +46,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="clearfix"></div>
                 <input type="submit" value="Đăng Nhập" name="login">
         </form>
-        {{-- <h4 style="color: white; text-align: center;margin-top: -5px;">Đăng nhập bằng</h4> --}}
-        <br>
-        <a href="{{URL::to('/login-google')}}"><img src="{{('public/backend/images/google.png')}}" style="width: 40px;position: relative;margin-left: 77%;margin-top: -75%;"></a>
-        <a href="{{URL::to('/Dangky-admin')}}">Đăng Ký</a>
-        <a href="{{URL::to('/Dangnhap-admin')}}">Đăng Nhập</a>
+        <a href="{{URL::to('/Dangky-admin')}}" style="margin-left: 43%;text-decoration: underline;">Đăng Ký</a>
+        {{-- <a href="{{URL::to('/Dangnhap-admin')}}">Đăng Nhập</a> --}}
 </div>
 </div>
 <script src="{{asset('public/backend/js/bootstrap.js')}}"></script>

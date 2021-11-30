@@ -16,12 +16,12 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="border: 1px solid;text-align: center;">Tên bài viết</th>
-            <th style="border: 1px solid;text-align: center;">Slug</th>
-            <th style="border: 1px solid;text-align: center;">Mô tả bài viết</th>
-            <th style="border: 1px solid;text-align: center;">Từ khóa bài viết</th>
-            <th style="border: 1px solid;text-align: center;width: 20%;">Hình ảnh</th>
-            <th style="border: 1px solid;text-align: center;width: 10%;">Danh mục</th>
+            <th style="border: 1px solid;text-align: center;width: 12%;">Tên bài viết</th>
+            <th style="border: 1px solid;text-align: center;width: 10%;">Slug</th>
+            <th style="border: 1px solid;text-align: center;width: 16%;">Mô tả bài viết</th>
+            <th style="border: 1px solid;text-align: center;width: 16%;">Từ khóa bài viết</th>
+            <th style="border: 1px solid;text-align: center;width: 18%;">Hình ảnh</th>
+            <th style="border: 1px solid;text-align: center;width: 12%;">Danh mục</th>
             <th style="border: 1px solid;text-align: center;">Hiển thị</th>
             <th style="border: 1px solid;text-align: center;">Chức năng</th>
           </tr>
@@ -51,21 +51,6 @@
           @endforeach 
         </tbody>
       </table>
-      <br>
-      <h4 style="text-align: center;">Chọn tệp cần import File Excel:</h4><br>
-      {{-- import file excel --}}
-      <form action="{{url('/import-file-product')}}" method="POST" enctype="multipart/form-data">
-          @csrf
-        <input type="file" name="file" accept=".xlsx" style="position: relative;left: 40%;"><br>
-        <input type="submit" value="Import File Excel" name="import_csv" class="btn btn-warning" style="position: relative;left: 45.4%;">
-      </form><br>
-
-      {{-- export file excel --}}
-      <form action="{{url('/export-file-product')}}" method="POST">
-          @csrf
-        <input type="submit" value="Export File Excel" name="export_csv" class="btn btn-success" style="position: relative;left: 45.4%;">
-      </form>
-
     </div>
   </div>
 </div>

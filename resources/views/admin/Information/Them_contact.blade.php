@@ -28,15 +28,15 @@
                         <label for="exampleInputPassword1">Fanpage</label>
                         <textarea style="resize: none;" rows="8" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy thêm fanpage" class="form-control" name="info_fanpage" id="exampleInputPassword1">{{$info->info_fanpage}}</textarea>
                     </div>                   
-                    <button type="submit" name="them_info" class="btn btn-info" style="position: relative;left: 44%;">Cập nhật thông tin</button>
-                    <?php
+                    <button type="submit" name="them_info" class="btn btn-info" style="position: relative;left: 44%;">Cập nhật thông tin</button>                   
+                </form>
+                <?php
                     $message = Session::get('message');
                     if($message){
-                        echo '<span class="text-alert" style="position:relative;left:5%">',$message,'</span>';
+                        echo '<span class="text-alert" style="position:relative;left:35%">',$message,'</span>';
                         Session::put('message',null);
                     }
                     ?>
-                </form>
                 @endforeach
                 </div>
             </div>
