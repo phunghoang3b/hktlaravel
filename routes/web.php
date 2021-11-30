@@ -21,7 +21,7 @@ Route::get('/thuong-hieu-sp/{thuonghieu_id}', 'BrandProduct@Hienthi_Thuonghieu_i
 Route::get('/chi-tiet-san-pham/{sanpham_id}', 'ProductController@Chi_tiet_san_pham');
 
 //backend
-Route::get('/admin', 'AdminController@index');
+// Route::get('/Da', 'AdminController@index');
 Route::get('/Trangadmin', 'AdminController@Trangadmin');
 Route::get('/dangxuat', 'AdminController@Dangxuat');
 Route::post('/admin-trangchu', 'AdminController@AdminTrangchu');
@@ -124,7 +124,6 @@ Route::get('/in-donhang/{checkout_code}', 'OrderController@in_donhang');
 Route::post('/capnhat-sldh', 'OrderController@capnhat_sldh');
 Route::post('/capnhat-btn-sldh', 'OrderController@capnhat_btn_sldh');
 
-
 //gửi mail
 Route::get('/gui-mail', 'HomeController@gui_mail');
 
@@ -144,7 +143,7 @@ Route::get('/xoa_slide/{slide_id}', 'SliderController@xoa_slide');
 // 1) đăng kí vs đăng nhập admin
 Route::get('/Dangky-admin','AuthController@Dangky_admin');
 Route::post('/dangky','AuthController@dangky');
-Route::get('/Dangnhap-admin','AuthController@Dangnhap_admin');
+Route::get('/admin','AuthController@Dangnhap_admin');
 Route::post('/dangnhap','AuthController@dangnhap');
 Route::get('/dangxuat-admin','AuthController@dangxuat_admin');
 

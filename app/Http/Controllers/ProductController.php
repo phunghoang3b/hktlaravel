@@ -11,6 +11,7 @@ use App\Imports\ImportProduct;
 use App\Exports\ExcelProduct;
 use Excel;
 use File;
+use App\Models\CatePost;
 use App\Models\Comment;
 use App\Models\Slider;
 use App\Models\Product;
@@ -146,6 +147,9 @@ class ProductController extends Controller
 
     //chi tiết sản phẩm
     public function Chi_tiet_san_pham(Request $request, $sanpham_id){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
         
@@ -176,7 +180,7 @@ class ProductController extends Controller
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->where('tbl_category_product.category_id',$danhmuc_id)->whereNotIn('tbl_product.product_id',[$sanpham_id])->get();
 
-        return view('pages.SanPham.Hienthi_chitiet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('chitiet_sanpham',$chitiet_sanpham)->with('lienquan',$sanpham_lienquan)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('gallery',$gallery);
+        return view('pages.SanPham.Hienthi_chitiet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('chitiet_sanpham',$chitiet_sanpham)->with('lienquan',$sanpham_lienquan)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('gallery',$gallery)->with('category_post',$category_post);
     }
 
     //import file

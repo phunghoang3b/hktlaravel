@@ -15,7 +15,7 @@ use App\Models\City;
 use App\Models\Province;
 use App\Models\Wards;
 use App\Models\Feeship;
-
+use App\Models\CatePost;
 use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -32,6 +32,9 @@ class CheckoutController extends Controller
     }
 
     public function dangnhap_thanhtoan(Request $request){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
@@ -45,7 +48,7 @@ class CheckoutController extends Controller
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
-        return view('pages.ThanhToan.Dangnhap_thanhtoan')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider);
+        return view('pages.ThanhToan.Dangnhap_thanhtoan')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
     }
 
     //đăng kí khách hàng
@@ -66,6 +69,9 @@ class CheckoutController extends Controller
 
     //thanh toán đơn hàng
     public function thanhtoan(Request $request){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
         //slide
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(6)->get();
 
@@ -79,7 +85,7 @@ class CheckoutController extends Controller
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
         $city = City::orderby('matp','ASC')->get();
-        return view('pages.ThanhToan.Hienthi_thanhtoan')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('city',$city)->with('slider',$slider);
+        return view('pages.ThanhToan.Hienthi_thanhtoan')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('city',$city)->with('slider',$slider)->with('category_post',$category_post);
     }
 
     //lưu thông tin thanh toán khách hàng
@@ -112,7 +118,7 @@ class CheckoutController extends Controller
     //đăng xuất tài khoản
     public function dangxuat_thanhtoan(){
         Session::flush();
-        return Redirect::to('/');
+        return Redirect::to('/Trang-chu');
     }
     //Đăng nhập tài khoản
     public function dangnhap_khachhang(Request $request){

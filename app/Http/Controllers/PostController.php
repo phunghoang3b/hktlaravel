@@ -141,7 +141,7 @@ class PostController extends Controller
             $duongdan = $request->url();
             //end seo
         }
-        $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(10);
+        $post = Post::with('cate_post')->where('post_status',1)->where('cate_post_id',$cate_id)->paginate(8);
         return view('pages.BaiViet.Danhmucbaiviet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('post',$post)->with('category_post',$category_post);
     }
 

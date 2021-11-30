@@ -50,9 +50,9 @@
                     <div class="col-sm-6">
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100074756705868"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/ khainguyen492k"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                                 <li><a href="https://mail.google.com/mail/u/0/#inbox"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
@@ -126,11 +126,16 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{URL::to('/Trang-chu')}}" class="active">Trang chủ</a></li>
-                                <li><a href="#">Sản Phẩm</a></li>
                                 <li><a href="{{URL::to('/Gioi-thieu')}}">Giới Thiệu</a></li>
-                                <li><a href="#">Tin Tức</a></li> 
-                                {{-- <li><a href="{{URL::to('/hienthi-giohang')}}">Giỏ Hàng</a></li> --}}
-                                <li><a href="{{URL::to('/Lien-he')}}">Liên Hệ</a></li>
+                                <li class="dropdown"><a href="#">Tin Tức<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        @foreach($category_post as $key => $dmbv)
+                                            <li><a href="{{URL::to('/danh-muc-bai-viet/'.$dmbv->cate_post_slug)}}">{{$dmbv->cate_post_name}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li> 
+                                <li><a href="{{URL::to('/Liên-he')}}">Liên Hệ</a></li>
+                                <li><a href="{{URL::to('/Video-gymstore')}}">Video</a></li>
                             </ul>
                         </div>
                     </div>

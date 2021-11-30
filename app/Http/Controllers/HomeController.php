@@ -16,6 +16,8 @@ session_start();
 class HomeController extends Controller
 {
     public function Gioithieu(Request $request){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
         //--seo
         $meta_desc = "Siêu thị thực phẩm dinh dưỡng thể hình, the thao cao cấp chính hãng. Shop thực phẩm bổ sung Gym, sữa thể hình, Whey sữa tăng cơ bắp BODY Store Việt Nam.";
         $meta_keywords = "Dinh dưỡng và phụ kiện tập Gym";
@@ -23,7 +25,7 @@ class HomeController extends Controller
         $duongdan = $request->url();
         //--end seo
         
-        return view('pages.GioiThieu.Gioi_thieu')->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan);
+        return view('pages.GioiThieu.Gioi_thieu')->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('category_post',$category_post);
     }
 
     public function trang_error(){

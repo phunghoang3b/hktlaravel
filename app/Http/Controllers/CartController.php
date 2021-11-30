@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 use Cart;
+use App\Models\CatePost;
 use App\Models\Slider;
 use App\Models\Coupon;
 session_start();
@@ -99,6 +100,9 @@ class CartController extends Controller
     }
 
     public function giohang_ajax(Request $request){
+        //danh mục bài viết
+        $category_post = CatePost::orderby('cate_post_id','DESC')->get();
+
         //seo
         $meta_desc = "Giỏ hàng của bạn";
         $meta_keywords = "Giỏ hàng Ajax";
@@ -111,7 +115,7 @@ class CartController extends Controller
 
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
-        return view('pages.GioHang.Giohang_ajax')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider);
+        return view('pages.GioHang.Giohang_ajax')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
     }
     //xóa sản phẩm trong giỏ hàng
     public function xoasp_ajax($session_id){

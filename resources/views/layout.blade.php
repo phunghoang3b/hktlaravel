@@ -21,6 +21,10 @@
     <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
 
+    <link href="{{asset('public/frontend/css/lightgallery.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/lightslider.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/prettify.css')}}" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -400,6 +404,10 @@
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
     <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
     <script src="{{asset('public/frontend/js/slider.js')}}"></script>
+
+    <script src="{{asset('public/frontend/js/lightgallery-all.min.js')}}"></script>
+    <script src="{{asset('public/frontend/js/lightslider.js')}}"></script>
+    <script src="{{asset('public/frontend/js/prettify.js')}}"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="8Nbv5FZH"></script>
@@ -408,6 +416,26 @@
     <div class="zalo-chat-widget" data-oaid="4395814966648974259" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
 
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+
+    {{-- gallery hình ảnh --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#imageGallery').lightSlider({
+                gallery:true,
+                item:1,
+                loop:true,
+                thumbItem:5,
+                slideMargin:0,
+                enableDrag: false,
+                currentPagerPosition:'left',
+                onSliderLoad: function(el){  
+                    the.lightGallery({
+                        selector: '#imageGallery .lslide' 
+                    });
+                }   
+            });  
+        });
+    </script>
 
     {{-- xem nhanh sản phẩm --}}
     <script type="text/javascript">
