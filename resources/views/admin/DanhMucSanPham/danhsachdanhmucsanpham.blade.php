@@ -19,7 +19,6 @@
             <th style="border: 1px solid;text-align: center;">Tên danh mục sản phẩm</th>
             <th style="border: 1px solid;text-align: center;">Hiển thị</th>
             <th style="border: 1px solid;text-align: center;">Chức năng</th>
-            {{-- <th style="width:30px;"></th> --}}
           </tr>
         </thead>
         <tbody>

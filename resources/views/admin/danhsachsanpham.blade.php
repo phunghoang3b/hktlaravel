@@ -9,7 +9,7 @@
       <?php
         $message = Session::get('message');
         if($message){
-          echo '<span class="text-alert" style="position:relative;left:40%">',$message,'</span>';
+          echo '<span class="text-alert" style="position:relative;left:43%">',$message,'</span>';
           Session::put('message',null);
         }
       ?>

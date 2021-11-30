@@ -9,7 +9,7 @@
       <?php
         $message = Session::get('message');
         if($message){
-          echo '<span class="text-alert" style="position:relative;left:40%">',$message,'</span>';
+          echo '<span class="text-alert" style="position:relative;left:43%">',$message,'</span>';
           Session::put('message',null);
         }
       ?>
@@ -66,22 +66,7 @@
           </tr>
           @endforeach 
         </tbody>
-      </table>
-      <br>
-      <h4 style="text-align: center;">Chọn tệp cần import File Excel:</h4><br>
-      {{-- import file excel --}}
-      <form action="{{url('/import-file-product')}}" method="POST" enctype="multipart/form-data">
-          @csrf
-        <input type="file" name="file" accept=".xlsx" style="position: relative;left: 40%;"><br>
-        <input type="submit" value="Import File Excel" name="import_csv" class="btn btn-warning" style="position: relative;left: 45.4%;">
-      </form><br>
-
-      {{-- export file excel --}}
-      <form action="{{url('/export-file-product')}}" method="POST">
-          @csrf
-        <input type="submit" value="Export File Excel" name="export_csv" class="btn btn-success" style="position: relative;left: 45.4%;">
-      </form>
-      
+      </table>     
     </div>
   </div>
 </div>

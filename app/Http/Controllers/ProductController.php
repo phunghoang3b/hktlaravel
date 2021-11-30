@@ -178,7 +178,7 @@ class ProductController extends Controller
         $sanpham_lienquan = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_category_product.category_id',$danhmuc_id)->whereNotIn('tbl_product.product_id',[$sanpham_id])->get();
+        ->where('tbl_category_product.category_id',$danhmuc_id)->whereNotIn('tbl_product.product_id',[$sanpham_id])->take(3)->get();
 
         return view('pages.SanPham.Hienthi_chitiet')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('chitiet_sanpham',$chitiet_sanpham)->with('lienquan',$sanpham_lienquan)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('gallery',$gallery)->with('category_post',$category_post);
     }

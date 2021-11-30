@@ -13,7 +13,7 @@
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                    <input type="text" name="ten_sanpham" class="form-control" onkeyup="ChangeToSlug();" id="slug" value="{{$sanpham->product_name}}">
+                                    <input type="text" name="ten_sanpham" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập tên sản phẩm và lớn hơn 5 ký tự" class="form-control" onkeyup="ChangeToSlug();" id="slug" value="{{$sanpham->product_name}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Slug</label>
@@ -30,15 +30,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm</label>
-                                    <input type="text" name="gia_sanpham" class="form-control" id="exampleInputEmail1" value="{{$sanpham->product_price}}">
+                                    <input type="text" name="gia_sanpham" class="form-control" data-validation="number" data-validation-error-msg="Hãy nhập giá sản phẩm" id="exampleInputEmail1" value="{{$sanpham->product_price}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả sản phẩm</label>
-                                    <textarea style="resize: none;" rows="8" class="form-control" name="mota_sanpham" id="ckeditor">{{$sanpham->product_desc}}</textarea>
+                                    <textarea style="resize: none;" rows="8" class="form-control" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập mô tả sản phẩm và lớn hơn 5 ký tự" name="mota_sanpham" id="ckeditor">{{$sanpham->product_desc}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Nội dung sản phẩm</label>
-                                    <textarea style="resize: none;" rows="8" class="form-control" name="noidung_sanpham" id="ckeditor1">{{$sanpham->product_content}}</textarea>
+                                    <textarea style="resize: none;" rows="8" class="form-control" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập nội dung sản phẩm và lớn hơn 5 ký tự" name="noidung_sanpham" id="ckeditor1">{{$sanpham->product_content}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Danh mục sản phẩm</label>
@@ -72,9 +72,9 @@
                                         <option value="0">Ẩn</option>
                                         <option value="1">Hiển thị</option>
                                     </select>
-                                </div>
-                                
+                                </div>                               
                                 <button type="submit" name="them_sanpham" class="btn btn-info">Sửa sản phẩm</button>
+                            </form>
                                 <?php
                                 $message = Session::get('message');
                                 if($message){
@@ -82,7 +82,6 @@
                                     Session::put('message',null);
                                 }
                                 ?>
-                            </form>
                             @endforeach
                             </div>
 

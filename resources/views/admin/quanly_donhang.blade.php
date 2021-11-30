@@ -43,29 +43,12 @@
                 @endif
             </td>
             <td style="text-align: center;">
-              <a href="{{URL::to('/xem-donhang/'.$ord->order_code)}}" class="active" ui-toggle-class=""><i class="fa fa-eye text-success text-active" style="padding-right: 35px;"></i></a>
-              <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="{{URL::to('/xoa-donhang/'.$ord->order_code)}}" class="active" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i></a>
+              <a href="{{URL::to('/xem-donhang/'.$ord->order_code)}}" class="active" ui-toggle-class=""><i class="fa fa-eye text-success text-active" style="padding-right: -6px;"></i></a>
             </td>
           </tr>
           @endforeach 
         </tbody>
-      </table>
-      <br>
-      <h4 style="text-align: center;">Chọn tệp cần import File Excel:</h4><br>
-      {{-- import file excel --}}
-      <form action="{{url('/import-file')}}" method="POST" enctype="multipart/form-data">
-          @csrf
-        <input type="file" name="file" accept=".xlsx" style="position: relative;left: 40%;"><br>
-        <input type="submit" value="Import File Excel" name="import_csv" class="btn btn-warning" style="position: relative;left: 45.4%;">
-      </form><br>
-
-      {{-- export file excel --}}
-      <form action="{{url('/export-file')}}" method="POST">
-          @csrf
-        <input type="submit" value="Export File Excel" name="export_csv" class="btn btn-success" style="position: relative;left: 45.4%;">
-      </form>
-      
+      </table>   
     </div>
   </div>
 </div>

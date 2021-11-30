@@ -52,7 +52,7 @@
                 </ul>
             </div>
             <div class="tab-content">
-                <div class="tab-pane" id="details">
+                <div class="tab-pane fade active in" id="details">
                     <p>{!!$chitiet->product_desc!!}</p>                                                 
                 </div>
                 
@@ -63,7 +63,7 @@
         </div><!--/category-tab-->
     @endforeach
 
-    {{-- <div class="recommended_items"><!--recommended_items-->
+    <div class="recommended_items"><!--recommended_items-->
         <h2 class="title text-center">Sản Phẩm Liên Quan</h2>              
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -110,6 +110,6 @@
                 </div>                                      
             </div>        
         </div>
-    </div><!--/recommended_items--> --}}
+    </div><!--/recommended_items-->
 </div>
 @endsection

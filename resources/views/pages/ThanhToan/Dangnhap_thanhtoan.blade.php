@@ -15,11 +15,11 @@
         {{ csrf_field() }}
           <label>
             <span>Email</span>
-            <input type="text" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập email" name="email_account">
+            <input type="text" required name="email_account">
           </label>
           <label>
             <span>Mật Khẩu</span>
-            <input type="password" data-validation="length" data-validation-length="min5" data-validation-error-msg="Mật khẩu không được bỏ trống" name="password_account">
+            <input type="password" required name="password_account">
           </label>
           <button class="btn btn-default" type="submit">Đăng nhập</button>
       </form>
@@ -47,19 +47,19 @@
           {{ csrf_field() }}
             <label>
               <span>Họ và Tên</span>
-              <input type="text" data-validation="length" data-validation-length="min5" data-validation-error-msg="Không được bỏ trống họ tên" name="customer_name">
+              <input type="text" name="customer_name" required minlength="4" maxlength="25" size="25">
             </label>
             <label>
               <span>Email</span>
-              <input type="email" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập địa chỉ email" name="customer_email">
+              <input type="email" name="customer_email" required>
             </label>
             <label>
               <span>Mật Khẩu</span>
-              <input type="password" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập mật khẩu" name="customer_password">
+              <input type="password" name="customer_password" required minlength="5" maxlength="20" size="20">
             </label>
             <label>
               <span>Số Điện Thoại</span>
-              <input type="text" data-validation="length" data-validation-length="min5" data-validation-error-msg="Số điện thoại không được bỏ trống" name="customer_phone">
+              <input type="tel" name="customer_phone" required pattern="[0-9]{3}[0-9]{3}[0-9]{4}" minlength="10" maxlength="10" size="10">
             </label>
             <button type="submit" class="btn btn-default">Đăng ký ngay!</button>
         </form>

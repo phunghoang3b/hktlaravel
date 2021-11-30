@@ -40,14 +40,14 @@ class VideoController extends Controller
                 <table class="table table-striped b-t b-light">
                     <thead>
                       <tr>
-                        <th style="border: 1px solid;text-align: center;">Thứ tự</th>
-                        <th style="border: 1px solid;text-align: center;">Tên video</th>
-                        <th style="border: 1px solid;text-align: center;">Slug video</th>
+                        <th style="border: 1px solid;text-align: center;width: 5%">Thứ tự</th>
+                        <th style="border: 1px solid;text-align: center;width: 10%">Tên video</th>
+                        <th style="border: 1px solid;text-align: center;width: 10%">Slug video</th>
                         <th style="border: 1px solid;text-align: center;">Hình ảnh</th>
                         <th style="border: 1px solid;text-align: center;">Link</th>
                         <th style="border: 1px solid;text-align: center;">Mô tả</th>
                         <th style="border: 1px solid;text-align: center;">Demo</th>
-                        <th style="border: 1px solid;text-align: center;">Chức năng</th>
+                        <th style="border: 1px solid;text-align: center;width: 8%">Chức năng</th>
                       </tr>
                     </thead>
                     <tbody>         
@@ -59,7 +59,7 @@ class VideoController extends Controller
                 $output.='
                     <tr>
                         <td>'.$i.'</td>
-                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_title" class="video_edit" id="video_title_'.$vd->video_id.'">'.$vd->video_title.'</td>
+                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_title" data-validation-length="min5" data-validation-error-msg="Hãy nhập tên video và phải nhiều hơn 5 ký tự" class="video_edit" id="video_title_'.$vd->video_id.'">'.$vd->video_title.'</td>
 
                         <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_slug" class="video_edit" id="video_slug_'.$vd->video_id.'">'.$vd->video_slug.'</td>
 
@@ -70,11 +70,11 @@ class VideoController extends Controller
 
                         <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_link" class="video_edit" id="video_link_'.$vd->video_id.'">https://youtu.be/'.$vd->video_link.'</td>
 
-                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_desc" class="video_edit" id="video_desc_'.$vd->video_id.'">'.$vd->video_desc.'</td>
+                        <td contenteditable data-video_id="'.$vd->video_id.'" data-video_type="video_desc" data-validation-length="min5" data-validation-error-msg="Không được bỏ trống link video" class="video_edit" id="video_desc_'.$vd->video_id.'">'.$vd->video_desc.'</td>
 
-                        <td><iframe width="400" height="250" src="https://www.youtube.com/embed/'.$vd->video_link.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+                        <td><iframe width="250" height="150" src="https://www.youtube.com/embed/'.$vd->video_link.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
 
-                        <td><button type="button" data-video_id="'.$vd->video_id.'" class="btn btn-xs btn-danger btn-delete-video">Xóa video</button></td>
+                        <td style="text-align: center"><button type="button" data-video_id="'.$vd->video_id.'" class="btn btn-xs btn-danger btn-delete-video">Xóa video</button></td>
                     </tr>
                 ';
             }

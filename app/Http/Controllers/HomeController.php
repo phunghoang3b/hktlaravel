@@ -53,7 +53,7 @@ class HomeController extends Controller
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
-        $tatca_sanpham = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','ASC')->limit(12)->get();
+        $tatca_sanpham = DB::table('tbl_product')->where('product_status','0')->orderby('product_id','ASC')->limit(9)->get();
         return view('pages.home')->with('category',$danhmuc_sanpham)->with('brand',$thuonghieu_sanpham)->with('allproduct',$tatca_sanpham)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('the_tieude',$the_tieude)->with('duongdan',$duongdan)->with('slider',$slider)->with('category_post',$category_post);
     }
 

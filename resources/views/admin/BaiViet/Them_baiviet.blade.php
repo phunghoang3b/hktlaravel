@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Hình ảnh bài viết</label>
-                        <input type="file" name="hinhanh_baiviet" class="form-control" id="exampleInputEmail1">
+                        <input type="file" required name="hinhanh_baiviet" class="form-control" id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Danh mục bài viết</label>

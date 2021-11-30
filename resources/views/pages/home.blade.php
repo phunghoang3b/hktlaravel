@@ -580,7 +580,7 @@
         <div class="banner-ads">
             <img src="{{('public/frontend/images/banner21.png')}}" />
         </div>
-        <div class="clear" style="margin-bottom: 35.2%;"></div>
+        <div class="clear" style="margin-bottom: 32.7%;"></div>
         <div class="row-image">
             <img src="{{('public/frontend/images/img1.jpg')}}" style="margin-left: 20%;border-bottom-left-radius: 10px;" />
             <img src="{{('public/frontend/images/img2.jpg')}}" />

@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Hình ảnh</label>
-                        <input type="file" data-validation="image" data-validation-length="min5" data-validation-error-msg="Chọn hình ảnh cho slide" name="hinh_slide" class="form-control" id="exampleInputEmail1">
+                        <input type="file" required name="hinh_slide" class="form-control" id="exampleInputEmail1">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả slide</label>

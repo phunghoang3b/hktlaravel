@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên thương hiệu</label>
-                        <input type="text" name="ten_thuonghieu" class="form-control" onkeyup="ChangeToSlug();" id="slug">
+                        <input type="text" name="ten_thuonghieu" class="form-control" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập tên thương hiệu và phải nhiều hơn 5 ký tự" onkeyup="ChangeToSlug();" id="slug">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Slug</label>
@@ -20,11 +20,11 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Mô tả thương hiệu</label>
-                        <textarea style="resize: none;" rows="8" class="form-control" name="mota_thuonghieu" id="exampleInputPassword1"></textarea>
+                        <textarea style="resize: none;" rows="8" class="form-control" data-validation="length" data-validation-length="min5" data-validation-error-msg="Mô tả thương hiệu không được để trống và phải nhiều hơn 5 ký tự" name="mota_thuonghieu" id="exampleInputPassword1"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Từ khóa thương hiệu</label>
-                        <textarea style="resize: none;" rows="8" class="form-control" name="tukhoa_mota_thuonghieu" id="exampleInputPassword1"></textarea>
+                        <textarea style="resize: none;" rows="2" class="form-control" data-validation="length" data-validation-length="min5" data-validation-error-msg="Hãy nhập từ khóa thương hiệu và phải nhiều hơn 5 ký tự" name="tukhoa_mota_thuonghieu" id="exampleInputPassword1"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Hiển thị</label>
@@ -32,17 +32,16 @@
                             <option value="0">Ẩn</option>
                             <option value="1">Hiển thị</option>
                         </select>
-                    </div>
-                    
+                    </div>                  
                     <button type="submit" name="them_sanpham" class="btn btn-info" style="position: relative;left: 44%;">Thêm thương hiệu</button>
-                    <?php
-                    $message = Session::get('message');
-                    if($message){
-                        echo '<span class="text-alert" style="position:relative;left:5%">',$message,'</span>';
-                        Session::put('message',null);
-                    }
-                    ?>
                 </form>
+                <?php
+                $message = Session::get('message');
+                if($message){
+                    echo '<span class="text-alert" style="position:relative;left:35%;top:10px">',$message,'</span>';
+                    Session::put('message',null);
+                }
+                ?>
                 </div>
             </div>
         </section>

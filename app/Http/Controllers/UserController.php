@@ -63,8 +63,8 @@ class UserController extends Controller
         $admin->admin_phone = $data['admin_phone'];
         $admin->admin_email = $data['admin_email'];
         $admin->admin_password = md5($data['admin_password']);
-        $admin->roles()->attach(Roles::where('name','user')->first());
         $admin->save();
+        $admin->roles()->attach(Roles::where('name','user')->first());
         Session::put('message','Thêm tài khoản thành công');
         return Redirect::to('/users');
     }
