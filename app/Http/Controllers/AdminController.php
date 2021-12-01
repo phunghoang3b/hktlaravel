@@ -85,4 +85,43 @@ class AdminController extends Controller
             return $customer_new;
         }
     }
+
+    // public function dangnhap_kh_facebook(){
+    //     config(['services.facebook.redirect' => env('FACEBOOK_REDIRECT')]);
+    //     return Socialite::driver('facebook')->redirect();
+    // }
+
+    // public function callback_customer_facebook(){
+    //     config(['services.facebook.redirect' => env('FACEBOOK_REDIRECT')]);
+    //     $provider = Socialite::driver('facebook')->user();
+    //     $account = SocialCustomers::where('provider','facebook')->where('provider_user_id',$provider->getId())->first();
+    //     if($account != NULL){
+    //         $account_name = Customer::where('customer_id',$account->user)->first();
+    //         Session::put('customer_id',$account_name->customer_id);
+    //         Session::put('customer_name',$account_name->customer_name);
+    //         return redirect('/thanhtoan');
+    //     }elseif($account == NULL){
+    //         $customer_login = new SocialCustomers([
+    //             'provider_user_id' => $provider->getId(),
+    //             'provider_user_email' => $provider->getEmail(),
+    //             'provider' => 'facebook'
+    //         ]);
+    //         $customer = Customer::where('customer_email',$provider->getEmail())->first();
+    //         if(!$customer){
+    //             $customer = Customer::create([
+    //                 'customer_name' => $provider->getName(),
+    //                 'customer_email' => $provider->getEmail(),
+    //                 'customer_picture' => '',
+    //                 'customer_password' => '',
+    //                 'customer_phone' => ''
+    //             ]);
+    //         }
+    //         $customer_login->customer()->associate($customer);
+    //         $customer_login->save();
+    //         $account_new = Customer::where('customer_id',$customer_login->user)->first();
+    //         Session::put('customer_id',$account_new->customer_id);
+    //         Session::put('customer_name',$account_new->customer_name);
+    //         return redirect('/thanhtoan');
+    //     }
+    // }
 }

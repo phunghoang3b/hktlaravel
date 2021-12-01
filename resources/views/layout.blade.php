@@ -417,8 +417,51 @@
 
     {{-- zalo --}}
     <div class="zalo-chat-widget" data-oaid="4395814966648974259" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
-
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+    {{-- zalo --}}
+
+    {{-- paypal --}}
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        var usd = document.getElementById("vnd_to_usd").value;
+      paypal.Button.render({
+        // Configure environment
+        env: 'sandbox',
+        client: {
+          sandbox: 'demo_sandbox_client_id',
+          production: 'demo_production_client_id'
+        },
+        // Customize button (optional)
+        locale: 'en_US',
+        style: {
+          size: 'small',
+          color: 'gold',
+          shape: 'pill',
+        },
+
+        // Enable Pay Now checkout flow (optional)
+        commit: true,
+
+        // Set up a payment
+        payment: function(data, actions) {
+          return actions.payment.create({
+            transactions: [{
+              amount: {
+                total: `${usd}`,
+                currency: 'USD'
+              }
+            }]
+          });
+        },
+        // Execute the payment
+        onAuthorize: function(data, actions) {
+          return actions.payment.execute().then(function() {
+            // Show a confirmation message to the buyer
+            window.alert('Cảm ơn bạn đã thanh toán!');
+          });
+        }
+      }, '#paypal-button');
+    </script>
 
     {{-- gallery hình ảnh --}}
     <script type="text/javascript">

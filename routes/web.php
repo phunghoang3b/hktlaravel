@@ -126,9 +126,13 @@ Route::post('/capnhat-btn-sldh', 'OrderController@capnhat_btn_sldh');
 //gửi mail
 Route::get('/gui-mail', 'HomeController@gui_mail');
 
-//đăng khách nhập bằng google
+//Đăng nhập khách
+// 1) Google
 Route::get('/dangnhap-kh-google','AdminController@dangnhap_kh_google');
 Route::get('/customer/google/callback','AdminController@callback_customer_google');
+// 2) Facebook
+// Route::get('/dangnhap-kh-facebook','AdminController@dangnhap_kh_facebook');
+// Route::get('/customer/facebook/callback','AdminController@callback_customer_facebook');
 
 // Slide banner
 Route::get('/danhsachbanner','SliderController@danhsach_banner');

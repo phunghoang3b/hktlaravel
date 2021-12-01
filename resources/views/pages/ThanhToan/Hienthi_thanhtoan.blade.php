@@ -59,11 +59,11 @@
 					<div class="col-sm-9 clearfix">
 						@if(session()->has('message'))
 			                <div class="alert alert-success">
-			                    {{ session()->get('message') }}
+			                    {!! session()->get('message') !!}
 			                </div>
 			            @elseif(session()->has('error'))
 			                 <div class="alert alert-danger">
-			                    {{ session()->get('error') }}
+			                    {!! session()->get('error') !!}
 			                </div>
 			            @endif
 						<div class="table-responsive cart_info">
@@ -119,7 +119,7 @@
 									@endforeach	
 										<tr>
 											<td><input type="submit" value="Cập nhật giỏ hàng" name="capnhat_sl" class="check_out btn btn-default btn-sm" style="border-radius: 5px;height: 42px;margin-left: 20%;"></td>
-											<td><a class="btn btn-default check_out" href="{{url('/xoatatca-giohang')}}" style="border-radius: 5px;margin-left: -16%"><img src="{{('public/frontend/images/shopping-cart.png')}}"></a></td>
+											<td><a class="btn btn-default check_out" href="{{url('/xoatatca-giohang')}}" style="border-radius: 5px;margin-left: 2%"><img src="{{('public/frontend/images/shopping-cart.png')}}"></a></td>
 											<td>
 												@if(Session::get('giamgia'))
 												<a class="btn btn-default check_out" href="{{url('/xoagiamgia-giohang')}}" style="border-radius: 5px;height: 42px;padding-top: 12px;">Xóa Mã Giảm Giá</a>
@@ -210,6 +210,13 @@
 			            				<input type="submit" class="btn btn-default check_coupon" name="kiemtra_giamgia" value="Tính mã giảm giá" style="font-weight: bold;">
 				            			</form>
 									</td>
+									<td colspan="4">
+										@php
+											$vnd_to_usd = $tongtien_sau/22715;
+										@endphp
+                                        <div id="paypal-button" style="margin-left: 55%"></div>
+                                        <input type="hidden" id="vnd_to_usd" value="{{round($vnd_to_usd,2)}}">
+                                    </td>
 								</tr>
 							@endif
 							</table>

@@ -35,4 +35,10 @@ return [
         'client_secret' => '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',
         'redirect' => 'http://localhost:81/hktlaravel/customer/google/callback',
     ],
+
+    'facebook' => [
+        'client_id' => '294191069278736',  //client face của bạn
+        'client_secret' => '9d83f93df333dcc4ea9a358909e53a8f',  //client app service face của bạn
+        'redirect' => 'http://localhost:81/hktlaravel/customer/facebook/callback' //callback trả về
+    ],
 ];

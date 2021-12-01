@@ -26,10 +26,10 @@
       {{-- đăng nhập bằng hình thức khác --}}
       <ul class="list-login">
         <li>
-          <a href="{{url('/dangnhap-kh-google')}}"><img width="10%" alt="Đăng nhập bằng tài khoản google" src="{{asset('public/frontend/images/icongoogle.png')}}"></a>
+          <a href="{{url('/dangnhap-kh-google')}}"><img width="35px" alt="Đăng nhập bằng tài khoản google" src="{{asset('public/frontend/images/icongoogle.png')}}" style="margin-left: 42%;"></a>
         </li>
         <li>
-          <a href=""><img width="10%" alt="Đăng nhập bằng tài khoản facebook" src="{{asset('public/frontend/images/iconfacebook.png')}}"></a>
+          <a href="{{url('/dangnhap-kh-facebook')}}"><img width="35px" alt="Đăng nhập bằng tài khoản facebook" src="{{asset('public/frontend/images/iconfacebook.png')}}"></a>
         </li>
       </ul>
       <style type="text/css">
