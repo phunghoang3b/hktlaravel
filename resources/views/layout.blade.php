@@ -101,7 +101,10 @@
                                     $customer_id = Session::get('customer_id');
                                     if($customer_id != NULL){
                                 ?>
-                                    <li><a href="{{URL::to('/dangxuat-thanhtoan')}}"><i class="fa fa-lock"></i> Đăng Xuất</a></li>
+                                    <li>
+                                        <a href="{{URL::to('/dangxuat-thanhtoan')}}"><i class="fa fa-lock"></i> Đăng Xuất</a>
+                                        <img src="{{Session::get('customer_picture')}}" style="width: 30px;"> {{Session::get('customer_name')}}
+                                    </li>
                                 <?php
                                     }else{
                                 ?>

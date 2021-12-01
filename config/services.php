@@ -30,16 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'facebook' => [
-        'client_id' => '861981347817741',  //client face của bạn
-        'client_secret' => '8e4b09b95692a85e446a13e46c923966',  //client app service face của bạn
-        'redirect' => 'http://localhost:81/hktlaravel/admin/callback' //callback trả về
-    ],
-
     'google' => [
         'client_id' => '760328729892-7e0rlqrct25p93jhadjdc164c12etsnp.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'http://localhost:81/hktlaravel/google/callback'
+        'redirect' => 'http://localhost:81/hktlaravel/customer/google/callback',
     ],
-
 ];

@@ -23,9 +23,27 @@
           </label>
           <button class="btn btn-default" type="submit">Đăng nhập</button>
       </form>
-      <p class="forgot-pass">Quên mật khẩu ?</p>
+      {{-- đăng nhập bằng hình thức khác --}}
+      <ul class="list-login">
+        <li>
+          <a href="{{url('/dangnhap-kh-google')}}"><img width="10%" alt="Đăng nhập bằng tài khoản google" src="{{asset('public/frontend/images/icongoogle.png')}}"></a>
+        </li>
+        <li>
+          <a href=""><img width="10%" alt="Đăng nhập bằng tài khoản facebook" src="{{asset('public/frontend/images/iconfacebook.png')}}"></a>
+        </li>
+      </ul>
+      <style type="text/css">
+        ul.list-login{
+          margin: 10px;
+          padding: 0;
+        }
+        ul.list-login li{
+          display: inline;
+          margin: 5px;
+        }
+      </style>
+      {{-- đăng nhập bằng hình thức khác --}}
     </div>
-
     <div class="sub-cont">
       <div class="img">
         <div class="img-text m-up">

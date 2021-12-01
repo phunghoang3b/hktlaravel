@@ -7,13 +7,15 @@ use DB;//sử dụng database
 use App\Http\Requests;
 use Session;
 use Socialite;
-use App\Models\Social;
+use App\Models\Customer;
+use App\Models\SocialCustomers;
 use App\Models\Login;
 use Illuminate\Support\Facades\Redirect;
 use App\Rules\Captcha; 
 use Validator;
 use Auth;
 session_start();
+use provider;
 
 class AdminController extends Controller
 {
@@ -34,84 +36,53 @@ class AdminController extends Controller
         $this->KiemtraAdmin();
         return view('admin.trangadmin');
     }
-    //Đăng nhập
-    public function AdminTrangchu(Request $request){
-        // $data = $request->all();
-        // kiểm tra chức năng captcha
-        $data = $request->validate([
-            'admin_email' => 'required',
-            'admin_password' => 'required',
-            'g-recaptcha-response' => new Captcha(), //dòng kiểm tra Captcha
-        ]);
 
-        $admin_email = $data['admin_email'];
-        $admin_password = md5($data['admin_password']);
-        $login = Login::where('admin_email',$admin_email)->where('admin_password',$admin_password)->first();
-        if($login){
-            $login_count = $login->count();
-            if($login_count > 0){
-                Session::put('admin_name',$login->admin_name);
-                Session::put('admin_id',$login->admin_id);
-                return Redirect::to('/Trangadmin');
-            }
-        }else{
-            Session::put('message','Nhập sai tài khoản hoặc mật khẩu, vui lòng nhập lại');
-            return Redirect::to('/admin');
-        }
-    }
-    //Đăng xuất
-    public function Dangxuat(){
-        $this->KiemtraAdmin();
-        Session::put('admin_name',null);
-        Session::put('admin_id',null);
-        return Redirect::to('/admin');
-    }
-
-    //đăng nhập admin bằng google
-    public function login_google(){
+    public function dangnhap_kh_google(){
+        config(['services.google.redirect' => env('GOOGLE_URL')]);
         return Socialite::driver('google')->redirect();
     }
 
-    public function callback_google(){
-        $users = Socialite::driver('google')->stateless()->user(); 
-        // return $users->id;
-        $authUser = $this->findOrCreateUser($users,'google');
+    public function callback_customer_google(){
+        config(['services.google.redirect' => env('GOOGLE_URL')]);
+        $users = Socialite::driver('google')->stateless()->user();
+        $authUser = $this->findOrCreateCustomer($users,'google');
         if($authUser){
-            $account_name = Login::where('admin_id',$authUser->user)->first();
-            Session::put('admin_name',$account_name->admin_name);
-            Session::put('login_normal',true);
-            Session::put('admin_id',$account_name->admin_id); 
-        }elseif ($new_customer) {
-            $account_name = Login::where('admin_id',$authUser->user)->first();
-            Session::put('admin_name',$account_name->admin_name);
-            Session::put('login_normal',true);
-            Session::put('admin_id',$account_name->admin_id);
+            $account_name = Customer::where('customer_id',$authUser->user)->first();
+            Session::put('customer_id',$account_name->customer_id);
+            Session::put('customer_picture',$account_name->customer_picture);
+            Session::put('customer_name',$account_name->customer_name);
+        }elseif($customer_new){
+            $account_name = Customer::where('customer_id',$authUser->user)->first();
+            Session::put('customer_id',$account_name->customer_id);
+            Session::put('customer_picture',$account_name->customer_picture);
+            Session::put('customer_name',$account_name->customer_name);
         }
-        return Redirect('/Trangadmin')->with('message', 'Đăng nhập Admin thành công');
+        return redirect('/thanhtoan');
     }
 
-    public function findOrCreateUser($users,$provider){
-        $authUser = Social::where('provider_user_id', $users->id)->first();
+    public function findOrCreateCustomer($users,$provider){
+        $authUser = SocialCustomers::where('provider_user_id',$users->id)->first();
         if($authUser){
             return $authUser;
         }else{
-            $new_customer = new Social([
-            'provider_user_id' => $users->id,
-            'provider' => strtoupper($provider)
+            $customer_new = new SocialCustomers([
+                'provider_user_id' => $users->id,
+                'provider_user_email' => $users->email,
+                'provider' => strtoupper($provider)
             ]);
-            $create = Login::where('admin_email',$users->email)->first();
-                if(!$create){
-                    $create = Login::create([
-                        'admin_name' => $users->name,
-                        'admin_email' => $users->email,
-                        'admin_password' => '',
-                        'admin_phone' => '',
-                        'admin_status' => 1
-                    ]);
-                }
-            $new_customer->login()->associate($create);
-            $new_customer->save();
-            return $new_customer;
-        }    
+            $customer = Customer::where('customer_email',$users->email)->first();
+            if(!$customer){
+                $customer = Customer::create([
+                    'customer_name' => $users->name,
+                    'customer_picture' => $users->avatar,
+                    'customer_email' => $users->email,
+                    'customer_password' => '',
+                    'customer_phone' => ''
+                ]);
+            }
+            $customer_new->customer()->associate($customer);
+            $customer_new->save();
+            return $customer_new;
+        }
     }
 }

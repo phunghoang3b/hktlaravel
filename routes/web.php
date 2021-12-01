@@ -21,7 +21,6 @@ Route::get('/thuong-hieu-sp/{thuonghieu_id}', 'BrandProduct@Hienthi_Thuonghieu_i
 Route::get('/chi-tiet-san-pham/{sanpham_id}', 'ProductController@Chi_tiet_san_pham');
 
 //backend
-// Route::get('/Da', 'AdminController@index');
 Route::get('/Trangadmin', 'AdminController@Trangadmin');
 Route::get('/dangxuat', 'AdminController@Dangxuat');
 Route::post('/admin-trangchu', 'AdminController@AdminTrangchu');
@@ -127,9 +126,9 @@ Route::post('/capnhat-btn-sldh', 'OrderController@capnhat_btn_sldh');
 //gửi mail
 Route::get('/gui-mail', 'HomeController@gui_mail');
 
-//đăng nhập bằng google
-Route::get('/login-google','AdminController@login_google');
-Route::get('/google/callback','AdminController@callback_google');
+//đăng khách nhập bằng google
+Route::get('/dangnhap-kh-google','AdminController@dangnhap_kh_google');
+Route::get('/customer/google/callback','AdminController@callback_customer_google');
 
 // Slide banner
 Route::get('/danhsachbanner','SliderController@danhsach_banner');
