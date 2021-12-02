@@ -11,6 +11,7 @@ use App\Models\Slider;
 use App\Imports\Imports;
 use App\Exports\ExcelExports;
 use Excel;
+use App\Models\Product;
 use App\Models\CatePost;
 use App\Models\CategoryProductModel;
 use Illuminate\Support\Facades\Redirect;
@@ -94,8 +95,8 @@ class CategoryProduct extends Controller
         Session::put('message','Xóa danh mục sản phẩm thành công');
         return Redirect::to('danhsachdanhmucsanpham');
     }
-
     //kết thúc phần admin
+
     //phần hiển thị danh mục trang index
     public function Hienthi_Danhmuc_index(Request $request, $danhmuc_id){
         //slide
@@ -107,7 +108,27 @@ class CategoryProduct extends Controller
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
-        $danhmuc_theo_id = DB::table('tbl_product')->join('tbl_category_product','tbl_product.category_id','=','tbl_category_product.category_id')->where('tbl_product.category_id',$danhmuc_id)->get();
+        $cate_by_pro = CategoryProductModel::where('category_id',$danhmuc_id)->get();
+
+        foreach($cate_by_pro as $key => $giatri){
+            $category_id = $giatri->category_id;
+        }
+
+        if(isset($_GET['sort_by'])){
+            $sort_by = $_GET['sort_by'];
+            if($sort_by == 'giam_dan'){
+                $danhmuc_theo_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_price','DESC')->get();
+            }elseif($sort_by == 'tang_dan'){
+                $danhmuc_theo_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_price','ASC')->get();
+            }elseif($sort_by == 'kytu_za'){
+                $danhmuc_theo_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_name','DESC')->get();
+            }elseif($sort_by == 'kytu_az'){
+                $danhmuc_theo_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_name','ASC')->get();
+            }
+        }else{
+            $danhmuc_theo_id = Product::with('category')->where('category_id',$category_id)->orderBy('product_id','DESC')->get();
+        }
+
         foreach($danhmuc_sanpham as $key => $giatri){
             //--seo
             $meta_desc = $giatri->category_desc;

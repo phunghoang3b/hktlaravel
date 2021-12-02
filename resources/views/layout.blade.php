@@ -427,6 +427,19 @@
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     {{-- zalo --}}
 
+    {{-- lọc sản phẩm --}}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#sort').on('change',function(){
+                var url = $(this).val();
+                if(url){
+                    window.location = url;
+                }
+                return false;
+            });
+        });
+    </script>
+
     {{-- sản phẩm yêu thích --}}
     <script type="text/javascript">
         {{-- hiển thị trên view --}}

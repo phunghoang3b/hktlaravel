@@ -8,6 +8,8 @@ use App\Http\Requests;
 use Session;
 use Auth;
 use App\Models\Slider;
+use App\Models\Brand;
+use App\Models\Product;
 use App\Models\CatePost;
 use Illuminate\Support\Facades\Redirect;
 use App\Imports\ImportBrand;
@@ -105,7 +107,27 @@ class BrandProduct extends Controller
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
 
-        $thuonghieu_theo_id = DB::table('tbl_product')->join('tbl_brand','tbl_product.brand_id','=','tbl_brand.brand_id')->where('tbl_product.brand_id',$thuonghieu_id)->get();
+        $brand_by_pro = Brand::where('brand_id',$thuonghieu_id)->get();
+
+        foreach($brand_by_pro as $key => $giatri){
+            $brand_id = $giatri->brand_id;
+        }
+
+        if(isset($_GET['sort_by'])){
+            $sort_by = $_GET['sort_by'];
+            if($sort_by == 'giam_dan'){
+                $thuonghieu_theo_id = Product::with('brand')->where('brand_id',$brand_id)->orderBy('product_price','DESC')->get();
+            }elseif($sort_by == 'tang_dan'){
+                $thuonghieu_theo_id = Product::with('brand')->where('brand_id',$brand_id)->orderBy('product_price','ASC')->get();
+            }elseif($sort_by == 'kytu_za'){
+                $thuonghieu_theo_id = Product::with('brand')->where('brand_id',$brand_id)->orderBy('product_name','DESC')->get();
+            }elseif($sort_by == 'kytu_az'){
+                $thuonghieu_theo_id = Product::with('brand')->where('brand_id',$brand_id)->orderBy('product_name','ASC')->get();
+            }
+        }else{
+            $thuonghieu_theo_id = Product::with('brand')->where('brand_id',$brand_id)->orderBy('product_id','DESC')->get();
+        }
+
         foreach($thuonghieu_sanpham as $key => $giatri){
             //--seo
             $meta_desc = $giatri->brand_desc;

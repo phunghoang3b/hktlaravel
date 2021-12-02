@@ -5,6 +5,22 @@
     <h2 class="title text-center">{{$danhmuc->category_name}}</h2>
     @endforeach
 
+    <div class="row">
+        <div class="col-md-4">
+            <label for="amount">Sắp xếp theo</label>
+            <form>
+                @csrf
+                <select name="sort" id="sort" class="form-control" style="text-align: center;">
+                    <option value="{{Request::url()}}?sort_by=none">------------Lọc Theo------------</option>
+                    <option value="{{Request::url()}}?sort_by=tang_dan">-----------Giá tăng dần-----------</option>
+                    <option value="{{Request::url()}}?sort_by=giam_dan">------------Giá giảm dần------------</option>
+                    <option value="{{Request::url()}}?sort_by=kytu_az">--------Lọc theo tên từ A đến Z--------</option>
+                    <option value="{{Request::url()}}?sort_by=kytu_za">--------Lọc theo tên từ Z đến A--------</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
     @foreach($danhmuc_theo_id as $key => $sanpham)                   
         <div class="col-sm-4">
             <div class="product-image-wrapper">
