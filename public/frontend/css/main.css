@@ -50,6 +50,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 225px;
 }
 
+.info_wishlist p{
+  margin: 0;
+}
+
 a#scrollUp {
   bottom: 0px;
   right: 10px;
@@ -991,7 +995,7 @@ h2.title {
 
 .choose ul li a:hover{
 	background:none;
-	color:#FE980F;
+	color:#66b3ff;
 }
 
 .category-tab {

@@ -191,14 +191,14 @@
 							@endphp
 							<tr>
 								<td class="cart_product" style="text-align: center; width: 85%;">
-									<img src="{{asset('public/uploads/product/'.$gio['product_image'],0,',','.')}}" width="80" height="60" alt="{{$gio['product_name']}}" style="width: 65%;height: 2%;"/>
+									<img src="{{asset('public/uploads/product/'.$gio['product_image'])}}" width="80" height="60" alt="{{$gio['product_name']}}" style="width: 65%;height: 2%;"/>
 								</td>
 								<td class="cart_description" style="text-align: center;">
 									<h4><a href=""></a></h4>
 									<p>{{$gio['product_name']}}</p>
 								</td>
 								<td class="cart_price" style="text-align: center;">
-									<p>{{number_format($gio['product_price'],0,',','.')}} đ</p>
+									<p>{{number_format($gio['product_price'],0,',','.')}} VNĐ</p>
 								</td>
 								<td class="cart_quantity" style="text-align: center;">
 									<div class="cart_quantity_button">								
@@ -207,7 +207,7 @@
 								</td>
 								<td class="cart_total" style="text-align: center;">
 									<p class="cart_total_price">
-										{{number_format($thanhtien,0,',','.')}} đ
+										{{number_format($thanhtien,0,',','.')}} VNĐ
 									</p>
 								</td>
 								<td class="cart_delete">
