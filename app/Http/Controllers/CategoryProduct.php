@@ -107,7 +107,6 @@ class CategoryProduct extends Controller
 
         $danhmuc_sanpham = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
         $thuonghieu_sanpham = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
-
         $cate_by_pro = CategoryProductModel::where('category_id',$danhmuc_id)->get();
 
         foreach($cate_by_pro as $key => $giatri){

@@ -237,11 +237,18 @@
                             <div class="brands-name">
                                 <div id="row_wishlist" class="row"></div>
                             </div>
+                        </div><!--love product-->  
+
+                        <div class="brands_products"><!--love product-->
+                            <h2>Sản Phẩm Đã Xem</h2>
+                            <div class="brands-name">
+                                <div id="row_viewed" class="row"></div>
+                            </div>
                         </div><!--love product-->                      
                         
-                        {{-- <div class="shipping text-center"><!--shipping-->
+                        <div class="shipping text-center"><!--shipping-->
                             <img src="https://www.thol.com.vn/pub/media/wysiwyg/banner/Whey-RSP-banner.jpg" alt="" />
-                        </div><!--/shipping--><br> --}}
+                        </div><!--/shipping--><br>
                             
                     </div>
                 </div>
@@ -427,7 +434,7 @@
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     {{-- zalo --}}
 
-    {{-- lọc sản phẩm --}}
+    {{-- lọc sản phẩm theo ký tự, tăng giảm tiền --}}
     <script type="text/javascript">
         $(document).ready(function(){
             $('#sort').on('change',function(){
@@ -440,6 +447,58 @@
         });
     </script>
 
+    {{-- Sản phẩm đã xem --}}
+    <script type="text/javascript">
+        function viewd(){
+            if(localStorage.getItem('viewed') != null){
+                var data = JSON.parse(localStorage.getItem('viewed'));
+                data.reverse();
+                document.getElementById('row_viewed').style.overflow = 'scroll';
+                document.getElementById('row_viewed').style.height = '250px';
+                for(i = 0; i < data.length; i++){
+                    var name = data[i].name;
+                    var price = data[i].price;
+                    var image = data[i].image;
+                    var url = data[i].url;
+                    $('#row_viewed').append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img width="100%" src="'+image+'"></div><div class="col-md-8 info_wishlist"><p>'+name+'</p><p style="color:#FE980F">'+price+'</p><a href="'+url+'">Xem Ngay</a></div>');
+                }
+            }
+        }
+        viewd();
+        product_viewed();
+        function product_viewed(){
+            var id_product = $('#product_viewed_id').val();
+            if(id_product != undefined){
+                var id = id_product;
+                var name = document.getElementById('viewed_productname'+id).value;
+                var url = document.getElementById('viewed_producturl'+id).value;
+                var price = document.getElementById('viewed_productprice'+id).value;
+                var image = document.getElementById('viewed_productimage'+id).value;
+                var newItem = {
+                    'url':url,
+                    'id':id_product,
+                    'name':name,
+                    'price': price,
+                    'image': image
+                }
+                if(localStorage.getItem('viewed') == null){
+                    localStorage.setItem('viewed', '[]');
+                }
+                var old_data = JSON.parse(localStorage.getItem('viewed'));
+                //kiểm tra sp trùnh
+                var trung = $.grep(old_data, function(obj){
+                    return obj.id == id;
+                })
+                if(trung.length){
+                }else{
+                    old_data.push(newItem);
+                    $('#row_viewed').append('<div class="row" style="margin:10px 0"><div class="col-md-4"><img width="100%" src="'+newItem.image+'"></div><div class="col-md-8 info_wishlist"><p>'+newItem.name+'</p><p style="color:#FE980F">'+newItem.price+'</p><a href="'+newItem.url+'">Mua Ngay</a></div>');
+                }
+                localStorage.setItem('viewed',JSON.stringify(old_data));
+            }          
+        }
+    </script>
+
     {{-- sản phẩm yêu thích --}}
     <script type="text/javascript">
         {{-- hiển thị trên view --}}
@@ -448,7 +507,7 @@
                 var data = JSON.parse(localStorage.getItem('data'));
                 data.reverse();
                 document.getElementById('row_wishlist').style.overflow = 'scroll';
-                document.getElementById('row_wishlist').style.height = '300px';
+                document.getElementById('row_wishlist').style.height = '400px';
                 for(i = 0; i < data.length; i++){
                     var name = data[i].name;
                     var price = data[i].price;

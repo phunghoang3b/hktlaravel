@@ -119,7 +119,7 @@
 <!-- Popup end -->
 <div class="features_items"><!--features_items-->
     <h2 class="title text-center">Sản Phẩm Mới Nhất</h2>
-    @foreach($allproduct as $key => $sanpham)                     
+    @foreach($allproduct as $key => $sanpham)                 
         <div class="col-sm-4">
             <div class="product-image-wrapper">
                 <div class="single-products">
@@ -181,7 +181,9 @@
                         <li>
                             <i class="fa fa-plus-square"></i><button class="button_wishlist" id="{{$sanpham->product_id}}" onclick="add_wishlist(this.id);"><span>Yêu Thích</span></button>
                         </li>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>So Sánh</a></li>
+                        <li>
+                            <a href="#"><i class="fa fa-plus-square"></i>So Sánh</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -609,7 +611,7 @@
         <div class="banner-ads">
             <img src="{{('public/frontend/images/banner21.png')}}" />
         </div>
-        <div class="clear" style="margin-bottom: 32.7%;"></div>
+        <div class="clear" style="margin-bottom: 36.3%;"></div>
         <div class="row-image">
             <img src="{{('public/frontend/images/img1.jpg')}}" style="margin-left: 20%;border-bottom-left-radius: 10px;" />
             <img src="{{('public/frontend/images/img2.jpg')}}" />
