@@ -6,7 +6,7 @@
     <input type="hidden" id="viewed_productname{{$chitiet->product_id}}" value="{{$chitiet->product_name}}">
     <input type="hidden" id="viewed_producturl{{$chitiet->product_id}}" value="{{url('/chi-tiet-san-pham/'.$chitiet->product_id)}}">
     <input type="hidden" id="viewed_productimage{{$chitiet->product_id}}" value="{{asset('public/uploads/product/'.$chitiet->product_image)}}">
-    <input type="hidden" id="viewed_productprice{{$chitiet->product_id}}" value="{{number_format($chitiet->product_price,0,',','.')}}VNĐ">
+    <input type="hidden" id="viewed_productprice{{$chitiet->product_id}}" value="{{number_format($chitiet->product_price,0,',','.')}} VNĐ">
 
     <div class="product-details"><!--product-details-->
         <div class="breadcrumbs">

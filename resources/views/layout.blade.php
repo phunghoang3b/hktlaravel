@@ -434,6 +434,51 @@
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     {{-- zalo --}}
 
+    {{-- so sánh sản phẩm --}}
+    <script type="text/javascript">
+        function them_sosanh(product_id){
+            document.getElementById('title-compare').innerText = 'Bạn có thể so sánh tối đa 3 sản phẩm!';
+                var id = product_id;
+                var name = document.getElementById('wishlist_productname'+id).value;
+                var price = document.getElementById('wishlist_productprice'+id).value;
+                var image = document.getElementById('wishlist_productimage'+id).src;
+                var url = document.getElementById('wishlist_producturl'+id).href;
+                var newItem = {
+                    'url':url,
+                    'id':id,
+                    'name':name,
+                    'price': price,
+                    'image': image
+                }
+                if(localStorage.getItem('compare') == null){
+                    localStorage.setItem('compare', '[]');
+                }
+                var old_data = JSON.parse(localStorage.getItem('compare'));
+                //kiểm tra sp trùnh
+                var trung = $.grep(old_data, function(obj){
+                    return obj.id == id;
+                })
+                if(trung.length){
+
+                }else{
+                    if(old_data.length < 3){
+                        old_data.push(newItem);
+                        $('#row_compare').find('tbody').append(`
+                            <tr>
+                                <td>`+newItem.name+`</td>
+                                <td><img src="`+newItem.image+`" style="width:200px"/></td>
+                                <td>`+newItem.price+`</td>
+                                <td><a href="`+url+`">Xem sản phẩm</a></td>
+                                <td>Chức năng</td>
+                            </tr>
+                        `);
+                    }
+                }
+            localStorage.setItem('compare',JSON.stringify(old_data));  
+            $('#sosanh').modal();
+        }
+    </script>
+
     {{-- lọc sản phẩm theo ký tự, tăng giảm tiền --}}
     <script type="text/javascript">
         $(document).ready(function(){
@@ -454,7 +499,7 @@
                 var data = JSON.parse(localStorage.getItem('viewed'));
                 data.reverse();
                 document.getElementById('row_viewed').style.overflow = 'scroll';
-                document.getElementById('row_viewed').style.height = '250px';
+                document.getElementById('row_viewed').style.height = '400px';
                 for(i = 0; i < data.length; i++){
                     var name = data[i].name;
                     var price = data[i].price;
