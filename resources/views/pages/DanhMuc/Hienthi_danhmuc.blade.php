@@ -83,7 +83,43 @@
                         <li>
                             <i class="fa fa-plus-square"></i><button class="button_wishlist" id="{{$sanpham->product_id}}" onclick="add_wishlist(this.id);"><span>Yêu Thích</span></button>
                         </li>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>So Sánh</a></li>
+                        <li>
+                            <a style="cursor: pointer;" onclick="them_sosanh({{$sanpham->product_id}})"><i class="fa fa-plus-square"></i>So Sánh</a>
+                        </li>
+                        {{-- model so sanh --}}
+                        <div class="container">                      
+                            <!-- Modal -->
+                            <div class="modal fade" id="sosanh" role="dialog">
+                            <div class="modal-dialog">  
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"><span id="title-compare"></span></h4>
+                                    </div>
+                                <div class="modal-body">
+                                    {{-- <div id="row_compare"></div> --}}
+                                    <table class="table table-hover" id="row_compare">
+                                        <thead>
+                                          <tr>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Giá sản phẩm</th>
+                                            <th>Xem sản phẩm</th>
+                                            <th>Chức năng</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>     
+                            </div>
+                            </div>
+                        </div>
+                        {{-- model so sanh --}}
                     </ul>
                 </div>
             </div>

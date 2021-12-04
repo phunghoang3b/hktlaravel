@@ -436,6 +436,40 @@
 
     {{-- so sánh sản phẩm --}}
     <script type="text/javascript">
+        function xoa_sosanh(id){
+            if(localStorage.getItem('compare') != null){
+                var data = JSON.parse(localStorage.getItem('compare'));
+                var index = data.findIndex(item => item.id === id);
+                // splice dùng xóa 1 thành phần trong mảng javascript
+                data.splice(index, 1);
+                localStorage.setItem('compare',JSON.stringify(data));
+                // xóa element by id
+                document.getElementById("row_compare"+id).remove();
+            }
+        }
+
+        function xem_sosanh(){
+            if(localStorage.getItem('compare') != null){
+                var data = JSON.parse(localStorage.getItem('compare'));
+                for(i = 0; i < data.length; i++){
+                    var name = data[i].name;
+                    var price = data[i].price;
+                    var image = data[i].image;
+                    var url = data[i].url;
+                    var id = data[i].id;
+                    $('#row_compare').find('tbody').append(`
+                            <tr id="row_compare`+id+`">
+                                <td>`+name+`</td>
+                                <td><img src="`+image+`" style="width:200px"/></td>
+                                <td>`+price+`</td>
+                                <td><a href="`+url+`">Xem sản phẩm</a></td>
+                                <td><a style="cursor:pointor" onclick="xoa_sosanh(`+id+`)">Xóa</a></td>
+                            </tr>
+                    `);
+                }
+            }
+        }
+        xem_sosanh();
         function them_sosanh(product_id){
             document.getElementById('title-compare').innerText = 'Bạn có thể so sánh tối đa 3 sản phẩm!';
                 var id = product_id;
@@ -464,12 +498,12 @@
                     if(old_data.length < 3){
                         old_data.push(newItem);
                         $('#row_compare').find('tbody').append(`
-                            <tr>
+                            <tr id="row_compare`+id+`">
                                 <td>`+newItem.name+`</td>
                                 <td><img src="`+newItem.image+`" style="width:200px"/></td>
                                 <td>`+newItem.price+`</td>
                                 <td><a href="`+url+`">Xem sản phẩm</a></td>
-                                <td>Chức năng</td>
+                                <td><a style="cursor:pointor" onclick="xoa_sosanh(`+id+`)">Xóa</a></td>
                             </tr>
                         `);
                     }
@@ -897,7 +931,7 @@
         });
     </script>
 
-    {{-- <!-- automatic show popup after 1.5s start-->
+    <!-- automatic show popup after 1.5s start-->
     <script>
         const loginPopup = document.querySelector(".login-popup");
         const close = document.querySelector(".close");
@@ -921,7 +955,7 @@
             loginPopup.classList.remove("show");
         })
     </script>
-    <!-- automatic show popup after 1.5s end--> --}}
+    <!-- automatic show popup after 1.5s end-->
 
 </body>
 </html>

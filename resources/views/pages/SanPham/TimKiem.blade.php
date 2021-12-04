@@ -11,14 +11,14 @@
                         <form>
                             @csrf
                             <input type="hidden" value="{{$sanpham->product_id}}" class="cart_product_id_{{$sanpham->product_id}}">
-                            <input type="hidden" value="{{$sanpham->product_name}}" class="cart_product_name_{{$sanpham->product_id}}">
+                            <input type="hidden" id="wishlist_productname{{$sanpham->product_id}}" value="{{$sanpham->product_name}}" class="cart_product_name_{{$sanpham->product_id}}">
                             <input type="hidden" value="{{$sanpham->product_quantity}}" class="cart_product_quantity_{{$sanpham->product_id}}">
                             <input type="hidden" value="{{$sanpham->product_image}}" class="cart_product_image_{{$sanpham->product_id}}">
-                            <input type="hidden" value="{{$sanpham->product_price}}" class="cart_product_price_{{$sanpham->product_id}}">
+                            <input type="hidden" id="wishlist_productprice{{$sanpham->product_id}}" value="{{$sanpham->product_price}}" class="cart_product_price_{{$sanpham->product_id}}">
                             <input type="hidden" value="1" class="cart_product_qty_{{$sanpham->product_id}}">
 
-                            <a href="{{URL::to('/chi-tiet-san-pham/'.$sanpham->product_id)}}">
-                                <img src="{{URL::to('public/uploads/product/'.$sanpham->product_image)}}" alt="" />
+                            <a id="wishlist_producturl{{$sanpham->product_id}}" href="{{URL::to('/chi-tiet-san-pham/'.$sanpham->product_id)}}">
+                                <img id="wishlist_productimage{{$sanpham->product_id}}" src="{{URL::to('public/uploads/product/'.$sanpham->product_image)}}" alt="" />
                                 <h2>{{number_format($sanpham->product_price).' '.'đ'}}</h2>
                                 <p>{{($sanpham->product_name)}}</p>
                             </a> 
@@ -38,6 +38,71 @@
                             <input type="button" data-toggle="modal" data-target="#xemnhanh" value="Xem nhanh" class="btn btn-default xemnhanh" data-id_sanpham="{{$sanpham->product_id}}" name="them-gio-hang">
                         </form>
                     </div>
+                </div>
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <style type="text/css">
+                            ul.nav-pills.nav-justified li{
+                                text-align: center;
+                                font-size: 13px;
+                            }
+                            .button_wishlist{
+                                border: none;
+                                background: #ffff;
+                                color: #B3AFAB;
+                            }
+                            ul.nav.nav-pills.nav-justified i{
+                                color: #B3AFAB;
+                            }
+                            .button_wishlist span:hover{
+                                color: #66b3ff;
+                            }
+                            .button_wishlist:focus{
+                                border: none;
+                                outline: none;
+                            }
+                        </style>
+                        <li>
+                            <i class="fa fa-plus-square"></i><button class="button_wishlist" id="{{$sanpham->product_id}}" onclick="add_wishlist(this.id);"><span>Yêu Thích</span></button>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer;" onclick="them_sosanh({{$sanpham->product_id}})"><i class="fa fa-plus-square"></i>So Sánh</a>
+                        </li>
+                        {{-- model so sanh --}}
+                        <div class="container">                      
+                            <!-- Modal -->
+                            <div class="modal fade" id="sosanh" role="dialog">
+                            <div class="modal-dialog">  
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title"><span id="title-compare"></span></h4>
+                                    </div>
+                                <div class="modal-body">
+                                    {{-- <div id="row_compare"></div> --}}
+                                    <table class="table table-hover" id="row_compare">
+                                        <thead>
+                                          <tr>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Giá sản phẩm</th>
+                                            <th>Xem sản phẩm</th>
+                                            <th>Chức năng</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>     
+                            </div>
+                            </div>
+                        </div>
+                        {{-- model so sanh --}}
+                    </ul>
                 </div>
             </div>
         </div>
