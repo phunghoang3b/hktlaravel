@@ -87,6 +87,8 @@ Route::post('/capnhat-giohang-ajax', 'CartController@capnhat_giohang_ajax');
 Route::get('/xoasp-ajax/{session_id}', 'CartController@xoasp_ajax');
 Route::get('/xoatatca-giohang', 'CartController@xoatatca_giohang');
 
+Route::get('/dem-giohang', 'CartController@dem_giohang');
+
 //Mã giảm giá
 Route::post('/kiemtra-giamgia', 'CartController@kiemtra_giamgia');
 Route::get('/them-magiamgia', 'CouponController@them_magiamgia');

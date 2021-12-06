@@ -96,7 +96,13 @@
                                     }
                                 ?>
                                 {{-- phần giỏ hàng --}}
-                                <li><a href="{{URL::to('/giohang-ajax')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                                <li>
+                                    <a href="{{URL::to('/giohang-ajax')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng
+                                        <span class="badges">
+                                            <span id="dem-giohang"></span>
+                                        </span>
+                                    </a>
+                                </li>
                                 <?php
                                     $customer_id = Session::get('customer_id');
                                     if($customer_id != NULL){
@@ -763,6 +769,17 @@
 
     {{-- add-to-cart sản phẩm --}}
     <script type="text/javascript">
+        dem_giohang();
+        // đếm số lượng giỏ hàng
+        function dem_giohang(){
+            $.ajax({
+                url: '{{url('/dem-giohang')}}',
+                method: 'GET',
+                success:function(data){
+                    $('#dem-giohang').html(data);
+                }
+            });
+        }
         $(document).ready(function(){
             $('.add-to-cart').click(function(){
                 var id = $(this).data('id_sanpham');
@@ -794,6 +811,7 @@
                         function() {
                             window.location.href = "{{url('/giohang-ajax')}}";
                         });
+                        dem_giohang();
                     }
                 });
             }
@@ -825,6 +843,7 @@
                     },
                     success:function(){
                             $("#beforesend_quickview").html("<p class='text text-success'>Đã thêm sản phẩm vào giỏ hàng</p>");
+                            dem_giohang();
                     }
                 });
             }

@@ -200,4 +200,9 @@ class CartController extends Controller
         }
     }
 
+    // đếm số lượng giỏ hàng
+    public function dem_giohang(){
+        $giohang = count(Session::get('giohang')); 
+        echo $giohang;       
+    }
 }

@@ -2514,4 +2514,11 @@ h2.title {
   color: #FE980F;
 }
 
-
+span.badges{
+  background: #66b3ff;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
